@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menulis Program Pertama dengan Python</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f4f8;
+        color: #1e293b;
+      }
+      .slide {
+        display: none;
+        min-height: 70vh;
+      }
+      .slide.active {
+        display: flex;
+      }
+      .code-block {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .logo-grid img {
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+      }
+      .logo-grid img:hover {
+        filter: grayscale(0%);
+      }
+    </style>
+  </head>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
+    <div
+      id="presentation-container"
+      class="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden">
+      <!-- Slide Content Area -->
+      <div class="p-8 sm:p-12 md:p-16">
+        <!-- Slide 1: Halaman Judul -->
+        <div
+          id="slide-1"
+          class="slide active flex-col justify-center items-center text-center">
+          <div
+            class="bg-blue-600 text-white p-4 rounded-full inline-block mb-6 shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800">
+            Menulis Program Pertama dengan Python
+          </h1>
+          <p class="mt-4 text-lg sm:text-xl text-slate-500">
+            Pertemuan 3: Dari Konsep ke Kode
+          </p>
+        </div>
+
+        <!-- Slide 2: Agenda Pertemuan -->
+        <div id="slide-2" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Agenda Pertemuan
+          </h2>
+          <ul
+            class="list-disc list-inside space-y-3 text-slate-600 text-base sm:text-lg">
+            <li>Pengenalan Bahasa Pemrograman Python</li>
+            <li>Persiapan Lingkungan Pemrograman (Online)</li>
+            <li>Opsi Lanjutan: Instalasi Python di Komputer Lokal</li>
+            <li>Praktik 1: Menampilkan Teks dengan <code>print()</code></li>
+            <li>Praktik 2: Menyimpan Informasi dengan Variabel</li>
+            <li>
+              Praktik 3: Menerima Input dari Pengguna dengan
+              <code>input()</code>
+            </li>
+            <li>Studi Kasus: Program Biodata Sederhana</li>
+            <li>Latihan Tambahan & Tanya Jawab</li>
+          </ul>
+        </div>
+
+        <!-- Slide 3: Pengenalan Python -->
+        <div id="slide-3" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Apa itu Python?
+          </h2>
+          <p class="mb-6 text-slate-600 text-base sm:text-lg">
+            Python adalah bahasa pemrograman tingkat tinggi yang serbaguna,
+            mudah dibaca, dan banyak digunakan di berbagai industri.
+          </p>
+          <div class="space-y-4">
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <strong>Sintaks Sederhana:</strong> Kodenya mirip bahasa Inggris,
+              mudah dipelajari pemula.
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg">
+              <strong>Serbaguna (Versatile):</strong> Untuk web, AI, analisis
+              data, otomasi, dan lainnya.
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <strong>Komunitas Besar:</strong> Didukung komunitas global yang
+              aktif, mudah mencari bantuan.
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Relevansi Industri -->
+        <div id="slide-4" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Relevansi Python di Industri
+          </h2>
+          <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+            <li>
+              <strong>Pengembangan Web:</strong> Backend situs dengan Django &
+              Flask.
+            </li>
+            <li>
+              <strong>Ilmu Data & AI:</strong> Andalan untuk analisis data dan
+              sistem rekomendasi.
+            </li>
+            <li>
+              <strong>Otomasi & Skrip:</strong> Mengotomatiskan tugas komputer
+              berulang.
+            </li>
+            <li>
+              <strong>Pengembangan Game:</strong> Membuat kerangka dasar game
+              sederhana.
+            </li>
+          </ul>
+          <p class="text-center text-slate-500 mb-4">
+            Digunakan oleh perusahaan ternama:
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 logo-grid">
+            <img
+              src="https://placehold.co/150x70/ffffff/000000?text=Google"
+              alt="Logo Google"
+              class="mx-auto" />
+            <img
+              src="https://placehold.co/150x70/ffffff/000000?text=Instagram"
+              alt="Logo Instagram"
+              class="mx-auto" />
+            <img
+              src="https://placehold.co/150x70/ffffff/000000?text=Netflix"
+              alt="Logo Netflix"
+              class="mx-auto" />
+            <img
+              src="https://placehold.co/150x70/ffffff/000000?text=NASA"
+              alt="Logo NASA"
+              class="mx-auto" />
+          </div>
+        </div>
+
+        <!-- Slide 5: Lingkungan Online -->
+        <div id="slide-5" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Persiapan Lingkungan Kerja (Online)
+          </h2>
+          <p class="mb-4 text-slate-600">
+            Kita akan menggunakan platform online agar tidak perlu instalasi
+            software.
+          </p>
+          <p class="font-semibold mb-2">Pilihan Platform:</p>
+          <ul class="list-disc list-inside space-y-2 mb-6">
+            <li>
+              Google Colaboratory (<a
+                href="https://colab.research.google.com"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >colab.research.google.com</a
+              >)
+            </li>
+            <li>
+              Kaggle (<a
+                href="https://www.kaggle.com"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >kaggle.com</a
+              >)
+            </li>
+          </ul>
+          <div
+            class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md">
+            <p>
+              <strong>Keuntungan:</strong> Hanya butuh browser dan koneksi
+              internet. Bisa diakses dari perangkat mana saja.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 6: Instalasi Lokal -->
+        <div id="slide-6" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Opsi Lanjutan: Instalasi Lokal
+          </h2>
+          <p class="mb-4 text-slate-600">
+            Untuk penggunaan jangka panjang, Anda bisa menginstal Python
+            langsung di komputer.
+          </p>
+          <ol class="list-decimal list-inside space-y-2 mb-4">
+            <li>
+              Kunjungi
+              <a
+                href="https://python.org"
+                target="_blank"
+                class="text-blue-600 hover:underline"
+                >python.org</a
+              >
+              dan unduh versi terbaru.
+            </li>
+            <li>
+              Saat instalasi, centang kotak
+              <strong>"Add Python to PATH"</strong>. Ini sangat penting!
+            </li>
+          </ol>
+          <p class="mb-4">
+            <strong>Editor Kode:</strong> Anda butuh editor seperti VS Code,
+            Sublime Text, atau PyCharm.
+          </p>
+          <div
+            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md">
+            <p>
+              <strong>Keuntungan:</strong> Bisa coding kapan saja tanpa perlu
+              koneksi internet.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 7: Praktik 1 -->
+        <div id="slide-7" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Praktik 1: Menampilkan Teks
+          </h2>
+          <p class="mb-4 text-slate-600">
+            Fungsi <code>print()</code> adalah instruksi dasar untuk menampilkan
+            teks atau informasi lain ke layar.
+          </p>
+          <p class="mb-2 font-semibold">Contoh Kode:</p>
+          <div class="code-block w-full">
+            print("Hello, World!") print("Saya siswa SMK, siap belajar Python!")
+          </div>
+        </div>
+
+        <!-- Slide 8: Praktik 2 -->
+        <div id="slide-8" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Praktik 2: Menyimpan Informasi
+          </h2>
+          <p class="mb-4 text-slate-600">
+            <strong>Variabel</strong> bisa diibaratkan seperti sebuah kotak
+            berlabel untuk menyimpan nilai atau informasi.
+          </p>
+          <p class="mb-2 font-semibold">Contoh Kode:</p>
+          <div class="code-block w-full">
+            nama = "Budi Hartono" umur = "17" sekolah = "SMK Negeri 1 Maju Jaya"
+            print(nama) print(umur) print(sekolah)
+          </div>
+        </div>
+
+        <!-- Slide 9: Praktik 3 -->
+        <div id="slide-9" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Praktik 3: Program Interaktif
+          </h2>
+          <p class="mb-4 text-slate-600">
+            Fungsi <code>input()</code> digunakan untuk menjeda program dan
+            meminta masukan dari pengguna.
+          </p>
+          <p class="mb-2 font-semibold">Contoh Kode:</p>
+          <div class="code-block w-full">
+            print("Siapakah nama Anda?") nama_pengguna = input() print("Selamat
+            datang, " + nama_pengguna + "!")
+          </div>
+        </div>
+
+        <!-- Slide 10: Studi Kasus -->
+        <div id="slide-10" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Studi Kasus: Program Biodata
+          </h2>
+          <p class="mb-4 text-slate-600">
+            Mari gabungkan semua konsep untuk membuat program yang lebih utuh.
+          </p>
+          <div class="code-block w-full text-sm">
+            print("--- PROGRAM INPUT BIODATA ---") nama = input("Masukkan Nama
+            Lengkap: ") kelas = input("Masukkan Kelas: ") jurusan =
+            input("Masukkan Jurusan: ") umur = input("Masukkan Umur: ")
+            print("\n--- BIODATA ANDA ---") print("Nama :", nama) print("Kelas
+            :", kelas) print("Jurusan :", jurusan) print("Umur :", umur,
+            "tahun")
+          </div>
+        </div>
+
+        <!-- Slide 11: Latihan 1 -->
+        <div id="slide-11" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Latihan 1: Pembuat Slogan
+          </h2>
+          <p class="mb-4 text-slate-600">
+            <strong>Tugas:</strong> Buat program yang meminta nama produk dan
+            kata sifat, lalu menggabungkannya menjadi slogan.
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <p class="font-semibold mb-2">Petunjuk:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Minta input nama produk (misal: "Cokelat").</li>
+              <li>Minta input kata sifat (misal: "Lezat").</li>
+              <li>Gabungkan keduanya dan tampilkan hasilnya.</li>
+            </ul>
+            <p class="mt-3 font-semibold">Contoh output:</p>
+            <code class="text-green-700"
+              >Slogan baru Anda: Cokelat, Pasti Lezat!</code
+            >
+          </div>
+        </div>
+
+        <!-- Slide 12: Latihan 2 -->
+        <div id="slide-12" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Latihan 2: Generator Cerita
+          </h2>
+          <p class="mb-4 text-slate-600">
+            <strong>Tugas:</strong> Buat program "Mad Libs" yang meminta
+            beberapa kata untuk digabungkan menjadi cerita lucu.
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <p class="font-semibold mb-2">Petunjuk:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Minta input: warna, nama hewan, kata kerja, nama teman.</li>
+              <li>Simpan setiap kata dalam variabel berbeda.</li>
+              <li>Buat template cerita dan gabungkan dengan variabel.</li>
+            </ul>
+            <p class="mt-3 font-semibold">Contoh output:</p>
+            <code class="text-green-700"
+              >Kemarin, saya melihat seekor [nama hewan] berwarna [warna] sedang
+              [kata kerja] bersama [nama teman].</code
+            >
+          </div>
+        </div>
+
+        <!-- Slide 13: Latihan 3 -->
+        <div id="slide-13" class="slide flex-col">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-slate-800">
+            Latihan 3: Kartu Nama Digital
+          </h2>
+          <p class="mb-4 text-slate-600">
+            <strong>Tugas:</strong> Buat program yang mencetak kartu nama
+            sederhana berdasarkan input pengguna.
+          </p>
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <p class="font-semibold mb-2">Petunjuk:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Minta input: Nama, Jabatan, Nomor Telepon.</li>
+              <li>Tampilkan hasilnya dalam format kartu nama yang rapi.</li>
+            </ul>
+            <p class="mt-3 font-semibold">Contoh output:</p>
+            <div class="code-block !bg-white !text-slate-800 border mt-2">
+              ========================= Nama : Budi Hartono Jabatan : Siswa RPL
+              Kontak : 08123456789 =========================
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 14: Rangkuman -->
+        <div
+          id="slide-14"
+          class="slide flex-col justify-center items-center text-center">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-slate-800">
+            Rangkuman Singkat
+          </h2>
+          <ul class="space-y-4 text-lg">
+            <li class="bg-blue-100 p-3 rounded-lg">
+              Kita bisa menampilkan output ke layar menggunakan
+              <code>print()</code>.
+            </li>
+            <li class="bg-green-100 p-3 rounded-lg">
+              Kita bisa menyimpan data dalam <strong>variabel</strong>.
+            </li>
+            <li class="bg-yellow-100 p-3 rounded-lg">
+              Kita bisa menerima masukan dari pengguna menggunakan
+              <code>input()</code>.
+            </li>
+          </ul>
+          <p class="mt-8 text-xl font-semibold text-blue-600">
+            "Selamat! Anda telah berhasil menulis program interaktif pertama
+            Anda!"
+          </p>
+        </div>
+
+        <!-- Slide 15: Tanya Jawab -->
+        <div
+          id="slide-15"
+          class="slide flex-col justify-center items-center text-center">
+          <div
+            class="bg-purple-600 text-white p-4 rounded-full inline-block mb-6 shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800">
+            Diskusi & Tanya Jawab
+          </h1>
+          <p class="mt-4 text-lg sm:text-xl text-slate-500">Terima Kasih!</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="bg-slate-100 p-4 flex justify-between items-center border-t">
+        <button
+          id="prevBtn"
+          class="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Sebelumnya
+        </button>
+        <div
+          id="slide-counter"
+          class="text-sm text-slate-600 font-medium"></div>
+        <button
+          id="nextBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll('.slide');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const slideCounter = document.getElementById('slide-counter');
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        // Hide all slides
+        slides.forEach((slide) => {
+          slide.classList.remove('active');
+        });
+        // Show the target slide
+        slides[index].classList.add('active');
+        updateControls();
+      }
+
+      function updateControls() {
+        // Update slide counter
+        slideCounter.textContent = `Slide ${
+          currentSlide + 1
+        } dari ${totalSlides}`;
+
+        // Update button states
+        if (currentSlide === 0) {
+          prevBtn.disabled = true;
+        } else {
+          prevBtn.disabled = false;
+        }
+
+        if (currentSlide === totalSlides - 1) {
+          nextBtn.disabled = true;
+        } else {
+          nextBtn.disabled = false;
+        }
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          showSlide(currentSlide);
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          showSlide(currentSlide);
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          nextBtn.click();
+        } else if (e.key === 'ArrowLeft') {
+          prevBtn.click();
+        }
+      });
+
+      // Initial setup
+      showSlide(currentSlide);
+    </script>
+  </body>
+</html>
