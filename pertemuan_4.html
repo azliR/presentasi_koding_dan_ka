@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memahami Tipe Data & Operasi Matematika di Python</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+    <link rel="stylesheet" href="public/canvas.css" />
+    <style>
+      /* Menambahkan font custom untuk nuansa yang berbeda */
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #111827; /* Dark background */
+      }
+      .font-space-mono {
+        font-family: 'Space Mono', monospace;
+      }
+      /* Efek gradien aurora untuk teks */
+      .aurora-text {
+        background-image: linear-gradient(to right, #ec4899, #8b5cf6, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      /* Kartu dengan border gradien */
+      .gradient-border-card {
+        border: 2px solid transparent;
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-image: linear-gradient(#1f2937, #1f2937),
+          linear-gradient(to right, #ec4899, #8b5cf6);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="slide active flex flex-col items-center justify-center text-center p-8 text-white">
+      <div class="space-y-4">
+        <h1 class="text-6xl md:text-8xl font-black tracking-tight aurora-text">
+          Tipe Data & Operasi Matematika
+        </h1>
+        <p class="mt-4 text-xl md:text-2xl text-gray-300">
+          Pertemuan 4: Fondasi Logika Pemrograman dengan Python
+        </p>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Agenda Hari Ini</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Review Singkat: Variabel dan <code>input()</code></span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Konsep Tipe Data: Apa & Mengapa Penting?</span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Mengenal Tipe Data Primitif: int, float, str, bool</span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Praktik: Mengecek Tipe Data dengan <code>type()</code></span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Operasi Aritmetika: Dasar & Lanjutan</span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Konversi Tipe Data (Casting)</span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Studi Kasus: Kalkulator Luas Sederhana</span>
+        </div>
+        <div class="flex items-start space-x-3">
+          <span class="text-pink-400">✓</span>
+          <span>Latihan Mandiri & Q&A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-2 aurora-text">Apa Itu Tipe Data?</h2>
+      <p class="text-xl mb-8 text-gray-400">
+        Klasifikasi data yang memberitahu komputer cara mengolah sebuah nilai.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="gradient-border-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2 text-pink-400">Analogi Wadah</h3>
+          <p>
+            Botol untuk air, kotak untuk nasi. Setiap data punya "wadah" yang
+            sesuai agar tidak tercampur.
+          </p>
+        </div>
+        <div class="gradient-border-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2 text-purple-400">
+            Pentingnya Tipe
+          </h3>
+          <p>
+            Menentukan operasi yang valid. Angka bisa dikali, tapi teks tidak
+            bisa.
+          </p>
+        </div>
+        <div class="gradient-border-card p-6 rounded-lg">
+          <h3 class="font-bold text-lg mb-2 text-blue-400">Contoh Nyata</h3>
+          <p>
+            Menjumlahkan total belanja (angka) vs. menggabungkan nama depan dan
+            belakang (teks).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Tipe Data Angka</h2>
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-3 text-pink-400">
+            Integer (<span class="font-mono">int</span>)
+          </h3>
+          <p class="mb-4">
+            Merepresentasikan bilangan bulat, positif maupun negatif.
+          </p>
+          <pre><code class="language-python"># Contoh Integer
+jumlah_siswa = 35
+suhu_beku = -10</code></pre>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-3 text-purple-400">
+            Float (<span class="font-mono">float</span>)
+          </h3>
+          <p class="mb-4">Merepresentasikan bilangan desimal atau pecahan.</p>
+          <pre><code class="language-python"># Contoh Float
+nilai_pi = 3.14
+berat_badan = 65.5</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Tipe Data Lainnya</h2>
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-3 text-blue-400">
+            String (<span class="font-mono">str</span>)
+          </h3>
+          <p class="mb-4">
+            Merepresentasikan data teks. Diapit oleh tanda kutip (' ' atau " ").
+          </p>
+          <pre><code class="language-python"># Contoh String
+nama = "Andi Wijaya"
+nomor_induk = "12345" # Ini teks!</code></pre>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-3 text-green-400">
+            Boolean (<span class="font-mono">bool</span>)
+          </h3>
+          <p class="mb-4">
+            Merepresentasikan logika, hanya bernilai
+            <code class="text-green-300">True</code> atau
+            <code class="text-red-400">False</code>.
+          </p>
+          <pre><code class="language-python"># Contoh Boolean
+sudah_lulus = True
+sedang_hujan = False</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-2 aurora-text">
+        Praktik: Cek Tipe Data
+      </h2>
+      <p class="text-lg mb-6 text-gray-400">
+        Gunakan fungsi bawaan <code>type()</code> untuk inspeksi variabel.
+      </p>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <pre><code class="language-python">angka_bulat = 100
+angka_desimal = 20.5
+nama_depan = "Budi"
+apakah_benar = True
+
+print(type(angka_bulat))
+print(type(angka_desimal))
+print(type(nama_depan))
+print(type(apakah_benar))</code></pre>
+        </div>
+        <div
+          class="font-space-mono text-gray-400 bg-gray-900 p-4 rounded-lg text-sm">
+          <p class="text-gray-500"># Output yang Diharapkan:</p>
+          <p>&gt; &lt;class '<span class="text-pink-400">int</span>'&gt;</p>
+          <p>&gt; &lt;class '<span class="text-purple-400">float</span>'&gt;</p>
+          <p>&gt; &lt;class '<span class="text-blue-400">str</span>'&gt;</p>
+          <p>&gt; &lt;class '<span class="text-green-400">bool</span>'&gt;</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Operasi Aritmetika</h2>
+      <div class="grid grid-cols-2 gap-6">
+        <div class="bg-gray-800/50 p-4 rounded-lg">
+          <h3 class="font-bold text-lg mb-3 text-pink-400">Operasi Dasar</h3>
+          <ul class="font-space-mono text-sm space-y-2">
+            <li>
+              10 + 5 &nbsp; <span class="text-gray-400"> -> 15 (Tambah)</span>
+            </li>
+            <li>
+              10 - 5 &nbsp; <span class="text-gray-400"> -> 5 (Kurang)</span>
+            </li>
+            <li>
+              10 * 5 &nbsp; <span class="text-gray-400"> -> 50 (Kali)</span>
+            </li>
+            <li>
+              10 / 5 &nbsp; <span class="text-gray-400"> -> 2.0 (Bagi)</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-gray-800/50 p-4 rounded-lg">
+          <h3 class="font-bold text-lg mb-3 text-purple-400">
+            Operasi Lanjutan
+          </h3>
+          <ul class="font-space-mono text-sm space-y-2">
+            <li>
+              10 ** 2 <span class="text-gray-400"> -> 100 (Pangkat)</span>
+            </li>
+            <li>
+              10 // 3 <span class="text-gray-400"> -> 3 (Bagi Bulat)</span>
+            </li>
+            <li>
+              10 % 3 &nbsp;<span class="text-gray-400"> -> 1 (Sisa Bagi)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-6 aurora-text">Urutan Operasi</h2>
+      <p class="text-lg mb-6 text-gray-400">
+        Python mengikuti aturan
+        <strong class="text-white">PEMDAS</strong> (Kurung, Pangkat, Kali/Bagi,
+        Tambah/Kurang).
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-red-900/30 p-4 rounded-lg border border-red-500">
+          <h3 class="font-bold mb-2">Tanpa Kurung (Hasil Salah)</h3>
+          <pre><code class="language-python"># 5 * 2 dulu, baru 10 + 10
+hasil = 10 + 5 * 2
+print(hasil) # -> 20</code></pre>
+        </div>
+        <div class="bg-green-900/30 p-4 rounded-lg border border-green-500">
+          <h3 class="font-bold mb-2">Dengan Kurung (Hasil Benar)</h3>
+          <pre><code class="language-python"># (10 + 5) dulu, baru 15 * 2
+hasil = (10 + 5) * 2
+print(hasil) # -> 30</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-6 aurora-text">
+        Input Pengguna & Solusinya
+      </h2>
+      <p class="text-lg mb-6 text-gray-400">
+        Ingat! Fungsi <code>input()</code> selalu menghasilkan
+        <strong class="text-blue-400">string</strong>.
+      </p>
+      <div class="space-y-4">
+        <p class="text-red-400">
+          <strong>Masalah:</strong> Mencoba mengalikan teks dengan teks.
+        </p>
+        <pre><code class="language-python"># Pengguna input "10" dan "5"
+alas = input("Masukkan alas: ")
+tinggi = input("Masukkan tinggi: ")
+luas = alas * tinggi # Ini akan error!</code></pre>
+        <p class="text-green-400 pt-4">
+          <strong>Solusi:</strong> Konversi tipe data (casting) ke angka.
+        </p>
+        <pre><code class="language-python"># Konversi string ke integer sebelum dihitung
+alas_int = int(alas)
+tinggi_int = int(tinggi)
+luas = alas_int * tinggi_int
+print("Luasnya adalah:", luas) # Hasil benar!</code></pre>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-4 aurora-text">
+        Studi Kasus: Kalkulator Luas
+      </h2>
+      <p class="text-lg mb-6 text-gray-400">
+        Menggunakan <code>float()</code> agar pengguna bisa input angka desimal.
+      </p>
+      <pre><code class="language-python">print("--- KALKULATOR LUAS PERSEGI PANJANG ---")
+
+# Gunakan float() untuk menerima angka desimal
+panjang = float(input("Masukkan panjang (cm): "))
+lebar = float(input("Masukkan lebar (cm): "))
+
+luas = panjang * lebar
+
+print("\n--- HASIL PERHITUNGAN ---")
+print(f"Luas Persegi Panjang: {luas} cm²")</code></pre>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Latihan Mandiri</h2>
+      <div class="space-y-6">
+        <div class="gradient-border-card p-4 rounded-lg">
+          <h3 class="font-bold text-pink-400">1. Kalkulator Total Belanja</h3>
+          <p class="text-sm text-gray-400">
+            Minta input harga & jumlah barang, lalu hitung total bayar.
+          </p>
+        </div>
+        <div class="gradient-border-card p-4 rounded-lg">
+          <h3 class="font-bold text-purple-400">2. Kalkulator Usia</h3>
+          <p class="text-sm text-gray-400">
+            Minta input tahun lahir, lalu hitung perkiraan umur pengguna saat
+            ini.
+          </p>
+        </div>
+        <div class="gradient-border-card p-4 rounded-lg">
+          <h3 class="font-bold text-blue-400">3. Kalkulator BMI</h3>
+          <p class="text-sm text-gray-400">
+            Hitung Body Mass Index. Rumus:
+            <code>berat(kg) / (tinggi(m)**2)</code>. Ingat konversi cm ke m.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold mb-8 aurora-text">Rangkuman</h2>
+      <ul class="space-y-4 text-lg">
+        <li class="flex items-start">
+          <span class="text-pink-400 mr-3">✦</span>Setiap nilai punya tipe data:
+          <code>int, float, str, bool</code>.
+        </li>
+        <li class="flex items-start">
+          <span class="text-purple-400 mr-3">✦</span>Gunakan
+          <code>type()</code> untuk memeriksa tipe data.
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-400 mr-3">✦</span>Python patuh pada urutan
+          operasi matematika (PEMDAS).
+        </li>
+        <li class="flex items-start">
+          <span class="text-green-400 mr-3">✦</span>
+          <strong>Wajib!</strong> Konversi input pengguna dengan
+          <code>int()</code> atau <code>float()</code> sebelum dihitung.
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="slide flex flex-col items-center justify-center text-center p-8 text-white">
+      <h2 class="text-7xl font-black aurora-text">Q&A</h2>
+      <p class="mt-4 text-2xl text-gray-300">Ada Pertanyaan?</p>
+      <p class="mt-12 text-gray-500">Terima Kasih!</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="public/canvas.js"></script>
+    <script src="public/tools.js"></script>
+  </body>
+</html>
