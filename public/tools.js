@@ -20,24 +20,27 @@
     controls.className =
       'fixed left-0 right-0 bottom-4 z-50 flex items-center justify-center gap-4 select-none pointer-events-auto';
     controls.innerHTML = `
-      <button id="prevBtn" title="Previous (←)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-full hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <div id="slideCounter" class="text-gray-200 text-lg font-semibold min-w-[90px] text-center">1 / ${slides.length}</div>
-      <button id="nextBtn" title="Next (→)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-full hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      </button>
-      <button id="zoomOutBtn" title="Zoom Out (-)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-full hover:bg-blue-500 transition-colors disabled:opacity-50 shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-      <button id="zoomInBtn" title="Zoom In (+)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-full hover:bg-blue-500 transition-colors disabled:opacity-50 shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-      <button id="fullscreenBtn" title="Fullscreen" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-full hover:bg-blue-500 transition-colors shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fullscreen-icon lucide-fullscreen"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="10" height="8" x="7" y="8" rx="1"/></svg>
-      </button>
+        <button id="prevBtn" title="Previous (←)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <div id="slideCounter" class="text-gray-200 text-lg font-semibold min-w-[50px] text-center">1 / ${slides.length}</div>
+        <button id="nextBtn" title="Next (→)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div class="flex bg-gray-700/80 backdrop-blur rounded-full shadow">
+          <button id="zoomOutBtn" title="Zoom Out (-)" class="bg-transparent text-white p-3 rounded-[1.25rem] hover:bg-blue-500/80 transition-colors disabled:opacity-50 shadow-none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button id="zoomInBtn" title="Zoom In (+)" class="bg-transparent text-white p-3 rounded-[1.25rem] hover:bg-blue-500/80 transition-colors disabled:opacity-50 shadow-none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+        <button id="fullscreenBtn" title="Fullscreen" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fullscreen-icon lucide-fullscreen"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="10" height="8" x="7" y="8" rx="1"/></svg>
+        </button>
     `;
-    document.body.appendChild(controls);
+    // Append controls inside canvas container so they remain visible in fullscreen
+    canvasContainer.appendChild(controls);
 
     // State and constants
     let currentSlide = 0;
@@ -130,6 +133,39 @@
       }
     });
 
+    // Touch swipe navigation for mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let trackingTouch = false;
+    const SWIPE_THRESHOLD = 60; // px horizontal movement
+    const VERTICAL_TOLERANCE = 50; // ignore if too vertical
+
+    function onTouchStart(e) {
+      if (!e.touches || e.touches.length !== 1) return;
+      trackingTouch = true;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+    function onTouchEnd(e) {
+      if (!trackingTouch) return;
+      trackingTouch = false;
+      const touch = e.changedTouches && e.changedTouches[0];
+      if (!touch) return;
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      if (Math.abs(dy) > VERTICAL_TOLERANCE) return; // mostly vertical, ignore
+      if (dx <= -SWIPE_THRESHOLD) {
+        // swipe left -> next
+        showNextSlide();
+      } else if (dx >= SWIPE_THRESHOLD) {
+        // swipe right -> prev
+        showPrevSlide();
+      }
+    }
+    // Attach to canvas to avoid scrolling conflicts
+    canvasEl.addEventListener('touchstart', onTouchStart, { passive: true });
+    canvasEl.addEventListener('touchend', onTouchEnd, { passive: true });
+
     // Fullscreen
     if (fullscreenBtn) {
       fullscreenBtn.addEventListener('click', () => {
@@ -150,6 +186,44 @@
         }
       });
     }
+
+    // Auto-hide controls in fullscreen after inactivity
+    let hideTimer = null;
+    const INACTIVITY_MS = 3000;
+    function setControlsVisible(visible) {
+      if (!controls) return;
+      if (visible) {
+        controls.classList.remove('controls-hidden');
+      } else {
+        controls.classList.add('controls-hidden');
+      }
+    }
+    function scheduleHide() {
+      if (!document.fullscreenElement) return; // only auto-hide in fullscreen
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => setControlsVisible(false), INACTIVITY_MS);
+    }
+    function onUserActivity() {
+      // Show immediately on any movement or tap, then schedule hide again
+      if (document.fullscreenElement) {
+        setControlsVisible(true);
+        scheduleHide();
+      }
+    }
+    // Listen for mouse and touch movement at window level
+    window.addEventListener('mousemove', onUserActivity, { passive: true });
+    window.addEventListener('touchstart', onUserActivity, { passive: true });
+    window.addEventListener('touchmove', onUserActivity, { passive: true });
+    document.addEventListener('fullscreenchange', () => {
+      // Reset visibility when entering/exiting fullscreen
+      if (document.fullscreenElement) {
+        setControlsVisible(true);
+        scheduleHide();
+      } else {
+        setControlsVisible(true);
+        clearTimeout(hideTimer);
+      }
+    });
 
     // Copy buttons: support both pre-existing and future blocks
     function wireCopyButtons(root = document) {
