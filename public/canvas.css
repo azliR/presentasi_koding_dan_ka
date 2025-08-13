@@ -2,6 +2,8 @@
 :root {
   --transition-duration: 0.5s;
   --scale: 1;
+  --panX: 0px;
+  --panY: 0px;
 }
 html {
   height: 100%;
@@ -34,7 +36,8 @@ body {
   top: 50%;
   left: 50%;
   transform-origin: center center;
-  transform: translate(-50%, -50%) scale(var(--scale));
+  /* Pan is applied after scale so pan distances are in screen pixels */
+  transform: translate(-50%, -50%) scale(var(--scale)) translate(var(--panX), var(--panY));
   overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -112,4 +115,12 @@ pre:hover .copy-btn {
     font-size: 0.875rem; /* text-sm */
     min-width: 64px; /* smaller counter width */
   }
+}
+
+/* Optional: cursor feedback when panning */
+.is-zoomed #presentation-canvas {
+  cursor: grab;
+}
+.is-zoomed #presentation-canvas.panning {
+  cursor: grabbing;
 }
