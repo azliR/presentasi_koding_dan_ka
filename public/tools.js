@@ -38,7 +38,8 @@
     // Right-bottom vertical zoom panel
     const zoomPanel = document.createElement('div');
     zoomPanel.id = 'zoomPanel';
-    zoomPanel.className = 'fixed right-4 bottom-4 z-[60] flex flex-col items-center gap-2';
+    zoomPanel.className =
+      'fixed right-4 bottom-4 z-[60] flex flex-col items-center gap-2';
     zoomPanel.innerHTML = `
       <div class="bg-gray-800/80 text-gray-100 text-xs px-2 py-1 rounded-full shadow cursor-pointer" id="zoomPercent" title="Klik untuk reset ke 100%">100%</div>
       <div class="flex flex-col bg-gray-700/80 backdrop-blur rounded-full shadow overflow-hidden">
@@ -59,13 +60,13 @@
     const totalSlides = slides.length;
     const BASE_WIDTH = 1600;
     const BASE_HEIGHT = 900;
-  const ZOOM_STEP = 0.1;
-  const MIN_ZOOM = 0.5;
-  const MAX_ZOOM = 3.0;
-  const SNAP_EPSILON = 0.02; // within 2% snap to 100%
-  let zoomFactor = 1.0;
-  let panX = 0; // in CSS pixels after scale
-  let panY = 0;
+    const ZOOM_STEP = 0.1;
+    const MIN_ZOOM = 0.5;
+    const MAX_ZOOM = 3.0;
+    const SNAP_EPSILON = 0.02; // within 2% snap to 100%
+    let zoomFactor = 1.0;
+    let panX = 0; // in CSS pixels after scale
+    let panY = 0;
 
     // Utility: scale to fit + zoom
     function updateScale() {
@@ -88,9 +89,9 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
-  const zoomInBtn = document.getElementById('zoomInBtn');
-  const zoomOutBtn = document.getElementById('zoomOutBtn');
-  const zoomPercentEl = document.getElementById('zoomPercent');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const zoomPercentEl = document.getElementById('zoomPercent');
     const slideCounter = document.getElementById('slideCounter');
 
     function updateSlides() {
@@ -476,9 +477,9 @@
       window.hljs.highlightAll();
     }
 
-  // Initial state
-  updateSlides();
-  updateScale();
+    // Initial state
+    updateSlides();
+    updateScale();
 
     // Recompute on resize and fullscreen
     window.addEventListener('resize', updateScale);

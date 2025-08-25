@@ -37,7 +37,8 @@ body {
   left: 50%;
   transform-origin: center center;
   /* Pan is applied after scale so pan distances are in screen pixels */
-  transform: translate(-50%, -50%) scale(var(--scale)) translate(var(--panX), var(--panY));
+  transform: translate(-50%, -50%) scale(var(--scale))
+    translate(var(--panX), var(--panY));
   overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
