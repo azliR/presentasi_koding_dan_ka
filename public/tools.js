@@ -3,6 +3,19 @@
 (function () {
   // Wait for DOM ready to ensure canvas exists
   document.addEventListener('DOMContentLoaded', () => {
+    // Apply saved theme similar to index.html
+    try {
+      const root = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+      if (
+        savedTheme === 'dark' ||
+        (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+    } catch (_) {}
     const canvasContainer = document.getElementById('canvas-container');
     const canvasEl = document.getElementById('presentation-canvas');
     const slides = canvasEl ? canvasEl.querySelectorAll('.slide') : [];
@@ -34,6 +47,22 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize-icon lucide-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       </button>
     `;
+
+    // Append theme toggle button similar to index.html
+    const themeToggle = document.createElement('button');
+    themeToggle.id = 'themeToggle';
+    themeToggle.title = 'Toggle theme';
+    themeToggle.className = 'bg-white/70 dark:bg-white/10 text-slate-800 dark:text-slate-100 border border-slate-200/60 dark:border-white/10 px-3 py-2 rounded-xl shadow glass hidden sm:inline-flex items-center gap-2';
+    themeToggle.innerHTML = `
+      <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M10 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 11a4 4 0 100-8 4 4 0 000 8zM4 9a1 1 0 100 2H5a1 1 0 100-2H4zm10 0a1 1 0 100 2h1a1 1 0 100-2h-1zM6.343 5.757a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zm7.071 7.071a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM3 10a1 1 0 011-1h1a1 1 0 110 2H4a1 1 0 01-1-1zm11.657-4.243a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM9 16a1 1 0 112 0v1a1 1 0 11-2 0v-1z" />
+      </svg>
+      <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+      </svg>
+      <span class="text-sm">Tema</span>
+    `;
+    centerGroup.appendChild(themeToggle);
 
     // Right-bottom vertical zoom panel
     const zoomPanel = document.createElement('div');
@@ -89,6 +118,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const themeToggleBtn = document.getElementById('themeToggle');
     const zoomInBtn = document.getElementById('zoomInBtn');
     const zoomOutBtn = document.getElementById('zoomOutBtn');
     const zoomPercentEl = document.getElementById('zoomPercent');
@@ -111,6 +141,17 @@
         slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
       if (prevBtn) prevBtn.disabled = currentSlide === 0;
       if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    // Theme toggling behavior
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const root = document.documentElement;
+        root.classList.toggle('dark');
+        try {
+          localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+        } catch (_) {}
+      });
     }
 
     function showNextSlide() {

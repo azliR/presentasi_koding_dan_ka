@@ -10,7 +10,8 @@ html {
 }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #111827;
+  /* Background handled by pertemuan pages to allow themed gradient */
+  background-color: transparent;
   margin: 0;
   height: 100%;
   overflow: hidden;
@@ -23,7 +24,8 @@ body {
   width: 100vw;
   height: 100vh;
   display: block;
-  background-color: #111827;
+  /* Transparent so the page background shows through */
+  background-color: transparent;
   overflow: hidden;
 }
 

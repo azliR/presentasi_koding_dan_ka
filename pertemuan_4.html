@@ -21,6 +21,33 @@
     <link rel="icon" href="./public/favicon.ico" sizes="any" />
     <link rel="manifest" href="./site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                200: "#c7d2fe",
+                300: "#a5b4fc",
+                400: "#818cf8",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+                800: "#3730a3",
+                900: "#312e81",
+              },
+            },
+            boxShadow: {
+              glow: "0 10px 40px rgba(99, 102, 241, 0.35)",
+            },
+          },
+        },
+        darkMode: "class",
+      };
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,7 +61,8 @@
       /* Menambahkan font custom untuk nuansa yang berbeda */
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #111827; /* Dark background */
+        /* Background handled via Tailwind classes to allow themed gradient */
+        background-color: transparent; /* allow gradient from body class */
       }
       .font-space-mono {
         font-family: 'Space Mono', monospace;
@@ -54,9 +82,17 @@
         background-image: linear-gradient(#1f2937, #1f2937),
           linear-gradient(to right, #ec4899, #8b5cf6);
       }
+      .bg-grid {
+        background-image: radial-gradient(rgba(99, 102, 241, 0.18) 1px, transparent 1px);
+        background-size: 14px 14px;
+      }
+      .glass {
+        backdrop-filter: saturate(140%) blur(10px);
+        -webkit-backdrop-filter: saturate(140%) blur(10px);
+      }
     </style>
   </head>
-  <body>
+  <body class="min-h-screen bg-gradient-to-b from-brand-50 via-white to-brand-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 text-slate-800 dark:text-slate-100">
     <div
       class="slide active flex flex-col items-center justify-center text-center p-8 text-white">
       <div class="space-y-4">
@@ -389,6 +425,12 @@ print(f"Luas Persegi Panjang: {luas} cm²")</code></pre>
       <p class="mt-12 text-gray-500">Terima Kasih!</p>
     </div>
 
+    <!-- Decorative background similar to index.html -->
+    <div class="pointer-events-none fixed inset-0 overflow-hidden z-[-1]">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-brand-400/40 to-cyan-300/30 blur-3xl"></div>
+      <div class="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-pink-300/30 to-brand-400/30 blur-3xl"></div>
+      <div class="absolute inset-0 bg-grid opacity-40 dark:opacity-20"></div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="public/canvas.js"></script>
     <script src="public/tools.js"></script>
