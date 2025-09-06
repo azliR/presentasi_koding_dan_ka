@@ -262,6 +262,155 @@ print(nama)
 print(umur)
 print(sekolah)</code>
     </div>
+    <!-- Slide X: Pengertian Variabel -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold text-blue-400 mb-4">Pengertian Variabel</h2>
+      <p class="text-xl mb-4">
+        Variabel adalah <strong>wadah atau tempat penyimpanan data</strong> di dalam program yang memiliki nama unik.
+      </p>
+      <p class="text-lg">
+        Bayangkan variabel seperti <em>kotak penyimpanan yang diberi label</em>. Label tersebut adalah <strong>nama variabel</strong>, dan isi kotaknya adalah <strong>nilai data</strong> yang disimpan.
+      </p>
+    </div>
+
+    <!-- Slide X: Fungsi Variabel -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-4xl font-bold text-blue-400 mb-4">Fungsi Variabel</h2>
+      <ul class="space-y-3 text-lg list-disc list-inside">
+        <li>Menyimpan data sementara yang akan dipakai dalam program.</li>
+        <li>Memudahkan pengelolaan data: panggil nama variabel, bukan nilainya langsung.</li>
+        <li>Mengubah data dengan fleksibel tanpa menulis ulang seluruh program.</li>
+      </ul>
+    </div>
+
+    <!-- Slide X: Aturan 1 -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">1) Mulai dengan Huruf atau Underscore (_)</h2>
+      <p class="text-lg mb-3">Nama variabel <strong>tidak boleh dimulai dengan angka</strong>, tapi boleh dimulai dengan huruf (a-z, A-Z) atau tanda underscore <code>_</code>.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="font-semibold text-green-400 mb-2">Benar ✅</p>
+          <pre><code class="language-python">nama = "Ririn"
+_umur = 17
+data1 = 100
+</code></pre>
+        </div>
+        <div>
+          <p class="font-semibold text-red-400 mb-2">Salah ❌</p>
+          <pre><code class="language-python">1data = 50  # ERROR: diawali angka
+</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide X: Aturan 2 -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">2) Hanya Huruf, Angka, dan Underscore</h2>
+      <p class="text-lg mb-3">Tidak boleh ada spasi atau simbol lain seperti <code>@</code>, <code>#</code>, <code>%</code>, dll. Gunakan <code>_</code> (snake_case) atau camelCase untuk memisahkan kata.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="font-semibold text-green-400 mb-2">Benar ✅</p>
+          <pre><code class="language-python">total_harga = 25000
+firstName = "Ririn"
+</code></pre>
+        </div>
+        <div>
+          <p class="font-semibold text-red-400 mb-2">Salah ❌</p>
+          <pre><code class="language-python">total harga = 25000   # ERROR: ada spasi
+first-name = "Ririn"  # ERROR: ada tanda minus
+</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide X: Aturan 3 -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">3) Case-Sensitive (Besar/Kecil Berbeda)</h2>
+      <p class="text-lg mb-3">Python membedakan huruf besar dan kecil. <code>nama</code> dan <code>Nama</code> dianggap <strong>dua variabel yang berbeda</strong>.</p>
+      <pre><code class="language-python">nama = "Ririn"
+Nama = "Siti"
+
+print(nama)  # Output: Ririn
+print(Nama)  # Output: Siti
+</code></pre>
+    </div>
+
+    <!-- Slide X: Aturan 4 -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">4) Bukan Keyword Python</h2>
+      <p class="text-lg mb-3">Jangan gunakan kata yang sudah menjadi <em>keyword</em> bawaan Python seperti <code>if</code>, <code>for</code>, <code>while</code>, <code>class</code>, dll.</p>
+      <pre class="mb-6"><code class="language-python">import keyword
+print(keyword.kwlist)
+</code></pre>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="font-semibold text-red-400 mb-2">Salah ❌</p>
+          <pre><code class="language-python">class = "TKJ"  # ERROR: 'class' adalah keyword
+</code></pre>
+        </div>
+        <div>
+          <p class="font-semibold text-green-400 mb-2">Benar ✅</p>
+          <pre><code class="language-python">kelas = "TKJ"
+</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide X: Best Practice (PEP 8) -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">5) Penulisan Disarankan (PEP 8)</h2>
+      <p class="text-lg mb-3"><strong>Snake case</strong> disarankan untuk variabel: huruf kecil dengan underscore (<code>_</code>).</p>
+      <pre class="mb-4"><code class="language-python">total_harga_barang = 15000  # snake_case
+</code></pre>
+      <p class="text-lg mb-3"><strong>Camel case</strong> sering dipakai di bahasa lain—boleh saja di Python, tapi bukan standar PEP 8.</p>
+      <pre class="mb-4"><code class="language-python">totalHargaBarang = 15000  # camelCase
+</code></pre>
+      <p class="text-lg">Tip: Variabel biasa → <strong>snake_case</strong>. Nama class → <strong>PascalCase</strong>.</p>
+    </div>
+
+    <!-- Slide X: Nama Bermakna -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">6) Nama Variabel Harus Bermakna</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="font-semibold text-red-400 mb-2">Kurang baik ❌</p>
+          <pre><code class="language-python">x = 50
+y = 100
+</code></pre>
+        </div>
+        <div>
+          <p class="font-semibold text-green-400 mb-2">Lebih baik ✅</p>
+          <pre><code class="language-python">panjang = 50
+lebar = 100
+</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide X: Konstanta -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">7) Konstanta dengan Huruf Kapital</h2>
+      <p class="text-lg mb-3">Jika variabel bersifat tetap (<em>konstanta</em>), tulis semua huruf kapital.</p>
+      <pre><code class="language-python">PI = 3.14
+MAX_USER = 100
+</code></pre>
+    </div>
+
+    <!-- Slide X: Contoh Lengkap -->
+    <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">Contoh Lengkap</h2>
+      <pre><code class="language-python"># Penulisan variabel yang benar
+nama_siswa = "Ririn"
+umur = 16
+nilai_akhir = 89.5
+PI = 3.14  # Konstanta
+
+# Penulisan variabel yang salah
+1nama = "Siti"        # ❌ ERROR: diawali angka
+total harga = 50000   # ❌ ERROR: ada spasi
+for = 10              # ❌ ERROR: 'for' adalah keyword
+</code></pre>
+    </div>
 
     <!-- Slide 9: Praktik 3 -->
     <div class="slide flex flex-col justify-center p-12 md:p-16 text-gray-200">
