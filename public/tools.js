@@ -446,11 +446,21 @@
     let hideTimer = null;
     const INACTIVITY_MS = 3000;
     function setControlsVisible(visible) {
-      if (!controls) return;
-      if (visible) {
-        controls.classList.remove('controls-hidden');
-      } else {
-        controls.classList.add('controls-hidden');
+      if (controls) {
+        if (visible) {
+          controls.classList.remove('controls-hidden');
+        } else {
+          controls.classList.add('controls-hidden');
+        }
+      }
+      // Apply the same auto-hide to the zoom panel
+      const zp = document.getElementById('zoomPanel');
+      if (zp) {
+        if (visible) {
+          zp.classList.remove('controls-hidden');
+        } else {
+          zp.classList.add('controls-hidden');
+        }
       }
     }
     function scheduleHide() {

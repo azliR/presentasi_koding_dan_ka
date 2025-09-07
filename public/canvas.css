@@ -101,6 +101,14 @@ pre:hover .copy-btn {
   transform: translateY(12px);
 }
 
+/* Apply the same hidden treatment to the zoom panel */
+#zoomPanel.controls-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
 /* Compact tools on small screens */
 @media (max-width: 640px) {
   #controlsOverlay {
