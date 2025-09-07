@@ -109,6 +109,14 @@ pre:hover .copy-btn {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+/* Apply the same hidden treatment to the back button */
+#backBtn.controls-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
 /* Compact tools on small screens */
 @media (max-width: 640px) {
   #controlsOverlay {

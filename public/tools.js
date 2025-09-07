@@ -84,6 +84,17 @@
     canvasContainer.appendChild(controls);
     canvasContainer.appendChild(zoomPanel);
 
+    // Top-left Back button (to previous page or index)
+    const backBtn = document.createElement('button');
+    backBtn.id = 'backBtn';
+    backBtn.title = 'Back';
+    backBtn.className = 'fixed left-4 top-4 z-[60] bg-gray-700/90 backdrop-blur text-white px-3 py-2 rounded-[1.25rem] hover:bg-blue-500 transition-colors shadow hidden sm:inline-flex items-center gap-2';
+    backBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      <span class="text-sm">Back</span>
+    `;
+    canvasContainer.appendChild(backBtn);
+
     // State and constants
     let currentSlide = 0;
     const totalSlides = slides.length;
@@ -124,6 +135,28 @@
     const zoomPercentEl = document.getElementById('zoomPercent');
     const slideCounter = document.getElementById('slideCounter');
 
+    // Parse slide index from URL hash in the format #slide-N (1-based)
+    function getSlideFromHash() {
+      const m = (window.location.hash || '').match(/^#slide-(\d+)$/i);
+      if (!m) return null;
+      const n = parseInt(m[1], 10);
+      if (Number.isNaN(n)) return null;
+      // Convert to 0-based and clamp
+      return Math.max(0, Math.min(totalSlides - 1, n - 1));
+    }
+
+    // Replace the URL hash to reflect the current slide without adding history entries
+    function setHashForSlide(index) {
+      const n = index + 1; // 1-based in the URL
+      const base = window.location.pathname + window.location.search + `#slide-${n}`;
+      if (window.history && typeof window.history.replaceState === 'function') {
+        window.history.replaceState(null, '', base);
+      } else {
+        // Fallback if replaceState unavailable
+        window.location.hash = `slide-${n}`;
+      }
+    }
+
     function updateSlides() {
       slides.forEach((slide, index) => {
         if (index < currentSlide) {
@@ -141,6 +174,9 @@
         slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
       if (prevBtn) prevBtn.disabled = currentSlide === 0;
       if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+
+      // Sync URL hash with current slide
+      setHashForSlide(currentSlide);
     }
 
     // Theme toggling behavior
@@ -151,6 +187,22 @@
         try {
           localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
         } catch (_) {}
+      });
+    }
+
+    // Back button behavior
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        try {
+          const ref = document.referrer;
+          const sameOrigin = ref && new URL(ref, window.location.href).origin === window.location.origin;
+          if (sameOrigin) {
+            window.history.back();
+            return;
+          }
+        } catch (_) {}
+        // Fallback to landing page
+        window.location.href = 'index.html';
       });
     }
 
@@ -462,6 +514,15 @@
           zp.classList.add('controls-hidden');
         }
       }
+      // Also auto-hide the back button
+      const bb = document.getElementById('backBtn');
+      if (bb) {
+        if (visible) {
+          bb.classList.remove('controls-hidden');
+        } else {
+          bb.classList.add('controls-hidden');
+        }
+      }
     }
     function scheduleHide() {
       if (!document.fullscreenElement) return; // only auto-hide in fullscreen
@@ -528,7 +589,11 @@
       window.hljs.highlightAll();
     }
 
-    // Initial state
+    // Initial state: read hash if present
+    const initialFromHash = getSlideFromHash();
+    if (initialFromHash !== null) {
+      currentSlide = initialFromHash;
+    }
     updateSlides();
     updateScale();
 
@@ -536,5 +601,15 @@
     window.addEventListener('resize', updateScale);
     window.addEventListener('orientationchange', updateScale);
     document.addEventListener('fullscreenchange', updateScale);
+
+    // Navigate when hash changes (e.g., back/forward or manual edits)
+    window.addEventListener('hashchange', () => {
+      const idx = getSlideFromHash();
+      if (idx === null) return;
+      if (idx !== currentSlide) {
+        currentSlide = idx;
+        updateSlides();
+      }
+    });
   });
 })();
