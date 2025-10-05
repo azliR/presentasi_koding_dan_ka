@@ -47,6 +47,7 @@ Purpose: help an AI agent work productively in this static presentation site. Ke
 - Ensure only one slide is `.active` at a time; the runtime sets transforms for others.
 - Keep external asset paths relative (e.g., `public/canvas.css`, icon PNGs) and referenced from the site root.
 - If you add code examples, set an appropriate `language-…` on `<code>` so highlight.js styles correctly.
+- Prefer the theme helpers defined in `public/canvas.css` (e.g., `theme-panel`, `theme-panel-soft`, `theme-card`, `theme-muted`, `theme-accent`) instead of hard-coded Tailwind grays so slides stay readable in both light and dark mode.
 - For better search on the landing page, put extra keywords in the hidden `data-keywords` span inside each card.
 
 ### File map (quick reference)
