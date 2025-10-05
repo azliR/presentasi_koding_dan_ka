@@ -286,18 +286,16 @@
       }
     });
 
-    // Wheel to zoom (desktop): ctrl+wheel on browsers often zooms page; we use alt/cmd or trackpad pinch
+    // Wheel to zoom (desktop): scroll to zoom around cursor
+    // Prevent default so the page doesn't attempt to scroll/zoom
     canvasContainer.addEventListener(
       'wheel',
       (e) => {
-        // If a pinch gesture is detected (ctrlKey on some OS), treat as zoom
-        const isPinchLike = e.ctrlKey || e.metaKey;
-        if (isPinchLike) {
-          e.preventDefault();
-          const direction = e.deltaY > 0 ? -1 : 1;
-          const pt = { x: e.clientX, y: e.clientY };
-          setZoom(zoomFactor + direction * ZOOM_STEP, pt.x, pt.y);
-        }
+        e.preventDefault();
+        // Use delta sign for direction; small step for fine control
+        const direction = e.deltaY > 0 ? -1 : 1;
+        const pt = { x: e.clientX, y: e.clientY };
+        setZoom(zoomFactor + direction * ZOOM_STEP, pt.x, pt.y);
       },
       { passive: false },
     );
@@ -440,6 +438,8 @@
 
     canvasEl.addEventListener('mousedown', (e) => {
       if (zoomFactor === 1) return;
+      // Prevent text selection initiation
+      e.preventDefault();
       mousePanning = true;
       canvasEl.classList.add('panning');
       mouseStartX = e.clientX;
@@ -449,6 +449,12 @@
     });
     window.addEventListener('mousemove', (e) => {
       if (!mousePanning) return;
+      // Prevent selection while dragging
+      e.preventDefault();
+      try {
+        const sel = window.getSelection && window.getSelection();
+        if (sel && typeof sel.removeAllRanges === 'function') sel.removeAllRanges();
+      } catch (_) {}
       const dx = e.clientX - mouseStartX;
       const dy = e.clientY - mouseStartY;
       panX = mouseStartPanX + dx;

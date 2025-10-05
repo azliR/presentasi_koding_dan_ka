@@ -38,9 +38,9 @@ body {
   top: 50%;
   left: 50%;
   transform-origin: center center;
-  /* Pan is applied after scale so pan distances are in screen pixels */
-  transform: translate(-50%, -50%) scale(var(--scale))
-    translate(var(--panX), var(--panY));
+  /* Apply pan after scale so pan distances are in screen pixels */
+  transform: translate(-50%, -50%) translate(var(--panX), var(--panY))
+    scale(var(--scale));
   overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -142,4 +142,11 @@ pre:hover .copy-btn {
 }
 .is-zoomed #presentation-canvas.panning {
   cursor: grabbing;
+}
+
+/* Disable text selection during panning to avoid accidental highlights */
+#presentation-canvas.panning, #presentation-canvas.panning * {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
