@@ -35,16 +35,16 @@
       "fixed left-0 right-0 bottom-4 z-50 flex items-center justify-center gap-4 select-none pointer-events-auto";
     // Center group: prev / counter / next
     const centerGroup = document.createElement("div");
-    centerGroup.className = "flex items-center justify-center gap-4";
+    centerGroup.className = "flex items-center justify-center gap-2 sm:gap-4";
     centerGroup.innerHTML = `
-      <button id="prevBtn" title="Previous (←)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
+      <button id="prevBtn" title="Previous (←)" class="control-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
       </button>
-      <div id="slideCounter" class="text-gray-200 text-lg font-semibold text-center">1 / ${slides.length}</div>
-      <button id="nextBtn" title="Next (→)" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow">
+      <div id="slideCounter" class="control-counter counter-badge">1 / ${slides.length}</div>
+      <button id="nextBtn" title="Next (→)" class="control-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
       </button>
-      <button id="fullscreenBtn" title="Fullscreen" class="bg-gray-700/90 backdrop-blur text-white p-3 rounded-[1.25rem] hover:bg-blue-500 transition-colors shadow">
+      <button id="fullscreenBtn" title="Fullscreen" class="control-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize-icon lucide-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       </button>
     `;
@@ -54,7 +54,7 @@
     themeToggle.id = "themeToggle";
     themeToggle.title = "Toggle theme";
     themeToggle.className =
-      "bg-white/70 dark:bg-white/10 text-slate-800 dark:text-slate-100 border border-slate-200/60 dark:border-white/10 px-3 py-2 rounded-xl shadow glass hidden sm:inline-flex items-center gap-2";
+      "control-btn control-btn--compact inline-flex items-center gap-2";
     themeToggle.innerHTML = `
       <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" viewBox="0 0 20 20" fill="currentColor">
         <path d="M10 3a1 1 0 011 1v1a1 1 0 11-2 0V4a1 1 0 011-1zm0 11a4 4 0 100-8 4 4 0 000 8zM4 9a1 1 0 100 2H5a1 1 0 100-2H4zm10 0a1 1 0 100 2h1a1 1 0 100-2h-1zM6.343 5.757a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zm7.071 7.071a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM3 10a1 1 0 011-1h1a1 1 0 110 2H4a1 1 0 01-1-1zm11.657-4.243a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM9 16a1 1 0 112 0v1a1 1 0 11-2 0v-1z" />
@@ -62,7 +62,7 @@
       <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" viewBox="0 0 20 20" fill="currentColor">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
       </svg>
-      <span class="text-sm">Tema</span>
+      <span class="text-sm hidden sm:inline">Tema</span>
     `;
     centerGroup.appendChild(themeToggle);
 
@@ -72,12 +72,12 @@
     zoomPanel.className =
       "fixed right-4 bottom-4 z-[60] flex flex-col items-center gap-2";
     zoomPanel.innerHTML = `
-      <div class="bg-gray-800/80 text-gray-100 text-xs px-2 py-1 rounded-full shadow cursor-pointer" id="zoomPercent" title="Klik untuk reset ke 100%">100%</div>
-      <div class="flex flex-col bg-gray-700/80 backdrop-blur rounded-full shadow overflow-hidden">
-        <button id="zoomInBtn" title="Zoom In (+)" class="bg-transparent text-white p-3 hover:bg-blue-500/80 transition-colors disabled:opacity-50">
+      <div class="zoom-indicator" id="zoomPercent" title="Klik untuk reset ke 100%">100%</div>
+      <div class="zoom-controls">
+        <button id="zoomInBtn" title="Zoom In (+)" class="zoom-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-in"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
         </button>
-        <button id="zoomOutBtn" title="Zoom Out (-)" class="bg-transparent text-white p-3 hover:bg-blue-500/80 transition-colors disabled:opacity-50">
+        <button id="zoomOutBtn" title="Zoom Out (-)" class="zoom-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zoom-out"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
         </button>
       </div>`;
@@ -91,7 +91,7 @@
     backBtn.id = "backBtn";
     backBtn.title = "Back";
     backBtn.className =
-      "fixed left-4 top-4 z-[60] bg-gray-700/90 backdrop-blur text-white px-3 py-2 rounded-[1.25rem] hover:bg-blue-500 transition-colors shadow hidden sm:inline-flex items-center gap-2";
+      "fixed left-4 top-4 z-[60] hidden sm:inline-flex items-center gap-2 control-btn control-btn--compact";
     backBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
       <span class="text-sm">Back</span>

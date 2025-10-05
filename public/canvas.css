@@ -222,6 +222,9 @@ pre:hover .copy-btn {
   justify-content: center;
   gap: 0.5rem;
   box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.65);
+  /* Frosted glass effect */
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
   transition: background-color 0.2s ease, border-color 0.2s ease,
     color 0.2s ease, transform 0.2s ease;
 }
@@ -260,6 +263,19 @@ pre:hover .copy-btn {
   text-align: center;
 }
 
+/* Counter background wrapper for readability on all themes */
+.counter-badge {
+  display: inline-block;
+  background-color: var(--overlay-bg);
+  color: var(--overlay-text);
+  border: 1px solid var(--overlay-border);
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+  box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.65);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+}
+
 .zoom-indicator {
   background-color: var(--overlay-bg);
   color: var(--overlay-text);
@@ -268,6 +284,8 @@ pre:hover .copy-btn {
   font-size: 0.75rem;
   padding: 0.35rem 0.75rem;
   box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.65);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
   cursor: pointer;
 }
 
@@ -285,6 +303,8 @@ pre:hover .copy-btn {
   border-radius: 9999px;
   overflow: hidden;
   box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.65);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
 }
 
 .zoom-btn {
@@ -327,7 +347,7 @@ pre:hover .copy-btn {
 /* Compact tools on small screens */
 @media (max-width: 640px) {
   #controlsOverlay {
-    bottom: 0.5rem;
+    bottom: 0.25rem; /* tighter to overlap with zoom panel */
     gap: 0.5rem;
   }
   #controlsOverlay button {
@@ -340,6 +360,10 @@ pre:hover .copy-btn {
   #controlsOverlay #slideCounter {
     font-size: 0.875rem; /* text-sm */
     min-width: 64px; /* smaller counter width */
+  }
+  #zoomPanel {
+    right: 0.25rem;
+    bottom: 0.25rem;
   }
 }
 
