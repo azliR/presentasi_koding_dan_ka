@@ -1,389 +1,720 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mengenal Logika & Percabangan dengan Python</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./public/apple-touch-icon.png" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./public/favicon-32x32.png" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./public/favicon-16x16.png" />
-    <link rel="icon" href="./public/favicon.ico" sizes="any" />
-    <link rel="manifest" href="./site.webmanifest" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
-            colors: {
-              brand: {
-                50: "#eef2ff",
-                100: "#e0e7ff",
-                200: "#c7d2fe",
-                300: "#a5b4fc",
-                400: "#818cf8",
-                500: "#6366f1",
-                600: "#4f46e5",
-                700: "#4338ca",
-                800: "#3730a3",
-                900: "#312e81",
-              },
-            },
-            boxShadow: {
-              glow: "0 10px 40px rgba(99, 102, 241, 0.35)",
-            },
-          },
-        },
-        darkMode: "class",
-      };
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
-      rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-    <link rel="stylesheet" href="public/canvas.css" />
-    <style>
-      .bg-grid {
-        background-image: radial-gradient(rgba(99, 102, 241, 0.18) 1px, transparent 1px);
-        background-size: 14px 14px;
-      }
-      .glass {
-        backdrop-filter: saturate(140%) blur(10px);
-        -webkit-backdrop-filter: saturate(140%) blur(10px);
-      }
-    </style>
-  </head>
-  <body class="min-h-screen bg-gradient-to-b from-brand-50 via-white to-brand-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900 text-slate-800 dark:text-slate-100">
-    <div
-      class="slide active flex flex-col items-center justify-center text-center p-8">
-      <div
-        class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-[1px] rounded-2xl shadow-2xl shadow-indigo-500/30">
-        <div class="theme-panel p-10 rounded-[22px] space-y-6">
-          <p class="text-sm uppercase tracking-[0.6em] text-indigo-400">
-            Pertemuan 5
-          </p>
-          <h1 class="text-5xl md:text-7xl font-black leading-tight">
-            Logika & Operator Percabangan di Python
-          </h1>
-          <p class="text-xl theme-muted">
-            Membandingkan nilai, menggabungkan kondisi, dan menyiapkan dasar keputusan program.
-          </p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Logika & Perbandingan dalam Pemrograman</title>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./public/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./public/favicon-16x16.png"
+        />
+        <link rel="icon" href="./public/favicon.ico" sizes="any" />
+        <link rel="manifest" href="./site.webmanifest" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Inter", "ui-sans-serif", "system-ui"],
+                            mono: ["Space Mono", "monospace"],
+                        },
+                        colors: {
+                            brand: {
+                                50: "#eef2ff",
+                                100: "#e0e7ff",
+                                200: "#c7d2fe",
+                                300: "#a5b4fc",
+                                400: "#818cf8",
+                                500: "#6366f1",
+                                600: "#4f46e5",
+                                700: "#4338ca",
+                                800: "#3730a3",
+                                900: "#312e81",
+                            },
+                        },
+                        boxShadow: {
+                            glow: "0 10px 40px rgba(99, 102, 241, 0.35)",
+                        },
+                    },
+                },
+                darkMode: "class",
+            };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
+        <link rel="stylesheet" href="public/canvas.css" />
+        <style>
+            .aurora-text {
+                background-image: linear-gradient(
+                    to right,
+                    #34d399,
+                    #60a5fa,
+                    #a78bfa
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            .bg-grid {
+                background-image: radial-gradient(
+                    rgba(99, 102, 241, 0.18) 1px,
+                    transparent 1px
+                );
+                background-size: 14px 14px;
+            }
+            .interactive-card {
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+            }
+        </style>
+    </head>
+    <body
+        class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-900 text-slate-100"
+    >
+        <!-- Slide 1: Halaman Judul -->
+        <div
+            class="slide active flex flex-col items-center justify-center text-center p-8"
+        >
+            <div class="space-y-4">
+                <h1
+                    class="text-5xl md:text-7xl font-black tracking-tight aurora-text"
+                >
+                    Logika & Perbandingan
+                </h1>
+                <p class="mt-4 text-xl md:text-2xl theme-muted">
+                    Pertemuan 5: Membuat Program Menjadi "Cerdas"
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-8">Agenda Pertemuan</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg">
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">1.</span>
-          <span>Review cepat: Boolean & tipe data dari pertemuan sebelumnya</span>
+        <!-- Slide 2: Agenda -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-8 aurora-text">Agenda Hari Ini</h2>
+            <ul class="space-y-4 text-lg list-disc list-inside">
+                <li>Review Singkat: Tipe Data <code>Boolean</code></li>
+                <li>
+                    Operator Perbandingan: Mengajukan Pertanyaan pada Data
+                    (<code>==, !=, >, <</code>)
+                </li>
+                <li>
+                    <strong>Sesi Interaktif 1:</strong> Arena Perbandingan Angka
+                </li>
+                <li>
+                    Operator Logika: Menggabungkan Pertanyaan (<code
+                        >and, or, not</code
+                    >)
+                </li>
+                <li>Analogi Logika di Dunia Nyata</li>
+                <li>
+                    <strong>Sesi Interaktif 2:</strong> Simulasi Cek Kelulusan
+                </li>
+                <li>Studi Kasus: Program Pendaftaran Kursus</li>
+                <li>Latihan & Tanya Jawab</li>
+            </ul>
         </div>
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">2.</span>
-          <span>Mengenal operator perbandingan (<code>==</code>, <code>!=</code>, <code>&gt;</code>, dll.)</span>
-        </div>
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">3.</span>
-          <span>Operator logika: <code>and</code>, <code>or</code>, <code>not</code></span>
-        </div>
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">4.</span>
-          <span>Kombinasi kondisi & urutan evaluasi</span>
-        </div>
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">5.</span>
-          <span>Praktik: Membuat keputusan sederhana dengan Python</span>
-        </div>
-        <div class="flex items-start space-x-3">
-          <span class="text-indigo-400">6.</span>
-          <span>Latihan mandiri & diskusi</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-4">Mengapa Perlu Logika?</h2>
-      <p class="text-xl theme-muted mb-8 max-w-4xl">
-        Komputer hanya bisa mengambil keputusan berdasarkan <strong>true</strong> atau <strong>false</strong>.
-        Operator logika membantu kita menterjemahkan masalah ke bentuk pertanyaan yang bisa dijawab komputer.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="theme-panel-soft p-6 rounded-xl">
-          <h3 class="font-semibold text-lg mb-2">Validasi</h3>
-          <p>Memastikan input pengguna sesuai syarat sebelum diproses.</p>
+        <!-- Slide 3: Review Boolean -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Dasar dari Logika: Boolean
+            </h2>
+            <p class="text-xl mb-8 theme-muted">
+                Ingat, komputer hanya mengerti dua kondisi: Benar atau Salah.
+            </p>
+            <div class="flex justify-around text-center">
+                <div class="theme-panel p-8 rounded-lg">
+                    <p class="text-8xl">✅</p>
+                    <p class="text-3xl font-bold mt-4 text-green-400">True</p>
+                    <p class="theme-muted">(Benar)</p>
+                </div>
+                <div class="theme-panel p-8 rounded-lg">
+                    <p class="text-8xl">❌</p>
+                    <p class="text-3xl font-bold mt-4 text-red-400">False</p>
+                    <p class="theme-muted">(Salah)</p>
+                </div>
+            </div>
+            <p class="text-xl mt-8 text-center">
+                Semua operator logika dan perbandingan akan selalu menghasilkan
+                salah satu dari dua nilai ini.
+            </p>
         </div>
-        <div class="theme-panel-soft p-6 rounded-xl">
-          <h3 class="font-semibold text-lg mb-2">Percabangan</h3>
-          <p>Menentukan cabang <code>if</code>/<code>else</code> yang benar dieksekusi.</p>
+
+        <!-- Slide 4: Operator Perbandingan -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Operator Perbandingan
+            </h2>
+            <p class="text-xl mb-8 theme-muted">
+                Digunakan untuk membandingkan dua nilai. Hasilnya selalu
+                <code>True</code> atau <code>False</code>.
+            </p>
+            <div class="grid grid-cols-2 gap-4 font-mono text-lg">
+                <div class="theme-panel-soft p-4 rounded">
+                    <code>==</code> (Sama dengan)
+                </div>
+                <div class="theme-panel-soft p-4 rounded">
+                    <code>!=</code> (Tidak sama dengan)
+                </div>
+                <div class="theme-panel-soft p-4 rounded">
+                    <code>></code> (Lebih besar dari)
+                </div>
+                <div class="theme-panel-soft p-4 rounded">
+                    <code><</code> (Lebih kecil dari)
+                </div>
+                <div class="theme-panel-soft p-4 rounded">
+                    <code>>=</code> (Lebih besar atau sama dengan)
+                </div>
+                <div class="theme-panel-soft p-4 rounded">
+                    <code><=</code> (Lebih kecil atau sama dengan)
+                </div>
+            </div>
         </div>
-        <div class="theme-panel-soft p-6 rounded-xl">
-          <h3 class="font-semibold text-lg mb-2">Automasi</h3>
-          <p>Menggabungkan beberapa kondisi untuk mengontrol alur kerja otomatis.</p>
+
+        <!-- Slide 5: Contoh Kode Perbandingan -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Contoh Perbandingan
+            </h2>
+            <pre><code class="language-python">poin_kamu = 85
+poin_lawan = 70
+
+# Apakah poin kamu lebih tinggi dari lawan?
+print(poin_kamu > poin_lawan)  # Hasil: True
+
+# Apakah poin kamu sama dengan 85?
+print(poin_kamu == 85)  # Hasil: True
+
+# Apakah poin lawan tidak sama dengan 80?
+print(poin_lawan != 80) # Hasil: True
+</code></pre>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Operator Perbandingan</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="theme-panel p-6 rounded-xl space-y-3">
-          <h3 class="text-xl font-semibold">Simbol &amp; Makna</h3>
-          <ul class="list-disc list-inside space-y-1 text-lg">
-            <li><code>==</code> &mdash; sama dengan</li>
-            <li><code>!=</code> &mdash; tidak sama</li>
-            <li><code>&gt;</code>, <code>&lt;</code> &mdash; lebih besar / kecil</li>
-            <li><code>&gt;=</code>, <code>&lt;=</code> &mdash; lebih besar/kecil atau sama</li>
-          </ul>
+        <!-- Slide 6: Interaktif 1 -->
+        <div class="slide flex flex-col items-center justify-center p-8">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Arena Perbandingan Angka
+            </h2>
+            <div class="interactive-card p-8 rounded-lg w-full max-w-2xl">
+                <div class="flex items-center justify-around gap-4">
+                    <input
+                        type="number"
+                        id="angka1"
+                        class="w-1/3 p-3 rounded bg-slate-800 border border-slate-600 text-center text-2xl"
+                        value="10"
+                    />
+                    <select
+                        id="operator"
+                        class="p-3 rounded bg-slate-800 border border-slate-600 text-2xl font-mono"
+                    >
+                        <option>==</option>
+                        <option>!=</option>
+                        <option selected>></option>
+                        <option><</option>
+                        <option>>=</option>
+                        <option><=</option>
+                    </select>
+                    <input
+                        type="number"
+                        id="angka2"
+                        class="w-1/3 p-3 rounded bg-slate-800 border border-slate-600 text-center text-2xl"
+                        value="5"
+                    />
+                </div>
+                <button
+                    id="bandingkanBtn"
+                    class="w-full mt-6 p-3 bg-brand-600 hover:bg-brand-700 rounded-lg text-xl font-bold transition-colors"
+                >
+                    Bandingkan!
+                </button>
+                <div
+                    id="hasilPerbandingan"
+                    class="mt-6 p-4 bg-slate-900 rounded text-center font-mono text-2xl"
+                >
+                    Hasil akan muncul di sini...
+                </div>
+            </div>
         </div>
-        <div class="theme-panel p-6 rounded-xl space-y-3">
-          <h3 class="text-xl font-semibold">Contoh Cepat</h3>
-          <p class="text-lg">Semua operator menghasilkan nilai <strong>bool</strong>:</p>
-          <ul class="list-disc list-inside space-y-1 text-lg">
-            <li><code>5 == 5</code> ➜ <span class="text-green-500">True</span></li>
-            <li><code>7 != 3</code> ➜ <span class="text-green-500">True</span></li>
-            <li><code>10 &lt;= 9</code> ➜ <span class="text-rose-500">False</span></li>
-            <li><code>'AI' == 'ai'</code> ➜ <span class="text-rose-500">False</span></li>
-          </ul>
+
+        <!-- Slide 7: Operator Logika -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">Operator Logika</h2>
+            <p class="text-xl mb-8 theme-muted">
+                Digunakan untuk menggabungkan beberapa ekspresi boolean menjadi
+                satu.
+            </p>
+            <div class="space-y-6">
+                <div class="theme-panel p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-cyan-400">
+                        <code>and</code> (DAN)
+                    </h3>
+                    <p>
+                        Hasilnya <code>True</code> hanya jika
+                        <strong>semua kondisi</strong> terpenuhi.
+                    </p>
+                </div>
+                <div class="theme-panel p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-amber-400">
+                        <code>or</code> (ATAU)
+                    </h3>
+                    <p>
+                        Hasilnya <code>True</code> jika
+                        <strong>salah satu kondisi saja</strong> sudah
+                        terpenuhi.
+                    </p>
+                </div>
+                <div class="theme-panel p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-pink-400">
+                        <code>not</code> (BUKAN)
+                    </h3>
+                    <p>
+                        Membalikkan nilai boolean (<code>True</code> menjadi
+                        <code>False</code>, dan sebaliknya).
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Boolean &amp; Truthiness</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="theme-panel p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-3">Nilai Boolean</h3>
-          <p class="text-lg mb-4">
-            Python hanya mengenal dua nilai logika: <code>True</code> dan <code>False</code>.
-          </p>
-          <p class="text-lg">
-            Tipe data lain bisa dianggap <em>truthy</em> (dipandang benar) atau <em>falsy</em> (dipandang salah)
-            saat dinilai dalam kondisi.
-          </p>
+        <!-- Slide 8: Tabel Kebenaran AND -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Tabel Kebenaran: <span class="text-cyan-400">AND</span>
+            </h2>
+            <p class="text-xl mb-8 theme-muted">
+                Hasilnya <code>True</code> hanya jika
+                <strong>semua kondisi</strong> terpenuhi.
+            </p>
+            <div class="theme-panel-soft p-8 rounded-lg max-w-lg mx-auto">
+                <table class="w-full text-center text-xl">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="py-3 px-4">Kondisi A</th>
+                            <th class="py-3 px-4">Kondisi B</th>
+                            <th class="py-3 px-4 text-cyan-400">A AND B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4 text-green-400 font-bold">
+                                True
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4 text-red-400 font-bold">
+                                False
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4 text-red-400 font-bold">
+                                False
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4 text-red-400 font-bold">
+                                False
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="theme-panel p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-3">Contoh Truthiness</h3>
-          <ul class="list-disc list-inside space-y-1 text-lg">
-            <li><code>0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>None</code> ➜ <strong>False</strong></li>
-            <li>Selain itu ➜ <strong>True</strong></li>
-          </ul>
-          <p class="text-sm theme-muted mt-4">
-            Catatan: hari ini fokus ke boolean hasil perbandingan, tetapi penting tahu konsep ini sejak awal.
-          </p>
+
+        <!-- Slide 9: Tabel Kebenaran OR -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Tabel Kebenaran: <span class="text-amber-400">OR</span>
+            </h2>
+            <p class="text-xl mb-8 theme-muted">
+                Hasilnya <code>True</code> jika
+                <strong>salah satu kondisi saja</strong> sudah terpenuhi.
+            </p>
+            <div class="theme-panel-soft p-8 rounded-lg max-w-lg mx-auto">
+                <table class="w-full text-center text-xl">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="py-3 px-4">Kondisi A</th>
+                            <th class="py-3 px-4">Kondisi B</th>
+                            <th class="py-3 px-4 text-amber-400">A OR B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4 text-green-400 font-bold">
+                                True
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4 text-green-400 font-bold">
+                                True
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4 text-green-400 font-bold">
+                                True
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4 text-red-400 font-bold">
+                                False
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Tabel Kebenaran <code>and</code></h2>
-      <div class="theme-panel p-8 rounded-xl max-w-3xl self-center">
-        <div class="overflow-x-auto">
-          <table class="w-full text-center border-separate border-spacing-y-2 text-lg">
-            <thead class="theme-muted uppercase text-sm tracking-wide">
-              <tr>
-                <th class="py-2">A</th>
-                <th class="py-2">B</th>
-                <th class="py-2">A and B</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="theme-panel-soft">
-                <td class="py-2">True</td>
-                <td class="py-2">True</td>
-                <td class="py-2 text-green-500 font-semibold">True</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">True</td>
-                <td class="py-2">False</td>
-                <td class="py-2 text-rose-500 font-semibold">False</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">False</td>
-                <td class="py-2">True</td>
-                <td class="py-2 text-rose-500 font-semibold">False</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">False</td>
-                <td class="py-2">False</td>
-                <td class="py-2 text-rose-500 font-semibold">False</td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Slide 10: Tabel Kebenaran NOT -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Tabel Kebenaran: <span class="text-pink-400">NOT</span>
+            </h2>
+            <p class="text-xl mb-8 theme-muted">
+                Membalikkan nilai boolean: yang benar jadi salah, yang salah
+                jadi benar.
+            </p>
+            <div class="theme-panel-soft p-8 rounded-lg max-w-xs mx-auto">
+                <table class="w-full text-center text-xl">
+                    <thead>
+                        <tr class="border-b border-slate-700">
+                            <th class="py-3 px-4">Kondisi A</th>
+                            <th class="py-3 px-4 text-pink-400">NOT A</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4">True</td>
+                            <td class="py-3 px-4 text-red-400 font-bold">
+                                False
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">False</td>
+                            <td class="py-3 px-4 text-green-400 font-bold">
+                                True
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <p class="text-sm theme-muted mt-6">
-          Operator <code>and</code> hanya bernilai True bila semua kondisi bernilai True.
-        </p>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Tabel Kebenaran <code>or</code></h2>
-      <div class="theme-panel p-8 rounded-xl max-w-3xl self-center">
-        <div class="overflow-x-auto">
-          <table class="w-full text-center border-separate border-spacing-y-2 text-lg">
-            <thead class="theme-muted uppercase text-sm tracking-wide">
-              <tr>
-                <th class="py-2">A</th>
-                <th class="py-2">B</th>
-                <th class="py-2">A or B</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="theme-panel-soft">
-                <td class="py-2">True</td>
-                <td class="py-2">True</td>
-                <td class="py-2 text-green-500 font-semibold">True</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">True</td>
-                <td class="py-2">False</td>
-                <td class="py-2 text-green-500 font-semibold">True</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">False</td>
-                <td class="py-2">True</td>
-                <td class="py-2 text-green-500 font-semibold">True</td>
-              </tr>
-              <tr class="theme-panel-soft">
-                <td class="py-2">False</td>
-                <td class="py-2">False</td>
-                <td class="py-2 text-rose-500 font-semibold">False</td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Slide 9: Analogi Logika -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-8 aurora-text">
+                Analogi Dunia Nyata
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="theme-panel-soft p-6 rounded-lg">
+                    <h3 class="font-bold text-xl mb-3 text-cyan-400">
+                        Logika `and`
+                    </h3>
+                    <p class="text-lg">
+                        "Untuk naik roller coaster, kamu harus punya tiket
+                        <strong>DAN</strong> tinggi badanmu di atas 140 cm."
+                    </p>
+                    <p class="mt-4 text-sm theme-muted">
+                        Jika salah satu saja tidak terpenuhi (misal, punya tiket
+                        tapi tinggi kurang), kamu tidak bisa masuk.
+                    </p>
+                </div>
+                <div class="theme-panel-soft p-6 rounded-lg">
+                    <h3 class="font-bold text-xl mb-3 text-amber-400">
+                        Logika `or`
+                    </h3>
+                    <p class="text-lg">
+                        "Untuk dapat diskon, kamu bisa pakai kupon
+                        <strong>ATAU</strong> menjadi member."
+                    </p>
+                    <p class="mt-4 text-sm theme-muted">
+                        Cukup penuhi salah satu syarat (punya kupon saja, atau
+                        jadi member saja), kamu sudah dapat diskon.
+                    </p>
+                </div>
+            </div>
         </div>
-        <p class="text-sm theme-muted mt-6">
-          Operator <code>or</code> bernilai True selama ada minimal satu kondisi True.
-        </p>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6"><code>not</code> &amp; Kombinasi Kondisi</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="theme-panel p-6 rounded-xl space-y-4">
-          <h3 class="text-xl font-semibold">Membalik Nilai</h3>
-          <p class="text-lg">
-            Operator <code>not</code> membalik nilai boolean: <code>not True</code> ➜ False.
-          </p>
-          <p class="text-lg">
-            Cocok digunakan untuk memastikan sesuatu <em>tidak</em> terjadi.
-          </p>
+        <!-- Slide 9: Contoh Kode Logika -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">Contoh Logika</h2>
+            <pre><code class="language-python">umur = 20
+punya_ktp = True
+pelajar = False
+
+# Boleh ikut pemilu? (Harus umur 17+ DAN punya KTP)
+bisa_memilih = (umur >= 17) and (punya_ktp == True)
+print("Bisa memilih:", bisa_memilih) # Hasil: True
+
+# Dapat diskon tiket kereta? (Pelajar ATAU umur di bawah 12)
+dapat_diskon = (pelajar == True) or (umur < 12)
+print("Dapat diskon:", dapat_diskon) # Hasil: False
+
+# Membalikkan status pelajar
+bukan_pelajar = not pelajar
+print("Bukan pelajar:", bukan_pelajar) # Hasil: True
+</code></pre>
         </div>
-        <div class="theme-panel p-6 rounded-xl space-y-4">
-          <h3 class="text-xl font-semibold">Prioritas Evaluasi</h3>
-          <ul class="list-disc list-inside space-y-1 text-lg">
-            <li><code>not</code> ➜ <code>and</code> ➜ <code>or</code></li>
-            <li>Gunakan kurung <code>()</code> agar maksud jelas</li>
-            <li>Pahami urutan untuk mencegah bug logika</li>
-          </ul>
+
+        <!-- Slide 10: Interaktif 2 -->
+        <div class="slide flex flex-col items-center justify-center p-8">
+            <h2 class="text-4xl font-bold mb-6 aurora-text">
+                Simulasi Cek Kelulusan
+            </h2>
+            <div class="interactive-card p-8 rounded-lg w-full max-w-2xl">
+                <p class="text-center mb-4 theme-muted">
+                    Syarat Lulus: (Nilai Ujian > 75 <strong>dan</strong> Absensi
+                    > 80) <strong>atau</strong> Mengerjakan Proyek Akhir.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="nilaiUjian" class="font-bold"
+                            >Nilai Ujian (0-100)</label
+                        >
+                        <input
+                            type="number"
+                            id="nilaiUjian"
+                            class="w-full mt-1 p-2 rounded bg-slate-800 border border-slate-600"
+                            value="80"
+                        />
+                    </div>
+                    <div>
+                        <label for="absensi" class="font-bold"
+                            >Absensi (%)</label
+                        >
+                        <input
+                            type="number"
+                            id="absensi"
+                            class="w-full mt-1 p-2 rounded bg-slate-800 border border-slate-600"
+                            value="85"
+                        />
+                    </div>
+                    <div class="flex items-center gap-3 pt-2">
+                        <input
+                            type="checkbox"
+                            id="proyekAkhir"
+                            class="w-6 h-6 rounded"
+                        />
+                        <label for="proyekAkhir" class="font-bold text-lg"
+                            >Mengerjakan Proyek Akhir</label
+                        >
+                    </div>
+                </div>
+                <button
+                    id="cekKelulusanBtn"
+                    class="w-full mt-6 p-3 bg-brand-600 hover:bg-brand-700 rounded-lg text-xl font-bold transition-colors"
+                >
+                    Cek Status Kelulusan
+                </button>
+                <div
+                    id="hasilKelulusan"
+                    class="mt-6 p-4 bg-slate-900 rounded text-center font-mono text-2xl"
+                >
+                    Status akan muncul di sini...
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Contoh di Python</h2>
-      <p class="text-lg theme-muted mb-6 max-w-3xl">
-        Kita gabungkan operator perbandingan dan logika untuk membuat keputusan. Perhatikan kurung untuk memisahkan kondisi.
-      </p>
-      <div class="theme-panel-soft p-6 rounded-xl">
-        <pre class="rounded-lg overflow-hidden">
-<code class="language-python">umur = 18
-memiliki_sim = True
-nilai_teori = 82
+        <!-- Slide 11: Studi Kasus -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-4 aurora-text">
+                Studi Kasus: Pendaftaran Kursus
+            </h2>
+            <p class="text-lg mb-6 theme-muted">
+                Program untuk menentukan apakah seseorang bisa mendaftar kursus
+                "Dasar Pemrograman" dan "Pemrograman Lanjutan".
+            </p>
+            <pre><code class="language-python">umur = int(input("Masukkan umur Anda: "))
+sudah_pernah_koding = input("Apakah sudah pernah belajar koding? (ya/tidak): ")
 
-boleh_mengemudi = (umur &gt;= 17 and memiliki_sim) and nilai_teori &gt;= 75
-izin_orangtua = umur &lt; 21
+# Syarat daftar kursus dasar: umur minimal 15 tahun
+bisa_daftar_dasar = umur >= 15
 
-if boleh_mengemudi and izin_orangtua:
-    print("Silakan kendarai mobil dengan pendamping.")
-else:
-    print("Belum memenuhi semua syarat.")
-</code><button class="copy-btn">Copy</button></pre>
-      </div>
-    </div>
+# Syarat daftar kursus lanjutan: bisa kursus dasar DAN sudah pernah koding
+bisa_daftar_lanjutan = bisa_daftar_dasar and (sudah_pernah_koding == "ya")
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Studi Kasus: Akses Kelas Premium</h2>
-      <div class="grid grid-cols-1 md:grid-cols-[1.2fr,1fr] gap-6">
-        <div class="theme-panel p-6 rounded-xl space-y-4">
-          <h3 class="text-xl font-semibold">Skenario</h3>
-          <p class="text-lg">
-            Pengguna hanya boleh mengakses kelas premium jika sudah membayar <strong>atau</strong> mendapat kupon tutor,
-            dan emailnya sudah terverifikasi.
-          </p>
-          <ul class="list-disc list-inside space-y-1 text-lg">
-            <li>Tentukan kondisi yang harus True atau False</li>
-            <li>Gunakan <code>and</code> dan <code>or</code> sesuai kebutuhan</li>
-            <li>Beri variabel boolean agar kode mudah dibaca</li>
-          </ul>
+print("Boleh mendaftar kursus dasar?", bisa_daftar_dasar)
+print("Boleh mendaftar kursus lanjutan?", bisa_daftar_lanjutan)
+</code></pre>
         </div>
-        <div class="theme-panel-soft p-6 rounded-xl">
-          <pre class="rounded-lg overflow-hidden">
-<code class="language-python">sudah_bayar = False
-punya_kupon = True
-email_terverifikasi = True
 
-bisa_masuk = email_terverifikasi and (sudah_bayar or punya_kupon)
-
-print("Akses diberikan?", bisa_masuk)
-</code><button class="copy-btn">Copy</button></pre>
+        <!-- Slide 12: Latihan -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-8 aurora-text">Latihan Mandiri</h2>
+            <div class="space-y-6">
+                <div class="theme-panel-soft p-4 rounded-lg">
+                    <h3 class="font-bold text-cyan-400">1. Login Sederhana</h3>
+                    <p class="text-sm theme-muted">
+                        Buat program yang meminta username dan password.
+                        Tampilkan <code>True</code> jika username adalah
+                        <code>"admin"</code> DAN password adalah
+                        <code>"rahasia123"</code>.
+                    </p>
+                </div>
+                <div class="theme-panel-soft p-4 rounded-lg">
+                    <h3 class="font-bold text-amber-400">
+                        2. Cek Angka Spesial
+                    </h3>
+                    <p class="text-sm theme-muted">
+                        Buat program yang meminta sebuah angka. Tampilkan
+                        <code>True</code> jika angka tersebut lebih besar dari
+                        50 ATAU merupakan kelipatan 5.
+                    </p>
+                </div>
+                <div class="theme-panel-soft p-4 rounded-lg">
+                    <h3 class="font-bold text-pink-400">
+                        3. Penjaga Pintu Klub
+                    </h3>
+                    <p class="text-sm theme-muted">
+                        Buat program yang meminta umur dan status
+                        (member/biasa). Tampilkan <code>True</code> jika umur di
+                        atas 21 ATAU dia adalah seorang member.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="slide flex flex-col justify-center p-12 md:p-16">
-      <h2 class="text-4xl font-bold theme-accent mb-6">Latihan Mandiri</h2>
-      <div class="theme-panel p-8 rounded-xl space-y-4 text-lg">
-        <p>
-          Buat program untuk menentukan apakah seorang siswa lulus kelas. Gunakan syarat:
-        </p>
-        <ul class="list-disc list-inside space-y-1">
-          <li>Nilai akhir minimal 75</li>
-          <li>Kehadiran minimal 85%</li>
-          <li>Khusus siswa yang nilainya &lt; 80 harus mengikuti remedial</li>
-        </ul>
-        <p>
-          Modifikasi logika sehingga program mencetak pesan berbeda untuk "Lulus Langsung", "Lulus Dengan Remedial", atau "Belum Lulus".
-        </p>
-        <p class="text-sm theme-muted">
-          Bonus: tambahkan pertanyaan ya/tidak kepada pengguna untuk memastikan sudah mengerjakan tugas proyek.
-        </p>
-      </div>
-    </div>
+        <!-- Slide 13: Rangkuman -->
+        <div class="slide flex flex-col justify-center p-12 md:p-16">
+            <h2 class="text-4xl font-bold mb-8 aurora-text">Rangkuman</h2>
+            <ul class="space-y-4 text-xl list-disc list-inside">
+                <li>
+                    Operator <strong>Perbandingan</strong> (<code>></code>,
+                    <code>==</code>, dll.) membandingkan dua nilai dan
+                    menghasilkan <code>True</code>/<code>False</code>.
+                </li>
+                <li>
+                    Operator <strong>Logika</strong> (<code>and</code>,
+                    <code>or</code>, <code>not</code>) menggabungkan atau
+                    memodifikasi nilai <code>True</code>/<code>False</code>.
+                </li>
+                <li><code>and</code>: Semua harus benar.</li>
+                <li><code>or</code>: Cukup satu yang benar.</li>
+                <li><code>not</code>: Kebalikannya.</li>
+                <li>
+                    Kombinasi keduanya memungkinkan kita membuat aturan dan
+                    keputusan yang kompleks dalam program.
+                </li>
+            </ul>
+        </div>
 
-    <div class="slide flex flex-col justify-center items-center text-center p-12 md:p-16">
-      <div class="theme-panel p-10 rounded-3xl space-y-4 max-w-3xl">
-        <h2 class="text-4xl font-bold theme-accent">Ringkasan</h2>
-        <ul class="list-disc list-inside space-y-2 text-lg text-left">
-          <li>Operator perbandingan menghasilkan nilai True atau False</li>
-          <li><code>and</code>, <code>or</code>, <code>not</code> membantu menggabungkan logika kompleks</li>
-          <li>Gunakan variabel boolean &amp; kurung untuk menjaga kode mudah dibaca</li>
-          <li>Latihan hari ini menjadi dasar membuat percabangan <code>if</code> di pertemuan berikutnya</li>
-        </ul>
-        <p class="theme-muted">Simpan pertanyaan kalian untuk sesi diskusi &amp; praktik!</p>
-      </div>
-    </div>
+        <!-- Slide 14: Tanya Jawab -->
+        <div
+            class="slide flex flex-col items-center justify-center text-center p-8"
+        >
+            <h2 class="text-6xl font-black aurora-text">Q&A</h2>
+            <p class="mt-4 text-2xl theme-muted">Ada Pertanyaan?</p>
+            <p class="mt-12 theme-muted">Terima Kasih!</p>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="public/canvas.js"></script>
-    <script src="public/tools.js"></script>
-  </body>
+        <!-- Decorative background -->
+        <div class="pointer-events-none fixed inset-0 overflow-hidden z-[-1]">
+            <div
+                class="absolute inset-0 bg-grid opacity-40 dark:opacity-20"
+            ></div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="public/canvas.js"></script>
+        <script src="public/tools.js"></script>
+        <script>
+            // --- Logika untuk Sesi Interaktif ---
+
+            // Interaktif 1: Perbandingan Angka
+            const angka1El = document.getElementById("angka1");
+            const angka2El = document.getElementById("angka2");
+            const operatorEl = document.getElementById("operator");
+            const bandingkanBtn = document.getElementById("bandingkanBtn");
+            const hasilPerbandinganEl =
+                document.getElementById("hasilPerbandingan");
+
+            function lakukanPerbandingan() {
+                const val1 = parseFloat(angka1El.value);
+                const val2 = parseFloat(angka2El.value);
+                const op = operatorEl.value;
+                let hasil;
+
+                // Evaluasi dinamis (hati-hati dengan eval, tapi aman untuk kasus terkontrol ini)
+                const ekspresi = `${val1} ${op} ${val2}`;
+                try {
+                    hasil = eval(ekspresi);
+                } catch (e) {
+                    hasil = "Error";
+                }
+
+                const hasilTeks = hasil ? "True" : "False";
+                const warna = hasil ? "text-green-400" : "text-red-400";
+
+                hasilPerbandinganEl.innerHTML = `<span class="text-slate-400">${ekspresi}</span> &rarr; <span class="${warna}">${hasilTeks}</span>`;
+            }
+
+            bandingkanBtn.addEventListener("click", lakukanPerbandingan);
+            // Inisialisasi saat halaman dimuat
+            document.addEventListener("DOMContentLoaded", lakukanPerbandingan);
+
+            // Interaktif 2: Cek Kelulusan
+            const nilaiUjianEl = document.getElementById("nilaiUjian");
+            const absensiEl = document.getElementById("absensi");
+            const proyekAkhirEl = document.getElementById("proyekAkhir");
+            const cekKelulusanBtn = document.getElementById("cekKelulusanBtn");
+            const hasilKelulusanEl = document.getElementById("hasilKelulusan");
+
+            function cekKelulusan() {
+                const nilaiUjian = parseFloat(nilaiUjianEl.value);
+                const absensi = parseFloat(absensiEl.value);
+                const proyekAkhir = proyekAkhirEl.checked;
+
+                // Logika kelulusan
+                const lulus = (nilaiUjian > 75 && absensi > 80) || proyekAkhir;
+
+                if (lulus) {
+                    hasilKelulusanEl.innerHTML =
+                        '<span class="text-green-400">SELAMAT, ANDA LULUS!</span>';
+                } else {
+                    hasilKelulusanEl.innerHTML =
+                        '<span class="text-red-400">MAAF, ANDA PERLU MENCOBA LAGI.</span>';
+                }
+            }
+
+            cekKelulusanBtn.addEventListener("click", cekKelulusan);
+            // Inisialisasi saat halaman dimuat
+            document.addEventListener("DOMContentLoaded", cekKelulusan);
+        </script>
+    </body>
 </html>
-
