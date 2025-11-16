@@ -1,131 +1,77 @@
+Berikut versi revisi tanpa ide visual, lebih banyak paragraf, bullet point hanya jika memang perlu, dan bagian “Kesalahan Umum” dipecah menjadi beberapa slide, diletakkan sebelum Studi Kasus.
+
+Format tetap slide-per-slide agar bisa langsung dicopas ke HTML slide kamu.
+
+⸻
+
 BAGIAN 1 – PENGANTAR IF–ELSE
 
 ⸻
 
 Slide 1 – Judul Materi
 
-Judul:
 Percabangan If–Else di Python
 
-Isi:
-• Pada materi ini kita belajar bagaimana membuat program yang bisa mengambil keputusan.
-• Kita fokus pada percabangan: if, else, dan elif di Python.
-• Setelah materi ini, kamu diharapkan dapat:
-• Menjelaskan apa itu percabangan.
-• Memahami alur kerja if–else.
-• Menulis program sederhana yang menggunakan percabangan.
-
-(Opsional: di bagian atas/bawah, tambahkan ikon sederhana seperti tanda panah bercabang atau ikon “decision”.)
+Hari ini kita belajar bagaimana membuat program yang mampu mengambil keputusan secara otomatis. Fokus utama materi ini adalah struktur percabangan: if, else, dan elif pada Python. Setelah mempelajari materi ini, kamu diharapkan memahami apa yang dimaksud dengan percabangan, bagaimana alur kerjanya, dan mampu menulis program sederhana yang menggunakan percabangan.
 
 ⸻
 
 Slide 2 – Cerita Sehari-hari: Program yang “Mikir”
 
-Judul:
 Program yang Bisa “Mikir”
 
-Isi:
-• Dalam kehidupan sehari-hari, kita sering mengambil keputusan:
-• Jika hujan → pakai jas hujan.
-• Jika lapar → cari makanan.
-• Jika uang cukup → beli jajan.
-• Program juga bisa seperti itu:
-• Program memilih tindakan berdasarkan kondisi tertentu.
-• Cara membuat program bisa “mikir” seperti ini disebut percabangan.
-
-(Opsional: satu ilustrasi kecil di samping, misalnya orang membawa payung saat hujan.)
+Dalam kehidupan sehari-hari, kita selalu membuat keputusan. Ketika hujan kita memakai jas hujan, saat lapar kita mencari makanan, atau saat uang cukup kita membeli sesuatu. Program komputer dapat bekerja dengan cara yang sama. Program dapat memilih tindakan yang berbeda berdasarkan kondisi tertentu. Inilah konsep dasar dari percabangan.
 
 ⸻
 
 Slide 3 – Apa Itu Percabangan?
 
-Judul:
 Apa Itu Percabangan?
 
-Isi:
-• Percabangan adalah struktur dalam program untuk:
-• Mengecek suatu kondisi.
-• Menentukan jalur mana yang akan dijalankan program.
-• Jika kondisi benar, program menjalankan satu jalur.
-• Jika kondisi salah, program dapat menjalankan jalur lain (misalnya else).
-• Tanpa percabangan, program hanya berjalan lurus dari atas ke bawah tanpa pilihan.
-
-(Opsional: diagram sangat sederhana “Mulai → Cek kondisi → Ya / Tidak”.)
+Percabangan adalah cara bagi program untuk memeriksa sebuah kondisi dan menentukan jalur mana yang akan dijalankan berikutnya. Jika kondisi bernilai benar, program menjalankan jalur tertentu. Jika kondisi salah, program dapat mengambil jalur berbeda. Tanpa percabangan, program hanya berjalan lurus dari atas ke bawah tanpa kemampuan mengambil keputusan.
 
 ⸻
 
-Slide 4 – Bentuk Dasar if di Python
+Slide 4 – Bentuk Dasar If di Python
 
-Judul:
 Struktur Dasar if di Python
 
-Isi:
-• Bentuk umum:
+Struktur dasar if di Python ditulis dengan menempatkan kondisi setelah kata kunci if, diikuti tanda titik dua. Baris perintah yang ingin dijalankan harus ditulis menjorok ke dalam sebagai bentuk indentasi. Ketika kondisi bernilai benar, seluruh baris yang berada di dalam blok if akan dijalankan.
 
 if kondisi:
 aksi_yang_dijalankan
 
-    •	Hal penting:
-    •	Harus ada tanda titik dua : setelah kondisi.
-    •	Baris di dalam if harus menjorok ke dalam (indentasi).
-    •	Jika kondisi bernilai benar, semua baris di dalam blok if akan dijalankan.
-    •	Jika kondisi bernilai salah, blok if akan dilewati.
-
-(Tidak perlu gambar di slide ini agar fokus ke bentuk kode.)
-
 ⸻
 
-Slide 5 – Contoh if Sederhana
+Slide 5 – Contoh If Sederhana
 
-Judul:
-Contoh: Cek Kelulusan (Tanpa else)
-
-Isi:
+Contoh: Cek Kelulusan
 
 nilai = 80
 
 if nilai >= 75:
 print("Lulus")
 
-Penjelasan:
-• Variabel nilai berisi angka 80.
-• Program mengecek: apakah nilai >= 75?
-• Karena 80 lebih besar atau sama dengan 75, kondisinya benar.
-• Hasilnya: program mencetak teks Lulus.
-• Jika nilai kurang dari 75, program tidak mencetak apa pun (karena tidak ada else).
-
-(Tidak perlu gambar, fokus ke kode dan penjelasan.)
+Program mengecek apakah nilai memenuhi syarat kelulusan. Karena nilai 80 lebih besar atau sama dengan 75, program menampilkan “Lulus”. Jika nilai berada di bawah 75, program tidak menampilkan apa pun karena tidak ada perintah di luar blok if.
 
 ⸻
 
-Slide 6 – Menambahkan else
+Slide 6 – Menambah Else
 
-Judul:
-Menambahkan else untuk Kondisi Lain
+Menambahkan else
 
-Isi:
-• Kadang kita ingin program melakukan sesuatu jika syarat tidak terpenuhi.
-• Untuk itu, kita menggunakan else.
-• Bentuk umum:
+Ketika kita ingin program melakukan tindakan alternatif saat kondisi tidak terpenuhi, kita dapat menggunakan else. Bagian ini akan dijalankan ketika kondisi pada if bernilai salah.
 
 if kondisi:
 aksi_jika_benar
 else:
 aksi_jika_salah
 
-    •	Dengan else, selalu ada salah satu aksi yang dijalankan:
-    •	Entah aksi di dalam if, atau aksi di dalam else.
-
-(Tidak perlu gambar, cukup teks dan contoh.)
-
 ⸻
 
-Slide 7 – Contoh Lengkap if–else
+Slide 7 – Contoh Lengkap If–Else
 
-Judul:
 Contoh: Lulus atau Tidak Lulus
-
-Isi:
 
 nilai = 60
 
@@ -134,51 +80,109 @@ print("Lulus")
 else:
 print("Tidak lulus")
 
-Penjelasan:
-• Program mengecek: nilai >= 75.
-• Dengan nilai = 60, kondisi tersebut salah.
-• Karena kondisi salah, baris di dalam if dilewati.
-• Program masuk ke blok else dan mencetak Tidak lulus.
-• Dalam satu rangkaian if–else, hanya satu blok yang dijalankan.
-
-(Tidak perlu gambar, fokus ke alur kode.)
+Karena nilai tidak memenuhi batas minimal, program langsung menjalankan bagian else dan menampilkan “Tidak lulus”. Dalam sebuah percabangan if–else, hanya satu bagian yang akan dijalankan.
 
 ⸻
 
-Slide 8 – Indentasi di Python
+Slide 8 – Indentasi: “Kurung Kurawal”-nya Python
 
-Judul:
-Indentasi: Penanda Blok Kode di Python
+Indentasi di Python
 
-Isi:
-• Bahasa lain biasanya memakai { dan } untuk menandai blok kode.
-• Python menggantinya dengan indentasi (spasi/tab di awal baris).
-• Aturan:
-• Semua baris yang termasuk dalam blok if, elif, atau else harus mempunyai indentasi yang sama.
-• Jika indentasi tidak konsisten, Python akan mengeluarkan error.
-• Contoh benar:
+Berbeda dengan beberapa bahasa lain yang menggunakan {} untuk menandai blok kode, Python justru menggunakan indentasi. Semua baris di dalam if, elif, atau else harus menjorok ke dalam dengan jumlah spasi atau tab yang sama. Jika indentasi tidak konsisten, Python akan menghasilkan error.
+
+⸻
+
+BAGIAN 1.5 – KESALAHAN UMUM (DIPECAH PER SLIDE)
+
+⸻
+
+Slide 9 – Kesalahan 1: Lupa Menambahkan Tanda Titik Dua
+
+Kesalahan yang sering terjadi adalah lupa menuliskan tanda : setelah if, elif, atau else. Tanpa tanda ini, Python tidak dapat mengenali bahwa sebuah blok kode akan dimulai.
+
+Contoh salah:
+
+if nilai >= 75
+print("Lulus")
+
+Contoh benar:
 
 if nilai >= 75:
 print("Lulus")
-print("Selamat!")
-
-(Opsional: kecil saja, tampilkan juga contoh salah dengan tanda silang di catatan / bagian bawah.)
 
 ⸻
 
-BAGIAN 2 – elif DAN INPUT
+Slide 10 – Kesalahan 2: Indentasi Tidak Konsisten
+
+Indentasi yang tidak konsisten dapat menyebabkan error karena Python menganggap blok kode tidak sejajar. Misalnya satu baris memakai dua spasi dan baris lain memakai empat spasi.
+
+Contoh salah:
+
+if nilai >= 75:
+print("Lulus")
+print("Bagus!")
+
+Contoh benar:
+
+if nilai >= 75:
+print("Lulus")
+print("Bagus!")
 
 ⸻
 
-Slide 9 – Percabangan Bertingkat dengan elif
+Slide 11 – Kesalahan 3: Menggunakan = Saat Harusnya ==
 
-Judul:
-Percabangan Bertingkat: elif
+Operator = digunakan untuk memberi nilai pada variabel, sedangkan == digunakan untuk membandingkan dua nilai. Salah menggunakan operator akan membuat program berjalan tidak sesuai harapan.
 
-Isi:
-• Jika pilihan hanya dua, kita cukup pakai if dan else.
-• Jika pilihan lebih dari dua, kita bisa menambah elif.
-• Bentuk umum:
+Contoh salah:
+
+if nilai = 75:
+
+Contoh benar:
+
+if nilai == 75:
+
+⸻
+
+Slide 12 – Kesalahan 4: Baris Di Luar Blok Karena Indentasi Keliru
+
+Ketika satu baris yang seharusnya berada di dalam blok justru tidak diindentasi dengan benar, Python akan menganggapnya berada di luar blok percabangan.
+
+Contoh salah:
+
+if nilai >= 75:
+print("Lulus")
+print("Bagus!") # tidak sengaja keluar blok
+
+⸻
+
+Slide 13 – Kesalahan 5: Tidak Mengubah Input Menjadi Angka
+
+input() selalu menghasilkan string. Jika dibandingkan langsung dengan angka, hasilnya salah dan bisa menyebabkan error. Oleh karena itu perlu mengonversinya menggunakan int().
+
+Contoh salah:
+
+nilai = input("Masukkan nilai: ")
+if nilai >= 75:
+print("Lulus")
+
+Contoh benar:
+
+nilai = int(input("Masukkan nilai: "))
+if nilai >= 75:
+print("Lulus")
+
+⸻
+
+BAGIAN 2 – ELIF DAN INPUT
+
+⸻
+
+Slide 14 – Percabangan Bertingkat: elif
+
+Menggunakan elif untuk Banyak Pilihan
+
+Jika sebuah percabangan memiliki lebih dari dua kemungkinan kondisi, kita bisa menambahkan elif. Program akan mengecek kondisi dari atas ke bawah, dan ketika menemukan satu kondisi yang benar, bagian di bawahnya tidak akan diperiksa lagi.
 
 if kondisi1:
 aksi1
@@ -187,19 +191,11 @@ aksi2
 else:
 aksi_lain
 
-    •	Program mengecek kondisi dari atas ke bawah:
-    •	Jika kondisi1 sudah benar, kondisi2 dan else tidak diperiksa lagi.
-
-(Opsional: diagram kecil dengan beberapa kotak “Jika kondisinya…”.)
-
 ⸻
 
-Slide 10 – Contoh elif: Menentukan Grade
+Slide 15 – Contoh Elif: Grade Nilai
 
-Judul:
-Contoh: Menentukan Grade Nilai
-
-Isi:
+Contoh: Menentukan Grade
 
 nilai = 82
 
@@ -214,25 +210,15 @@ print("Grade D")
 else:
 print("Grade E")
 
-Penjelasan:
-• Nilai 82 tidak memenuhi syarat >= 90, jadi if pertama dilewati.
-• Nilai 82 memenuhi syarat >= 80, jadi program mencetak Grade B.
-• Kondisi di bawahnya (>= 70, >= 60, else) tidak diperiksa lagi.
-
-(Tidak perlu gambar, fokus ke tabel logika di penjelasan verbal.)
+Pada contoh ini, nilai 82 tidak memenuhi kondisi pertama, tetapi memenuhi kondisi kedua sehingga menghasilkan “Grade B”.
 
 ⸻
 
-Slide 11 – Mengambil Input dari Pengguna
+Slide 16 – Memakai Input Pengguna
 
-Judul:
 Mengambil Input dan Menggunakan If–Else
 
-Isi:
-• Program bisa meminta data dari pengguna menggunakan fungsi input().
-• Data yang dibaca dari input() berupa teks (string).
-• Jika ingin membandingkan sebagai angka, gunakan int() untuk mengubahnya menjadi bilangan bulat.
-• Contoh:
+Program dapat meminta pengguna memasukkan data menggunakan input(). Jika yang diminta adalah angka, data tersebut harus diubah menjadi bilangan dengan int(). Setelah itu nilai tersebut bisa dipakai dalam percabangan.
 
 nilai = int(input("Masukkan nilai kamu: "))
 
@@ -241,16 +227,11 @@ print("Lulus")
 else:
 print("Tidak lulus")
 
-(Tidak perlu gambar, fokus ke alur input–proses–output.)
-
 ⸻
 
-Slide 12 – Contoh: Ganjil atau Genap
+Slide 17 – Contoh: Ganjil atau Genap
 
-Judul:
 Program Cek Ganjil / Genap
-
-Isi:
 
 angka = int(input("Masukkan sebuah angka: "))
 
@@ -259,12 +240,7 @@ print("Angka genap")
 else:
 print("Angka ganjil")
 
-Penjelasan:
-• Operator % menghasilkan sisa hasil bagi.
-• Jika angka % 2 == 0, berarti angkanya habis dibagi 2 → genap.
-• Jika tidak sama dengan 0, berarti angkanya ganjil.
-
-(Tidak perlu gambar, siswa fokus ke contoh perhitungan.)
+Operator % digunakan untuk mengambil sisa hasil pembagian. Jika sisa pembagian angka terhadap 2 adalah nol, maka angka tersebut genap; jika tidak, angka tersebut ganjil.
 
 ⸻
 
@@ -272,12 +248,7 @@ BAGIAN 3 – STUDI KASUS & LATIHAN
 
 ⸻
 
-Slide 13 – Studi Kasus: Login Sederhana
-
-Judul:
-Studi Kasus 1: Program Login Sederhana
-
-Isi:
+Slide 18 – Studi Kasus 1: Login Sederhana
 
 username = input("Masukkan username: ")
 password = input("Masukkan password: ")
@@ -287,21 +258,11 @@ print("Login berhasil")
 else:
 print("Username atau password salah")
 
-Penjelasan:
-• Jika username dan password keduanya sesuai, program mencetak “Login berhasil”.
-• Kalau salah satu saja berbeda, program mencetak “Username atau password salah”.
-• Konsep ini mirip proses login di aplikasi atau website pada umumnya.
-
-(Opsional: ikon kecil “login” atau “kunci” di samping, tidak perlu ilustrasi besar.)
+Pada login sederhana ini, program mengecek apakah kedua nilai yang dimasukkan sesuai. Jika salah satu berbeda, program menampilkan pesan gagal.
 
 ⸻
 
-Slide 14 – Studi Kasus: Diskon di Toko
-
-Judul:
-Studi Kasus 2: Program Diskon Toko
-
-Isi:
+Slide 19 – Studi Kasus 2: Diskon di Toko
 
 total = int(input("Total belanja: "))
 
@@ -314,26 +275,11 @@ else:
 print("Tidak ada diskon")
 print("Total yang harus dibayar:", total)
 
-Penjelasan:
-• Jika total belanja minimal 100.000, pelanggan mendapat diskon 10%.
-• Jika kurang dari 100.000, tidak ada diskon.
-• Ini contoh penggunaan if–else yang dekat dengan kehidupan sehari-hari.
-
-(Opsional: ikon kecil keranjang belanja di pojok, tidak mengganggu area kode.)
+Jika jumlah belanja mencapai minimal seratus ribu rupiah, program memberikan diskon 10%. Jika tidak, total harga tetap.
 
 ⸻
 
-Slide 15 – Studi Kasus: Biaya Parkir
-
-Judul:
-Studi Kasus 3: Menghitung Biaya Parkir
-
-Isi:
-Aturan biaya parkir:
-• 2 jam pertama: Rp 5.000.
-• Setiap jam berikutnya: + Rp 2.000 per jam.
-
-Kode:
+Slide 20 – Studi Kasus 3: Biaya Parkir
 
 jam = int(input("Lama parkir (jam): "))
 
@@ -344,63 +290,22 @@ biaya = 5000 + (jam - 2) \* 2000
 
 print("Biaya parkir:", biaya)
 
-Penjelasan singkat:
-• Jika jam kurang dari atau sama dengan 2, langsung 5.000.
-• Jika lebih dari 2, hitung tambahan (jam - 2) \* 2000, lalu ditambah 5.000.
-
-(Opsional: ikon kecil parkir “P”, tanpa ilustrasi besar.)
+Aturan biaya parkir dihitung berdasarkan dua jam pertama dan jam berikutnya, kemudian program menampilkan total biaya.
 
 ⸻
 
-Slide 16 – Latihan Mandiri untuk Siswa
+Slide 21 – Latihan untuk Siswa
 
-Judul:
-Latihan Mandiri
-
-Isi:
-Minta siswa membuat program berikut: 1. Program Kategori Umur
-• Program meminta input: umur.
-• Jika umur < 13 → tampilkan “Anak-anak”.
-• Jika umur 13–17 → tampilkan “Remaja”.
-• Jika umur ≥ 18 → tampilkan “Dewasa”.
-• Gunakan if, elif, dan else. 2. Program Salam Berdasarkan Jam
-• Program meminta input: jam (0–23).
-• 0–11 → tampilkan “Selamat pagi”.
-• 12–17 → tampilkan “Selamat siang”.
-• 18–23 → tampilkan “Selamat malam”.
-
-(Slide ini cukup teks, agar instruksi latihan jelas.)
+Latihan Mandiri 1. Kategori Umur
+Program meminta input umur. Jika umur di bawah 13 tampilkan “Anak-anak”, jika 13–17 tampilkan “Remaja”, dan jika 18 ke atas tampilkan “Dewasa”. 2. Salam Berdasarkan Jam
+Program meminta input jam 0–23. Jika jam berada di 0–11 tampilkan “Selamat pagi”, jika 12–17 tampilkan “Selamat siang”, dan jika 18–23 tampilkan “Selamat malam”.
 
 ⸻
 
-Slide 17 – Kesalahan yang Sering Terjadi
+Slide 22 – Rangkuman Akhir
 
-Judul:
-Kesalahan Umum Saat Menggunakan If–Else
-
-Isi:
-• Lupa menulis tanda titik dua : setelah if, elif, atau else.
-• Indentasi tidak konsisten:
-• Misalnya, baris pertama pakai 4 spasi, baris kedua pakai tab.
-• Menggunakan = saat seharusnya == ketika membandingkan nilai.
-• Lupa mengonversi input menjadi int saat membandingkan angka.
-• Menaruh baris yang seharusnya di dalam blok, tetapi indentasinya sejajar dengan luar blok.
-
-(Opsional: satu contoh error pendek, misalnya IndentationError atau SyntaxError, dengan highlight kecil.)
+Struktur if digunakan untuk memeriksa kondisi tertentu. Bagian else menangani kondisi ketika syarat tidak terpenuhi, sedangkan elif digunakan ketika terdapat lebih dari dua kemungkinan kondisi. Python menggunakan indentasi untuk menentukan blok kode, sehingga penulisan rapi sangat penting. Percabangan ini digunakan di banyak contoh nyata seperti login, diskon, perhitungan biaya, dan kategorisasi umur.
 
 ⸻
 
-Slide 18 – Rangkuman Akhir
-
-Judul:
-Rangkuman If–Else di Python
-
-Isi:
-• if digunakan untuk menjalankan kode jika kondisi benar.
-• else digunakan untuk menjalankan kode ketika kondisi pada if tidak terpenuhi.
-• elif digunakan untuk menangani lebih dari dua kemungkinan kondisi.
-• Python menggunakan indentasi, bukan {} untuk blok kode.
-• Percabangan digunakan di banyak program:
-• Login, perhitungan diskon, tarif parkir, kategori umur, dan lain-lain.
-
-(Opsional: peta konsep kecil “if → else → elif → contoh nyata”.)
+Jika ingin, saya bisa buatkan versi lebih singkat, versi super-ringkas, atau versi yang lebih banyak paragraf lagi.

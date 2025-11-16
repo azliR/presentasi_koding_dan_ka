@@ -102,20 +102,9 @@
                     <h1 class="text-4xl md:text-6xl font-black leading-tight">
                         Percabangan If–Else di Python
                     </h1>
-                    <ul class="space-y-3 text-lg md:text-xl theme-muted">
-                        <li>
-                            Belajar membuat program yang mampu mengambil
-                            keputusan sederhana.
-                        </li>
-                        <li>
-                            Fokus pada struktur <code>if</code>,
-                            <code>else</code>, dan <code>elif</code>.
-                        </li>
-                        <li>
-                            Tujuan: memahami konsep percabangan dan membuat
-                            contoh programnya.
-                        </li>
-                    </ul>
+                    <p class="text-lg md:text-xl theme-muted">
+                        Hari ini kita belajar bagaimana membuat program yang mampu mengambil keputusan secara otomatis. Fokus utama materi ini adalah struktur percabangan: if, else, dan elif pada Python. Setelah mempelajari materi ini, kamu diharapkan memahami apa yang dimaksud dengan percabangan, bagaimana alur kerjanya, dan mampu menulis program sederhana yang menggunakan percabangan.
+                    </p>
                 </div>
                 <img
                     loading="lazy"
@@ -132,21 +121,11 @@
             >
                 <div>
                     <h2 class="text-4xl font-bold mb-6">
-                        Program yang Bisa “Mikir”
+                        Program yang Bisa "Mikir"
                     </h2>
                     <p class="text-lg theme-muted mb-4">
-                        Percabangan membuat program bertindak seperti manusia
-                        saat mengambil keputusan.
+                        Dalam kehidupan sehari-hari, kita selalu membuat keputusan. Ketika hujan kita memakai jas hujan, saat lapar kita mencari makanan, atau saat uang cukup kita membeli sesuatu. Program komputer dapat bekerja dengan cara yang sama. Program dapat memilih tindakan yang berbeda berdasarkan kondisi tertentu. Inilah konsep dasar dari percabangan.
                     </p>
-                    <ul class="space-y-3 text-lg">
-                        <li>Jika hujan → pakai jas hujan.</li>
-                        <li>Jika lapar → cari makanan.</li>
-                        <li>Jika uang cukup → beli jajan.</li>
-                        <li>
-                            Program pun bisa memilih jalur berdasarkan kondisi.
-                        </li>
-                        <li>Itulah inti dari percabangan.</li>
-                    </ul>
                 </div>
                 <img
                     loading="lazy"
@@ -165,16 +144,9 @@
                     <h2 class="text-4xl font-bold mb-6">
                         Apa Itu Percabangan?
                     </h2>
-                    <ul class="space-y-3 text-lg">
-                        <li>Mengecek suatu kondisi.</li>
-                        <li>Memilih jalur program berdasarkan hasil cek.</li>
-                        <li>Jika kondisi benar → jalur A.</li>
-                        <li>
-                            Jika salah → jalur lain (contohnya
-                            <code>else</code>).
-                        </li>
-                        <li>Tanpa percabangan, kode hanya berjalan lurus.</li>
-                    </ul>
+                    <p class="text-lg theme-muted mb-4">
+                        Percabangan adalah cara bagi program untuk memeriksa sebuah kondisi dan menentukan jalur mana yang akan dijalankan berikutnya. Jika kondisi bernilai benar, program menjalankan jalur tertentu. Jika kondisi salah, program dapat mengambil jalur berbeda. Tanpa percabangan, program hanya berjalan lurus dari atas ke bawah tanpa kemampuan mengambil keputusan.
+                    </p>
                 </div>
                 <img
                     loading="lazy"
@@ -189,10 +161,10 @@
             <div class="max-w-4xl mx-auto space-y-6">
                 <div>
                     <h2 class="text-4xl font-bold mb-6">
-                        Struktur Dasar <code>if</code>
+                        Struktur Dasar <code>if</code> di Python
                     </h2>
                     <p class="text-lg theme-muted mb-4">
-                        Ingat dua aturan penting: titik dua dan indentasi.
+                        Struktur dasar if di Python ditulis dengan menempatkan kondisi setelah kata kunci if, diikuti tanda titik dua. Baris perintah yang ingin dijalankan harus ditulis menjorok ke dalam sebagai bentuk indentasi. Ketika kondisi bernilai benar, seluruh baris yang berada di dalam blok if akan dijalankan.
                     </p>
                     <pre
                         class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
@@ -200,13 +172,6 @@
 <code class="language-python">if kondisi:
     aksi_yang_dijalankan</code>
                     </pre>
-                    <ul class="space-y-2 text-lg mt-6">
-                        <li>Ada tanda <code>:</code> setelah kondisi.</li>
-                        <li>Baris di dalam blok harus menjorok ke dalam.</li>
-                        <li>
-                            Blok dijalankan hanya saat kondisi bernilai benar.
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -225,14 +190,9 @@
 if nilai >= 75:
     print("Lulus")</code>
                     </pre>
-                    <ul class="space-y-2 text-lg mt-6">
-                        <li><code>nilai</code> berisi 80.</li>
-                        <li>
-                            Kondisi <code>nilai &gt;= 75</code> bernilai benar.
-                        </li>
-                        <li>Program mencetak “Lulus”.</li>
-                        <li>Jika nilai &lt; 75, tidak ada output.</li>
-                    </ul>
+                    <p class="text-lg mt-6">
+                        Program mengecek apakah nilai memenuhi syarat kelulusan. Karena nilai 80 lebih besar atau sama dengan 75, program menampilkan "Lulus". Jika nilai berada di bawah 75, program tidak menampilkan apa pun karena tidak ada perintah di luar blok if.
+                    </p>
                 </div>
             </div>
         </div>
@@ -244,8 +204,7 @@ if nilai >= 75:
                         Menambahkan <code>else</code>
                     </h2>
                     <p class="text-lg theme-muted mb-4">
-                        Gunakan <code>else</code> ketika butuh aksi cadangan
-                        saat kondisi tidak terpenuhi.
+                        Ketika kita ingin program melakukan tindakan alternatif saat kondisi tidak terpenuhi, kita dapat menggunakan else. Bagian ini akan dijalankan ketika kondisi pada if bernilai salah.
                     </p>
                     <pre
                         class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
@@ -255,10 +214,6 @@ if nilai >= 75:
 else:
     aksi_jika_salah</code>
                     </pre>
-                    <p class="text-lg mt-6">
-                        Hanya salah satu blok yang dieksekusi setiap kali
-                        percabangan berjalan.
-                    </p>
                 </div>
             </div>
         </div>
@@ -267,7 +222,7 @@ else:
             <div class="max-w-4xl mx-auto space-y-6">
                 <div>
                     <h2 class="text-4xl font-bold mb-6">
-                        Contoh: Lulus atau Tidak
+                        Contoh: Lulus atau Tidak Lulus
                     </h2>
                     <pre
                         class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
@@ -279,54 +234,151 @@ if nilai >= 75:
 else:
     print("Tidak lulus")</code>
                     </pre>
-                    <ul class="space-y-2 text-lg mt-6">
-                        <li>Nilai 60 tidak memenuhi syarat.</li>
-                        <li>
-                            Program melewati blok <code>if</code> dan
-                            menjalankan <code>else</code>.
-                        </li>
-                        <li>Output: “Tidak lulus”.</li>
-                    </ul>
+                    <p class="text-lg mt-6">
+                        Karena nilai tidak memenuhi batas minimal, program langsung menjalankan bagian else dan menampilkan "Tidak lulus". Dalam sebuah percabangan if–else, hanya satu bagian yang akan dijalankan.
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="slide flex flex-col justify-center p-8 md:p-16">
             <div class="max-w-5xl mx-auto">
-                <h2 class="text-4xl font-bold mb-6">Indentasi itu Penting</h2>
+                <h2 class="text-4xl font-bold mb-6">Indentasi: "Kurung Kurawal"-nya Python</h2>
                 <p class="text-lg theme-muted mb-6">
-                    Di Python, indentasi menggantikan { } untuk menentukan blok
-                    kode.
+                    Berbeda dengan beberapa bahasa lain yang menggunakan {} untuk menandai blok kode, Python justru menggunakan indentasi. Semua baris di dalam if, elif, atau else harus menjorok ke dalam dengan jumlah spasi atau tab yang sama. Jika indentasi tidak konsisten, Python akan menghasilkan error.
                 </p>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div class="card-glow p-6 rounded-2xl">
-                        <p class="font-semibold text-emerald-300 mb-4">
-                            Contoh Benar
-                        </p>
-                        <pre
-                            class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
-                        >
-<code class="language-python">umur = 15
+            </div>
+        </div>
 
-if umur >= 13:
-    print("Remaja")
-else:
-    print("Anak-anak")</code>
-                        </pre>
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Kesalahan yang sering terjadi adalah lupa menuliskan tanda : setelah if, elif, atau else. Tanpa tanda ini, Python tidak dapat mengenali bahwa sebuah blok kode akan dimulai.
+                    </h2>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-rose-300 mb-4">
+                                Contoh salah:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai >= 75
+    print("Lulus")</code>
+                            </pre>
+                        </div>
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-emerald-300 mb-4">
+                                Contoh benar:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai >= 75:
+    print("Lulus")</code>
+                            </pre>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Indentasi Tidak Konsisten
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        Indentasi yang tidak konsisten dapat menyebabkan error karena Python menganggap blok kode tidak sejajar. Misalnya satu baris memakai dua spasi dan baris lain memakai empat spasi.
+                    </p>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-rose-300 mb-4">
+                                Contoh salah:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai >= 75:
+print("Lulus")
+    print("Bagus!")</code>
+                            </pre>
+                        </div>
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-emerald-300 mb-4">
+                                Contoh benar:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai >= 75:
+    print("Lulus")
+    print("Bagus!")</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Menggunakan = Saat Harusnya ==
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        Operator = digunakan untuk memberi nilai pada variabel, sedangkan == digunakan untuk membandingkan dua nilai. Salah menggunakan operator akan membuat program berjalan tidak sesuai harapan.
+                    </p>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-rose-300 mb-4">
+                                Contoh salah:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai = 75:
+    print("Lulus")</code>
+                            </pre>
+                        </div>
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-emerald-300 mb-4">
+                                Contoh benar:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">if nilai == 75:
+    print("Lulus")</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Baris Di Luar Blok Karena Indentasi Keliru
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        Ketika satu baris yang seharusnya berada di dalam blok justru tidak diindentasi dengan benar, Python akan menganggapnya berada di luar blok percabangan.
+                    </p>
                     <div class="card-glow p-6 rounded-2xl">
                         <p class="font-semibold text-rose-300 mb-4">
-                            Contoh Salah
+                            Contoh salah:
                         </p>
                         <pre
                             class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
                         >
-<code class="language-python">umur = 15
-
-if umur >= 13:
-print("Remaja")
-    else:
-        print("Anak-anak")</code>
+<code class="language-python">if nilai >= 75:
+    print("Lulus")
+print("Bagus!") # tidak sengaja keluar blok</code>
                         </pre>
                     </div>
                 </div>
@@ -337,26 +389,83 @@ print("Remaja")
             <div class="max-w-4xl mx-auto space-y-6">
                 <div>
                     <h2 class="text-4xl font-bold mb-6">
-                        Percabangan Bertingkat
+                        Tidak Mengubah Input Menjadi Angka
                     </h2>
                     <p class="text-lg theme-muted mb-4">
-                        Gunakan <code>elif</code> ketika lebih dari dua pilihan
-                        kondisi.
+                        input() selalu menghasilkan string. Jika dibandingkan langsung dengan angka, hasilnya salah dan bisa menyebabkan error. Oleh karena itu perlu mengonversinya menggunakan int().
+                    </p>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-rose-300 mb-4">
+                                Contoh salah:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">nilai = input("Masukkan nilai: ")
+if nilai >= 75:
+    print("Lulus")</code>
+                            </pre>
+                        </div>
+                        <div class="card-glow p-6 rounded-2xl">
+                            <p class="font-semibold text-emerald-300 mb-4">
+                                Contoh benar:
+                            </p>
+                            <pre
+                                class="relative bg-slate-300/60 p-5 rounded-xl overflow-auto"
+                            >
+<code class="language-python">nilai = int(input("Masukkan nilai: "))
+if nilai >= 75:
+    print("Lulus")</code>
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Program Cek Ganjil / Genap
+                    </h2>
+                    <pre
+                        class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
+                    >
+<code class="language-python">angka = int(input("Masukkan sebuah angka: "))
+
+if angka % 2 == 0:
+    print("Angka genap")
+else:
+    print("Angka ganjil")</code>
+                    </pre>
+                    <p class="text-lg mt-6">
+                        Operator % digunakan untuk mengambil sisa hasil pembagian. Jika sisa pembagian angka terhadap 2 adalah nol, maka angka tersebut genap; jika tidak, angka tersebut ganjil.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Mengambil Input dan Menggunakan If–Else
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        Program dapat meminta pengguna memasukkan data menggunakan input(). Jika yang diminta adalah angka, data tersebut harus diubah menjadi bilangan dengan int(). Setelah itu nilai tersebut bisa dipakai dalam percabangan.
                     </p>
                     <pre
                         class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
                     >
-<code class="language-python">if kondisi1:
-    aksi1
-elif kondisi2:
-    aksi2
+<code class="language-python">nilai = int(input("Masukkan nilai kamu: "))
+
+if nilai >= 75:
+    print("Lulus")
 else:
-    aksi_lain</code>
+    print("Tidak lulus")</code>
                     </pre>
-                    <p class="text-lg mt-6">
-                        Program mengecek dari atas ke bawah dan berhenti saat
-                        menemukan kondisi yang benar.
-                    </p>
                 </div>
             </div>
         </div>
@@ -366,7 +475,7 @@ else:
                 class="max-w-6xl mx-auto grid gap-12 md:grid-cols-2 items-start"
             >
                 <div>
-                    <h2 class="text-4xl font-bold mb-6">Contoh: Grade Nilai</h2>
+                    <h2 class="text-4xl font-bold mb-6">Contoh: Menentukan Grade</h2>
                     <pre
                         class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
                     >
@@ -384,8 +493,7 @@ else:
     print("Grade E")</code>
                     </pre>
                     <p class="text-lg mt-6">
-                        Nilai 82 memenuhi syarat kedua sehingga langsung
-                        mencetak “Grade B”.
+                        Pada contoh ini, nilai 82 tidak memenuhi kondisi pertama, tetapi memenuhi kondisi kedua sehingga menghasilkan "Grade B".
                     </p>
                 </div>
                 <div class="card-glow p-6 rounded-2xl">
@@ -397,83 +505,6 @@ else:
                         <li>60–69 → Grade D</li>
                         <li>&lt; 60 → Grade E</li>
                     </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide flex flex-col justify-center p-8 md:p-16">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">
-                        Memakai Input Pengguna
-                    </h2>
-                    <ul class="space-y-3 text-lg mb-6">
-                        <li>
-                            <code>input()</code> meminta data dari pengguna.
-                        </li>
-                        <li>
-                            Gunakan <code>int()</code> bila data harus berupa
-                            angka.
-                        </li>
-                    </ul>
-                    <pre
-                        class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
-                    >
-<code class="language-python">nilai = int(input("Masukkan nilai kamu: "))
-
-if nilai >= 75:
-    print("Lulus")
-else:
-    print("Tidak lulus")</code>
-                    </pre>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide flex flex-col justify-center p-8 md:p-16">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">
-                        Program Ganjil / Genap
-                    </h2>
-                    <pre
-                        class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
-                    >
-<code class="language-python">angka = int(input("Masukkan sebuah angka: "))
-
-if angka % 2 == 0:
-    print("Angka genap")
-else:
-    print("Angka ganjil")</code>
-                    </pre>
-                    <ul class="space-y-2 text-lg mt-6">
-                        <li>Operator <code>%</code> menghasilkan sisa bagi.</li>
-                        <li>Sisa 0 berarti angka genap.</li>
-                        <li>Selain itu dianggap ganjil.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide flex flex-col justify-center p-8 md:p-16">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Studi Kasus: Login</h2>
-                    <pre
-                        class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
-                    >
-<code class="language-python">username = input("Masukkan username: ")
-password = input("Masukkan password: ")
-
-if username == "admin" and password == "1234":
-    print("Login berhasil")
-else:
-    print("Username atau password salah")</code>
-                    </pre>
-                    <p class="text-lg mt-6">
-                        Program hanya menerima pasangan data tertentu, mirip
-                        proses login aplikasi.
-                    </p>
                 </div>
             </div>
         </div>
@@ -499,6 +530,28 @@ else:
                     <p class="text-lg mt-6">
                         Diskon diberikan hanya ketika total belanja mencapai
                         batas minimal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Studi Kasus: Login</h2>
+                    <pre
+                        class="relative theme-panel-soft p-6 rounded-2xl overflow-auto"
+                    >
+<code class="language-python">username = input("Masukkan username: ")
+password = input("Masukkan password: ")
+
+if username == "admin" and password == "1234":
+    print("Login berhasil")
+else:
+    print("Username atau password salah")</code>
+                    </pre>
+                    <p class="text-lg mt-6">
+                        Pada login sederhana ini, program mengecek apakah kedua nilai yang dimasukkan sesuai. Jika salah satu berbeda, program menampilkan pesan gagal.
                     </p>
                 </div>
             </div>
@@ -562,61 +615,42 @@ print("Biaya parkir:", biaya)</code>
         </div>
 
         <div class="slide flex flex-col justify-center p-8 md:p-16">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Kesalahan Umum</h2>
-                    <ul class="space-y-3 text-lg">
-                        <li>
-                            Lupa menulis <code>:</code> setelah <code>if</code>,
-                            <code>elif</code>, atau <code>else</code>.
-                        </li>
-                        <li>Indentasi tidak konsisten.</li>
-                        <li>
-                            Salah pakai <code>=</code> ketika seharusnya
-                            <code>==</code>.
-                        </li>
-                        <li>
-                            Baris berada di luar blok karena jarak spasi salah.
-                        </li>
-                        <li>
-                            Lupa mengubah input menjadi angka saat membandingkan
-                            numerik.
-                        </li>
-                    </ul>
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">Latihan untuk Siswa</h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4">
+                            1. Kategori Umur
+                        </h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>Program meminta input umur.</li>
+                            <li>Jika umur di bawah 13 tampilkan "Anak-anak".</li>
+                            <li>Jika 13–17 tampilkan "Remaja".</li>
+                            <li>Jika 18 ke atas tampilkan "Dewasa".</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4">
+                            2. Salam Berdasarkan Jam
+                        </h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>Program meminta input jam 0–23.</li>
+                            <li>Jika jam berada di 0–11 tampilkan "Selamat pagi".</li>
+                            <li>Jika 12–17 tampilkan "Selamat siang".</li>
+                            <li>Jika 18–23 tampilkan "Selamat malam".</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="slide flex flex-col justify-center p-8 md:p-16">
-            <div class="max-w-4xl mx-auto text-center space-y-6">
-                <h2 class="text-5xl font-black">Rangkuman If–Else</h2>
-                <p class="text-xl theme-muted">
-                    Percabangan membuat program terasa hidup: memilih tindakan
-                    sesuai kondisi.
-                </p>
-                <div class="grid gap-6 md:grid-cols-2 text-left">
-                    <div class="card-glow p-6 rounded-2xl">
-                        <ul class="space-y-2 text-lg">
-                            <li><code>if</code> mengecek kondisi.</li>
-                            <li>
-                                <code>else</code> menangani kondisi yang tidak
-                                terpenuhi.
-                            </li>
-                            <li>
-                                <code>elif</code> dipakai ketika pilihan lebih
-                                dari dua.
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-glow p-6 rounded-2xl">
-                        <ul class="space-y-2 text-lg">
-                            <li>Indentasi menentukan blok kode.</li>
-                            <li>
-                                Contoh penggunaan: login, diskon, tarif,
-                                kategori umur.
-                            </li>
-                        </ul>
-                    </div>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Rangkuman Akhir</h2>
+                    <p class="text-lg theme-muted mb-4">
+                        Struktur if digunakan untuk memeriksa kondisi tertentu. Bagian else menangani kondisi ketika syarat tidak terpenuhi, sedangkan elif digunakan ketika terdapat lebih dari dua kemungkinan kondisi. Python menggunakan indentasi untuk menentukan blok kode, sehingga penulisan rapi sangat penting. Percabangan ini digunakan di banyak contoh nyata seperti login, diskon, perhitungan biaya, dan kategorisasi umur.
+                    </p>
                 </div>
             </div>
         </div>
