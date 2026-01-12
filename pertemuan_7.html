@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Literasi Digital & Multimedia untuk SMK</title>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./public/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./public/favicon-16x16.png"
+        />
+        <link rel="icon" href="./public/favicon.ico" sizes="any" />
+        <link rel="manifest" href="./site.webmanifest" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Inter", "ui-sans-serif", "system-ui"],
+                            mono: ["Space Mono", "monospace"],
+                        },
+                        colors: {
+                            brand: {
+                                50: "#f5f3ff",
+                                100: "#ede9fe",
+                                200: "#ddd6fe",
+                                300: "#c4b5fd",
+                                400: "#a78bfa",
+                                500: "#8b5cf6",
+                                600: "#7c3aed",
+                                700: "#6d28d9",
+                                800: "#5b21b6",
+                                900: "#4c1d95",
+                            },
+                        },
+                        boxShadow: {
+                            glow: "0 20px 70px rgba(124,58,237,0.35)",
+                        },
+                    },
+                },
+                darkMode: "class",
+            };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
+        <link rel="stylesheet" href="public/canvas.css" />
+        <style>
+            .hero-gradient {
+                background-image:
+                    radial-gradient(
+                        circle at 20% 20%,
+                        rgba(139, 92, 246, 0.45),
+                        transparent 45%
+                    ),
+                    radial-gradient(
+                        circle at 80% 0%,
+                        rgba(236, 72, 153, 0.35),
+                        transparent 45%
+                    );
+            }
+            .card-glow {
+                background-color: rgba(139, 92, 246, 0.05);
+                border: 1px solid rgba(139, 92, 246, 0.45);
+                backdrop-filter: blur(18px);
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-slate-950 text-slate-100">
+        <!-- SLIDE 1: COVER/JUDUL -->
+        <div
+            class="slide active hero-gradient flex flex-col justify-center p-8 md:p-16"
+        >
+            <div
+                class="max-w-6xl mx-auto grid gap-12 md:grid-cols-2 items-center"
+            >
+                <div class="space-y-6">
+                    <p
+                        class="text-sm uppercase tracking-[0.4em] text-brand-200"
+                    >
+                        Pertemuan 7
+                    </p>
+                    <h1 class="text-4xl md:text-6xl font-black leading-tight">
+                        Literasi Digital & Multimedia
+                    </h1>
+                    <p class="text-lg md:text-xl theme-muted">
+                        Menguasai Dunia Digital di Era Modern — Target: Siswa SMK
+                    </p>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_1.png"
+                    alt="Desain modern dengan ikon digital, smartphone, komputer, dan multimedia berwarna cerah"
+                    class="w-full rounded-3xl shadow-glow border border-white/10"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 2: APA ITU LITERASI DIGITAL? -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Apa Itu Literasi Digital?
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        <strong>Definisi:</strong> Literasi digital adalah kemampuan untuk menggunakan, memahami, dan menciptakan informasi menggunakan teknologi digital
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-3">Mengapa Penting?</h3>
+                    <ul class="space-y-2 text-lg theme-muted mb-4">
+                        <li>• 90% pekerjaan saat ini membutuhkan keterampilan digital</li>
+                        <li>• Dunia kerja menuntut kemampuan beradaptasi dengan teknologi</li>
+                        <li>• Membantu kalian bersaing di industri 4.0</li>
+                    </ul>
+                    <p class="text-lg theme-muted">
+                        <strong>Contoh Penerapan:</strong> Menggunakan aplikasi produktivitas, berkomunikasi online, mencari informasi dengan efektif
+                    </p>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_2.png"
+                    alt="Ilustrasi generasi muda menggunakan berbagai perangkat digital seperti laptop, tablet, smartphone"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 3: PERAN MULTIMEDIA DI ERA DIGITAL -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Peran Multimedia di Era Digital
+                </h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4">Multimedia di Sekitar Kita:</h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Media sosial (Instagram, TikTok, YouTube)</li>
+                            <li>• E-learning dan presentasi digital</li>
+                            <li>• Iklan dan promosi digital</li>
+                            <li>• Game dan hiburan interaktif</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4">Fakta Menarik:</h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Video mencakup 82% dari semua konten internet</li>
+                            <li>• Konten visual diproses 60.000x lebih cepat oleh otak dibanding teks</li>
+                        </ul>
+                        <p class="text-lg mt-4 font-semibold text-brand-300">
+                            Kesimpulan: Multimedia adalah bahasa komunikasi masa kini yang harus kalian kuasai
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: LITERASI DIGITAL VS LITERASI TRADISIONAL -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Literasi Digital vs Literasi Tradisional
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-lg border-collapse">
+                        <thead>
+                            <tr class="bg-brand-900/50">
+                                <th class="p-4 text-left border border-brand-700">Literasi Tradisional</th>
+                                <th class="p-4 text-left border border-brand-700">Literasi Digital</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-slate-900/50">
+                                <td class="p-4 border border-brand-700/50">Membaca buku fisik</td>
+                                <td class="p-4 border border-brand-700/50">Membaca e-book, artikel online</td>
+                            </tr>
+                            <tr class="bg-slate-800/50">
+                                <td class="p-4 border border-brand-700/50">Menulis di kertas</td>
+                                <td class="p-4 border border-brand-700/50">Mengetik, membuat konten digital</td>
+                            </tr>
+                            <tr class="bg-slate-900/50">
+                                <td class="p-4 border border-brand-700/50">Komunikasi tatap muka</td>
+                                <td class="p-4 border border-brand-700/50">Email, chat, video call</td>
+                            </tr>
+                            <tr class="bg-slate-800/50">
+                                <td class="p-4 border border-brand-700/50">Satu arah</td>
+                                <td class="p-4 border border-brand-700/50">Interaktif dan kolaboratif</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-lg mt-6 theme-muted">
+                    <strong>Poin Penting:</strong> Literasi digital bukan menggantikan literasi tradisional, tapi melengkapinya dengan keterampilan baru yang dibutuhkan zaman sekarang.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: KOMPETENSI LITERASI DIGITAL -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Kompetensi Literasi Digital
+                </h2>
+                <h3 class="text-2xl font-semibold mb-6 text-brand-300">4 Pilar Kompetensi:</h3>
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-200">1. Information Literacy</h4>
+                        <p class="text-lg">Mencari, mengevaluasi, dan menggunakan informasi digital</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-200">2. Communication & Collaboration</h4>
+                        <p class="text-lg">Berkomunikasi efektif menggunakan teknologi</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-200">3. Digital Content Creation</h4>
+                        <p class="text-lg">Membuat dan mengedit konten multimedia</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-200">4. Safety & Security</h4>
+                        <p class="text-lg">Menjaga keamanan dan privasi di dunia digital</p>
+                    </div>
+                </div>
+                <p class="text-lg mt-6 theme-muted">
+                    <strong>Catatan untuk Siswa:</strong> Keempat pilar ini akan menjadi bekal kalian untuk sukses di dunia kerja dan kehidupan sehari-hari.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: PENGENALAN MULTIMEDIA -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Pengenalan Multimedia
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        <strong>Definisi Multimedia:</strong> Kombinasi dari berbagai bentuk konten seperti teks, audio, gambar, video, dan animasi yang digunakan untuk menyampaikan informasi
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-3">Karakteristik Multimedia:</h3>
+                    <ul class="space-y-2 text-lg theme-muted">
+                        <li>• <strong>Interaktif</strong> - pengguna dapat berinteraksi dengan konten</li>
+                        <li>• <strong>Terintegrasi</strong> - menggabungkan berbagai elemen</li>
+                        <li>• <strong>Digital</strong> - berbasis teknologi komputer</li>
+                        <li>• <strong>Dinamis</strong> - dapat berubah dan diperbarui</li>
+                    </ul>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_6.png"
+                    alt="Diagram lingkaran menunjukkan 5 elemen multimedia yang saling terhubung: teks, audio, gambar, video, animasi"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 7: ELEMEN MULTIMEDIA #1 - TEKS -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Elemen Multimedia #1 - Teks
+                </h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Peran Teks dalam Multimedia:</h3>
+                        <ul class="space-y-2 text-lg theme-muted mb-6">
+                            <li>• Menyampaikan informasi secara jelas dan detail</li>
+                            <li>• Mudah dipahami dan dicerna</li>
+                            <li>• Dapat di-copy, dicari, dan diterjemahkan</li>
+                        </ul>
+                        <h3 class="text-2xl font-semibold mb-4">Jenis-Jenis Teks:</h3>
+                        <ul class="space-y-2 text-lg theme-muted">
+                            <li>• <strong>Teks Biasa (Plain Text):</strong> Informasi dasar tanpa format</li>
+                            <li>• <strong>Teks Berformat (Rich Text):</strong> Dengan bold, italic, warna, ukuran font</li>
+                            <li>• <strong>Hypertext:</strong> Teks dengan link yang menghubungkan ke konten lain</li>
+                            <li>• <strong>Teks Animasi:</strong> Teks bergerak untuk menarik perhatian</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Tips Praktis:</h3>
+                        <p class="text-lg">
+                            Gunakan font yang mudah dibaca (sans-serif), ukuran minimal 12pt, dan hindari terlalu banyak jenis font dalam satu konten.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: ELEMEN MULTIMEDIA #2 - AUDIO -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Elemen Multimedia #2 - Audio
+                    </h2>
+                    <h3 class="text-2xl font-semibold mb-4">Fungsi Audio dalam Multimedia:</h3>
+                    <ul class="space-y-2 text-lg theme-muted mb-6">
+                        <li>• Menyampaikan emosi dan suasana</li>
+                        <li>• Narasi dan penjelasan</li>
+                        <li>• Musik latar (background music)</li>
+                        <li>• Efek suara untuk meningkatkan pengalaman</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold mb-4">Format Audio Populer:</h3>
+                    <ul class="space-y-2 text-lg theme-muted">
+                        <li>• <strong>MP3</strong> - Ukuran kecil, kualitas baik, paling umum digunakan</li>
+                        <li>• <strong>WAV</strong> - Kualitas tinggi, ukuran besar, untuk editing profesional</li>
+                        <li>• <strong>AAC</strong> - Digunakan di platform Apple dan YouTube</li>
+                        <li>• <strong>OGG</strong> - Format open-source, alternatif MP3</li>
+                    </ul>
+                    <p class="text-lg theme-muted mt-4">
+                        <strong>Contoh Penggunaan:</strong> Podcast, audiobook, musik video, game, aplikasi mobile, presentasi.
+                    </p>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_8.png"
+                    alt="Gelombang suara berwarna dengan spektrum frekuensi, headphone modern"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 9: ELEMEN MULTIMEDIA #3 - VISUAL/GAMBAR -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Elemen Multimedia #3 - Visual/Gambar
+                </h2>
+                <div class="grid gap-6 md:grid-cols-3 mb-6">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Kekuatan Visual</h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Manusia memproses gambar 60.000x lebih cepat dari teks</li>
+                            <li>• Meningkatkan daya ingat hingga 65%</li>
+                            <li>• Menarik perhatian dan emosi</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Bitmap/Raster</h3>
+                        <p class="text-sm text-brand-200 mb-2">JPEG, PNG, GIF</p>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Terdiri dari pixel</li>
+                            <li>• Resolusi tetap</li>
+                            <li>• Cocok untuk foto</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Vector</h3>
+                        <p class="text-sm text-brand-200 mb-2">SVG, AI</p>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Berbasis matematika</li>
+                            <li>• Dapat diperbesar tanpa pecah</li>
+                            <li>• Cocok untuk logo, ilustrasi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-glow p-6 rounded-2xl">
+                    <h3 class="text-2xl font-semibold mb-4">Kapan Menggunakan:</h3>
+                    <div class="grid gap-4 md:grid-cols-4 text-lg">
+                        <p>• <strong>JPEG:</strong> Foto dan gambar kompleks</p>
+                        <p>• <strong>PNG:</strong> Gambar dengan background transparan</p>
+                        <p>• <strong>GIF:</strong> Animasi sederhana</p>
+                        <p>• <strong>SVG:</strong> Logo dan ikon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: ELEMEN MULTIMEDIA #4 - VIDEO -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Elemen Multimedia #4 - Video
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        <strong>Video = Multimedia Lengkap:</strong> Video menggabungkan semua elemen: gambar bergerak + audio + teks (subtitle)
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4">Format Video Umum:</h3>
+                    <ul class="space-y-2 text-lg theme-muted mb-6">
+                        <li>• <strong>MP4</strong> - Format paling universal, didukung semua platform</li>
+                        <li>• <strong>AVI</strong> - Kualitas tinggi, ukuran besar</li>
+                        <li>• <strong>MOV</strong> - Format Apple</li>
+                        <li>• <strong>WebM</strong> - Optimized untuk web</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold mb-4">Statistik Penting:</h3>
+                    <ul class="space-y-2 text-lg theme-muted">
+                        <li>• 86% bisnis menggunakan video sebagai marketing tool</li>
+                        <li>• Video di landing page meningkatkan konversi 80%</li>
+                        <li>• Rata-rata orang menonton 19 jam video online per minggu</li>
+                    </ul>
+                    <p class="text-lg theme-muted mt-4">
+                        <strong>Aplikasi:</strong> YouTube, TikTok, Instagram Reels, iklan digital, tutorial, dokumentasi.
+                    </p>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_10.png"
+                    alt="Kamera video profesional dengan layar LCD menampilkan rekaman, dengan ikon play button"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 11: ELEMEN MULTIMEDIA #5 - ANIMASI -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Elemen Multimedia #5 - Animasi
+                </h2>
+                <p class="text-lg theme-muted mb-6">
+                    <strong>Apa itu Animasi?</strong> Ilusi gerakan yang dibuat dari rangkaian gambar atau frame yang ditampilkan secara berurutan.
+                </p>
+                <div class="grid gap-6 md:grid-cols-2 mb-6">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Jenis Animasi:</h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>1. <strong>2D Animation</strong> - Animasi dua dimensi (kartun tradisional)</li>
+                            <li>2. <strong>3D Animation</strong> - Animasi tiga dimensi (film Pixar, game)</li>
+                            <li>3. <strong>Motion Graphics</strong> - Grafis bergerak (infografis animasi)</li>
+                            <li>4. <strong>Stop Motion</strong> - Animasi dari foto objek fisik</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Penggunaan dalam Multimedia:</h3>
+                        <ul class="space-y-2 text-lg">
+                            <li>• Menjelaskan konsep kompleks dengan sederhana</li>
+                            <li>• Membuat konten lebih menarik dan engaging</li>
+                            <li>• Loading indicators dan transisi aplikasi</li>
+                            <li>• Iklan dan explainer video</li>
+                        </ul>
+                        <p class="text-lg mt-4">
+                            <strong>Tools Populer:</strong> Adobe After Effects, Blender, Canva (motion graphics sederhana).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: PERBANDINGAN ELEMEN MULTIMEDIA -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Perbandingan Elemen Multimedia
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-base border-collapse">
+                        <thead>
+                            <tr class="bg-brand-900/50">
+                                <th class="p-3 text-left border border-brand-700">Elemen</th>
+                                <th class="p-3 text-left border border-brand-700">Kelebihan</th>
+                                <th class="p-3 text-left border border-brand-700">Kekurangan</th>
+                                <th class="p-3 text-left border border-brand-700">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-slate-900/50">
+                                <td class="p-3 border border-brand-700/50 font-semibold">Teks</td>
+                                <td class="p-3 border border-brand-700/50">Jelas, mudah edit, SEO friendly</td>
+                                <td class="p-3 border border-brand-700/50">Kurang menarik, butuh fokus tinggi</td>
+                                <td class="p-3 border border-brand-700/50">Artikel, dokumentasi</td>
+                            </tr>
+                            <tr class="bg-slate-800/50">
+                                <td class="p-3 border border-brand-700/50 font-semibold">Audio</td>
+                                <td class="p-3 border border-brand-700/50">Multitasking, emotional</td>
+                                <td class="p-3 border border-brand-700/50">Tidak bisa di-scan cepat</td>
+                                <td class="p-3 border border-brand-700/50">Podcast, musik</td>
+                            </tr>
+                            <tr class="bg-slate-900/50">
+                                <td class="p-3 border border-brand-700/50 font-semibold">Gambar</td>
+                                <td class="p-3 border border-brand-700/50">Cepat dipahami, menarik</td>
+                                <td class="p-3 border border-brand-700/50">Ukuran file besar</td>
+                                <td class="p-3 border border-brand-700/50">Media sosial, infografis</td>
+                            </tr>
+                            <tr class="bg-slate-800/50">
+                                <td class="p-3 border border-brand-700/50 font-semibold">Video</td>
+                                <td class="p-3 border border-brand-700/50">Engaging, komprehensif</td>
+                                <td class="p-3 border border-brand-700/50">Ukuran sangat besar, perlu bandwidth</td>
+                                <td class="p-3 border border-brand-700/50">Tutorial, marketing</td>
+                            </tr>
+                            <tr class="bg-slate-900/50">
+                                <td class="p-3 border border-brand-700/50 font-semibold">Animasi</td>
+                                <td class="p-3 border border-brand-700/50">Menjelaskan konsep abstrak</td>
+                                <td class="p-3 border border-brand-700/50">Waktu produksi lama</td>
+                                <td class="p-3 border border-brand-700/50">Edukasi, presentasi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-lg mt-6 theme-muted text-center font-semibold text-brand-300">
+                    Kesimpulan: Pilih elemen sesuai tujuan komunikasi dan target audiens kalian!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: JENIS KONTEN MULTIMEDIA BERDASARKAN TUJUAN -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Jenis Konten Multimedia Berdasarkan Tujuan
+                </h2>
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-brand-300">1. Konten Informatif</h3>
+                        <p class="text-lg mb-2"><strong>Tujuan:</strong> Memberikan pengetahuan dan informasi</p>
+                        <p class="text-lg mb-2"><strong>Format:</strong> Artikel, infografis, tutorial, dokumentasi</p>
+                        <p class="text-lg"><strong>Contoh:</strong> Wikipedia, blog edukatif, manual penggunaan</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-brand-300">2. Konten Hiburan</h3>
+                        <p class="text-lg mb-2"><strong>Tujuan:</strong> Menghibur dan memberikan kesenangan</p>
+                        <p class="text-lg mb-2"><strong>Format:</strong> Video musik, game, film, meme</p>
+                        <p class="text-lg"><strong>Contoh:</strong> Netflix, TikTok, Spotify</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-brand-300">3. Konten Persuasif</h3>
+                        <p class="text-lg mb-2"><strong>Tujuan:</strong> Mempengaruhi dan mendorong aksi</p>
+                        <p class="text-lg mb-2"><strong>Format:</strong> Iklan, kampanye sosial, video promosi</p>
+                        <p class="text-lg"><strong>Contoh:</strong> Iklan produk, campaign awareness</p>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-3 text-brand-300">4. Konten Interaktif</h3>
+                        <p class="text-lg mb-2"><strong>Tujuan:</strong> Melibatkan partisipasi pengguna</p>
+                        <p class="text-lg mb-2"><strong>Format:</strong> Kuis, game, aplikasi interaktif, AR/VR</p>
+                        <p class="text-lg"><strong>Contoh:</strong> Kahoot, Instagram Stories poll</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: FORMAT KONTEN MULTIMEDIA POPULER -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Format Konten Multimedia Populer
+                    </h2>
+                    <p class="text-lg theme-muted mb-4 font-semibold">Format Digital yang Wajib Kalian Ketahui:</p>
+                    <div class="space-y-4 text-lg">
+                        <div>
+                            <h4 class="font-bold text-brand-300">1. Social Media Content</h4>
+                            <ul class="ml-4 theme-muted">
+                                <li>• Instagram Post/Stories/Reels</li>
+                                <li>• TikTok Videos</li>
+                                <li>• YouTube Videos/Shorts</li>
+                                <li>• Format: Square (1:1), Portrait (9:16), Landscape (16:9)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-300">2. Presentasi Digital</h4>
+                            <ul class="ml-4 theme-muted">
+                                <li>• PowerPoint/Google Slides</li>
+                                <li>• Prezi (presentasi non-linear)</li>
+                                <li>• Canva Presentation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-300">3. E-Learning Content</h4>
+                            <ul class="ml-4 theme-muted">
+                                <li>• Video pembelajaran</li>
+                                <li>• Interactive modules</li>
+                                <li>• PDF interaktif</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-300">4. Web Content</h4>
+                            <ul class="ml-4 theme-muted">
+                                <li>• Landing pages</li>
+                                <li>• Blog posts</li>
+                                <li>• Banner iklan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_14.png"
+                    alt="Berbagai mockup device menampilkan konten multimedia: smartphone, tablet, laptop, desktop"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 15: MEMILIH FORMAT YANG TEPAT -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Memilih Format yang Tepat
+                </h2>
+                <h3 class="text-2xl font-semibold mb-6 text-brand-300">Framework SMART untuk Memilih Format:</h3>
+                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-3 text-brand-200">S - Sesuai dengan Platform</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Instagram: Visual menarik, square/portrait</li>
+                            <li>• YouTube: Video landscape, durasi lebih panjang</li>
+                            <li>• LinkedIn: Profesional, artikel dan infografis</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-3 text-brand-200">M - Mudah Diakses</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Pertimbangkan bandwidth audiens</li>
+                            <li>• Pastikan kompatibilitas device</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-3 text-brand-200">A - Audience-Focused</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Gen Z: Video pendek, dinamis</li>
+                            <li>• Profesional: Presentasi, data visual</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-3 text-brand-200">R - Relevant to Message</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Data kompleks → Infografis</li>
+                            <li>• Tutorial → Video step-by-step</li>
+                            <li>• Berita cepat → Teks + gambar</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-3 text-brand-200">T - Time & Resource Efficient</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Pertimbangkan waktu produksi</li>
+                            <li>• Sesuaikan dengan skill dan tools tersedia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: APA ITU STORYBOARD? -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Apa Itu Storyboard?
+                    </h2>
+                    <p class="text-lg theme-muted mb-4">
+                        <strong>Definisi Storyboard:</strong> Storyboard adalah representasi visual dari alur cerita atau konten dalam bentuk sketsa atau gambar berurutan, seperti komik yang menggambarkan rencana konten multimedia kalian.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-3">Fungsi Storyboard:</h3>
+                    <ul class="space-y-2 text-lg theme-muted mb-4">
+                        <li>• <strong>Visualisasi Ide</strong> - Melihat konsep sebelum produksi</li>
+                        <li>• <strong>Komunikasi Tim</strong> - Semua anggota memahami visi yang sama</li>
+                        <li>• <strong>Efisiensi Produksi</strong> - Menghemat waktu dan biaya</li>
+                        <li>• <strong>Menghindari Kesalahan</strong> - Identifikasi masalah sejak awal</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold mb-3">Kapan Menggunakan?</h3>
+                    <ul class="space-y-2 text-lg theme-muted">
+                        <li>• Membuat video (YouTube, TikTok, iklan)</li>
+                        <li>• Animasi</li>
+                        <li>• Presentasi interaktif</li>
+                        <li>• Game development</li>
+                        <li>• Kampanye media sosial</li>
+                    </ul>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_16.png"
+                    alt="Contoh storyboard dengan 6 panel menunjukkan alur cerita sederhana, lengkap dengan sketsa dan notes"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 17: ELEMEN-ELEMEN STORYBOARD -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Elemen-Elemen Storyboard
+                </h2>
+                <p class="text-lg theme-muted mb-6">Komponen Penting dalam Storyboard:</p>
+                <div class="grid gap-4 md:grid-cols-3">
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">1. Panel/Frame</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Kotak yang berisi sketsa visual</li>
+                            <li>• Menunjukkan komposisi shot</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">2. Visual/Sketch</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Gambar sederhana (tidak perlu detail)</li>
+                            <li>• Tunjukkan posisi objek, karakter, teks</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">3. Scene Number</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Nomor urut setiap adegan</li>
+                            <li>• Memudahkan referensi</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">4. Description/Action</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Penjelasan apa yang terjadi</li>
+                            <li>• Dialog atau narasi</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">5. Audio Notes</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Musik latar</li>
+                            <li>• Sound effects</li>
+                            <li>• Voice over</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-xl font-bold mb-2 text-brand-300">6. Duration/Timing</h4>
+                        <ul class="space-y-1 text-lg">
+                            <li>• Berapa lama scene berlangsung</li>
+                            <li>• Transisi antar scene</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-lg mt-6 theme-muted text-center font-semibold text-brand-300">
+                    Tips: Tidak perlu mahir menggambar! Stick figures sudah cukup, yang penting ide tersampaikan.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 18: LANGKAH MEMBUAT STORYBOARD -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Langkah Membuat Storyboard
+                </h2>
+                <p class="text-lg theme-muted mb-6 font-semibold">7 Langkah Praktis:</p>
+                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">1. Tentukan Tujuan & Target Audiens</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Apa pesan yang ingin disampaikan?</li>
+                            <li>• Siapa yang akan menonton?</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">2. Buat Script/Naskah</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Tulis narasi atau dialog</li>
+                            <li>• Tentukan poin-poin penting</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">3. Breakdown Scene</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Pecah konten menjadi scene-scene</li>
+                            <li>• Urutkan secara logis</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">4. Sketsa Visual</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Gambar tiap scene (sederhana saja)</li>
+                            <li>• Tunjukkan komposisi dan aksi</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">5. Tambahkan Deskripsi</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Tulis action dan dialog</li>
+                            <li>• Note untuk audio/musik</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">6. Review & Revisi</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Cek alur cerita</li>
+                            <li>• Minta feedback tim</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-5 rounded-2xl">
+                        <h4 class="text-lg font-bold mb-2 text-brand-300">7. Finalisasi</h4>
+                        <ul class="space-y-1 text-base theme-muted">
+                            <li>• Pastikan semua jelas</li>
+                            <li>• Siap untuk produksi!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 19: TOOLS UNTUK STORYBOARDING -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div
+                class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 items-center"
+            >
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">
+                        Tools untuk Storyboarding
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-300">Manual/Tradisional:</h3>
+                            <ul class="space-y-2 text-lg theme-muted">
+                                <li>• Kertas & pensil</li>
+                                <li>• Storyboard template (download gratis online)</li>
+                                <li>• Post-it notes untuk brainstorming</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-300">Digital Tools - Gratis:</h3>
+                            <ul class="space-y-2 text-lg theme-muted">
+                                <li>• <strong>Canva</strong> - Template storyboard siap pakai</li>
+                                <li>• <strong>Google Slides</strong> - Fleksibel dan kolaboratif</li>
+                                <li>• <strong>Storyboarder</strong> - Software gratis khusus storyboard</li>
+                                <li>• <strong>Figma</strong> - Untuk storyboard interaktif</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-3 text-brand-300">Digital Tools - Berbayar:</h3>
+                            <ul class="space-y-2 text-lg theme-muted">
+                                <li>• <strong>Adobe Photoshop/Illustrator</strong> - Profesional</li>
+                                <li>• <strong>Toon Boom Storyboard Pro</strong> - Industri animasi</li>
+                                <li>• <strong>FrameForge</strong> - 3D storyboard</li>
+                            </ul>
+                        </div>
+                        <p class="text-lg theme-muted font-semibold text-brand-300">
+                            Rekomendasi untuk Pemula: Mulai dengan kertas atau Canva, fokus pada ide dulu, baru tools!
+                        </p>
+                    </div>
+                </div>
+                <img
+                    loading="lazy"
+                    src="assets/images/pertemuan_7/slide_19.png"
+                    alt="Screenshot interface Canva dengan template storyboard"
+                    class="w-full rounded-2xl shadow-glow border border-white/5"
+                />
+            </div>
+        </div>
+
+        <!-- SLIDE 20: RANGKUMAN & CALL TO ACTION -->
+        <div class="slide flex flex-col justify-center p-8 md:p-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">
+                    Rangkuman & Call to Action
+                </h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Apa yang Sudah Kita Pelajari:</h3>
+                        <ul class="space-y-3 text-lg">
+                            <li>✓ <strong>Literasi Digital</strong> - Keterampilan wajib di era modern</li>
+                            <li>✓ <strong>Peran Multimedia</strong> - Bahasa komunikasi masa kini</li>
+                            <li>✓ <strong>5 Elemen Multimedia</strong> - Teks, Audio, Visual, Video, Animasi</li>
+                            <li>✓ <strong>Jenis & Format Konten</strong> - Sesuaikan dengan tujuan dan platform</li>
+                            <li>✓ <strong>Storyboard</strong> - Blueprint kesuksesan konten multimedia</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold mb-4 text-brand-300">Langkah Selanjutnya:</h3>
+                        <ul class="space-y-3 text-lg">
+                            <li>1. Praktikkan membuat konten sederhana (poster digital, video pendek)</li>
+                            <li>2. Buat storyboard untuk project kalian</li>
+                            <li>3. Eksplor tools yang sudah dibahas</li>
+                            <li>4. Terus belajar dan berkreasi!</li>
+                        </ul>
+                        <div class="mt-6 p-4 bg-brand-900/30 rounded-xl">
+                            <p class="text-lg italic text-brand-200">
+                                "Masa depan adalah milik mereka yang mempersiapkan hari ini."
+                            </p>
+                            <p class="text-base text-brand-300 mt-2">— Malcolm X</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="public/canvas.js"></script>
+        <script src="public/tools.js"></script>
+    </body>
+</html>
