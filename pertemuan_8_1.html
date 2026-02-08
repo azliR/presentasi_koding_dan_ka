@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Produksi dan Diseminasi Konten Multimedia: Panduan Lengkap</title>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./public/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./public/favicon-16x16.png"
+        />
+        <link rel="icon" href="./public/favicon.ico" sizes="any" />
+        <link rel="manifest" href="./site.webmanifest" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui"],
+                            mono: ["JetBrains Mono", "monospace"],
+                        },
+                        colors: {
+                            brand: {
+                                50: "#ecfdf5",
+                                100: "#d1fae5",
+                                200: "#a7f3d0",
+                                300: "#6ee7b7",
+                                400: "#34d399",
+                                500: "#10b981",
+                                600: "#059669",
+                                700: "#047857",
+                                800: "#065f46",
+                                900: "#064e3b",
+                                950: "#022c22",
+                            },
+                            accent: {
+                                500: "#f59e0b", // Amber for contrast
+                            }
+                        },
+                        boxShadow: {
+                            glow: "0 0 50px -12px rgba(16, 185, 129, 0.25)",
+                            "glow-lg": "0 0 70px -12px rgba(16, 185, 129, 0.4)",
+                        },
+                        backgroundImage: {
+                            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        }
+                    },
+                },
+                darkMode: "class",
+            };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
+        <link rel="stylesheet" href="public/canvas.css" />
+        <style>
+            .slide-bg {
+                background-image: 
+                    radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.08), transparent 40%),
+                    radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.08), transparent 40%);
+            }
+            .dark .slide-bg {
+                background-image: 
+                    radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.15), transparent 40%),
+                    radial-gradient(circle at 90% 90%, rgba(6, 78, 59, 0.2), transparent 40%);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+            .dark .glass-card {
+                background: rgba(2, 44, 34, 0.4);
+                border: 1px solid rgba(16, 185, 129, 0.1);
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .dark .text-gradient {
+                background: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            /* Custom Scrollbar for overflow content */
+            .custom-scroll::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scroll::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .custom-scroll::-webkit-scrollbar-thumb {
+                background-color: rgba(16, 185, 129, 0.3);
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        
+        <!-- Slide 1: Judul -->
+        <div class="slide active slide-bg flex items-center justify-center p-12">
+            <div class="max-w-7xl w-full grid grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Pertemuan 8.1</span>
+                    </div>
+                    
+                    <h1 class="text-6xl font-extrabold leading-tight tracking-tight">
+                        PRODUKSI DAN DISEMINASI <br/>
+                        <span class="text-gradient">KONTEN MULTIMEDIA</span>
+                    </h1>
+                    
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-medium text-slate-600 dark:text-slate-300">
+                            Panduan Lengkap untuk Siswa SMK
+                        </h2>
+                        <p class="text-lg text-slate-500 dark:text-slate-400 font-mono border-l-4 border-brand-500 pl-4">
+                            Mata Pelajaran Produksi Multimedia | SMK
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-brand-500 rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_1.webp" 
+                        alt="Digital Content Creation Workspace" 
+                        class="relative rounded-[2rem] shadow-2xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800 transform group-hover:scale-[1.01] transition duration-500"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Overview Materi -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100">Peta Pembelajaran Konten Multimedia</h2>
+                    <p class="text-xl text-brand-600 dark:text-brand-400 mt-2">6 Kompetensi Utama</p>
+                </div>
+                <div class="text-6xl opacity-10 font-black">02</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 h-full items-center">
+                <div class="relative">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_2.webp" 
+                        alt="Learning Roadmap Diagram" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="space-y-4">
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">1</div>
+                        <div>
+                            <h3 class="font-bold">PRODUKSI VISUAL</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Teknik membuat gambar dan grafis berkualitas</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">2</div>
+                        <div>
+                            <h3 class="font-bold">PRODUKSI AUDIO & VIDEO</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Menghasilkan konten audiovisual sederhana</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">3</div>
+                        <div>
+                            <h3 class="font-bold">EDITING MULTIMEDIA</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Menyempurnakan konten yang diproduksi</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">4</div>
+                        <div>
+                            <h3 class="font-bold">PEMAHAMAN LEGALITAS</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Memahami hak cipta dan lisensi konten</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">5</div>
+                        <div>
+                            <h3 class="font-bold">STRATEGI DISTRIBUSI</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Memilih platform publikasi yang tepat</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">6</div>
+                        <div>
+                            <h3 class="font-bold">PUBLIKASI KONTEN</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Praktik mempublikasikan konten multimedia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Teknik Produksi Gambar & Grafis -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-5xl font-bold mb-8 text-center">Produksi Gambar & Grafis</h2>
+                
+                <div class="glass-card p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                    
+                    <div class="space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300 relative z-10">
+                        <p>
+                            Produksi gambar dan grafis adalah kemampuan menciptakan visual yang menarik, informatif, dan sesuai tujuan komunikasi. Visual yang baik mempertimbangkan komposisi, pemilihan warna, tipografi, dan kesesuaian dengan brand atau pesan yang ingin disampaikan.
+                        </p>
+                        <p>
+                            Kalian akan belajar membuat berbagai jenis konten visual seperti <span class="font-bold text-brand-600 dark:text-brand-400">infografis</span> untuk menyajikan data, <span class="font-bold text-brand-600 dark:text-brand-400">poster digital</span> untuk promosi, <span class="font-bold text-brand-600 dark:text-brand-400">thumbnail</span> untuk platform digital, serta graphics untuk media sosial. Kemampuan ini sangat penting di era digital dimana visual menjadi kunci menarik perhatian audiens.
+                        </p>
+                        <p>
+                            Tools yang dapat digunakan mulai dari yang gratis seperti <span class="bg-brand-100 dark:bg-brand-900/50 px-2 py-0.5 rounded font-mono text-sm">Canva</span>, <span class="bg-brand-100 dark:bg-brand-900/50 px-2 py-0.5 rounded font-mono text-sm">GIMP</span>, hingga profesional seperti <span class="bg-brand-100 dark:bg-brand-900/50 px-2 py-0.5 rounded font-mono text-sm">Adobe Photoshop</span> dan Illustrator. Pilih sesuai kebutuhan dan kemampuan perangkat yang kalian miliki.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Jenis Visual & Tools -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-2 text-center">Kategori Visual dan Software Produksi</h2>
+            <p class="text-xl text-brand-600 dark:text-brand-400 text-center mb-8">Pilih Tools Sesuai Kebutuhan</p>
+
+            <div class="max-w-6xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-5 w-1/4">Jenis Visual</th>
+                            <th class="p-5 w-1/4">Fungsi Utama</th>
+                            <th class="p-5 w-1/4">Software</th>
+                            <th class="p-5 w-1/4">Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-base">
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Infografis</td>
+                            <td class="p-5">Visualisasi data/informasi</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Canva, Piktochart</td>
+                            <td class="p-5">Statistik, timeline</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Poster Digital</td>
+                            <td class="p-5">Promosi & kampanye</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Canva, Photoshop</td>
+                            <td class="p-5">Event, produk</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Thumbnail</td>
+                            <td class="p-5">Menarik perhatian</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Photoshop, Canva</td>
+                            <td class="p-5">YouTube, blog</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Logo & Branding</td>
+                            <td class="p-5">Identitas visual</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Illustrator, Inkscape</td>
+                            <td class="p-5">Brand identity</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Social Media Graphics</td>
+                            <td class="p-5">Konten medsos</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Canva, Adobe Spark</td>
+                            <td class="p-5">Instagram, Facebook</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-5 font-bold">Ilustrasi Digital</td>
+                            <td class="p-5">Karya seni original</td>
+                            <td class="p-5 font-mono text-sm text-brand-700 dark:text-brand-300">Procreate, Krita</td>
+                            <td class="p-5">Komik, artwork</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <span class="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 px-4 py-2 rounded-full font-bold text-sm">
+                    💡 Tips: Banyak tools gratis yang powerful untuk pemula. Skill lebih penting daripada software mahal!
+                </span>
+            </div>
+        </div>
+
+        <!-- Slide 5: Prinsip Dasar Desain -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <h2 class="text-4xl font-bold mb-8">7 Prinsip Desain yang Wajib Dikuasai</h2>
+            
+            <div class="grid grid-cols-2 gap-10 h-full">
+                <div class="relative">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_5.webp" 
+                        alt="7 Principles of Graphic Design" 
+                        class="w-full h-full object-contain rounded-2xl shadow-xl border-4 border-white dark:border-slate-800 bg-white dark:bg-slate-900"
+                        loading="lazy"
+                    />
+                </div>
+                
+                <div class="grid gap-3 content-center">
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">1</div>
+                        <div><span class="font-bold">BALANCE</span> - Distribusi elemen visual yang merata</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">2</div>
+                        <div><span class="font-bold">CONTRAST</span> - Perbedaan jelas untuk menciptakan fokus</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">3</div>
+                        <div><span class="font-bold">EMPHASIS</span> - Membuat satu elemen menonjol sebagai focal point</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">4</div>
+                        <div><span class="font-bold">UNITY</span> - Semua elemen bekerja harmonis, menciptakan kesatuan</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">5</div>
+                        <div><span class="font-bold">PROPORTION</span> - Hubungan ukuran antar elemen yang tepat</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">6</div>
+                        <div><span class="font-bold">RHYTHM</span> - Pengulangan elemen yang menciptakan pola visual</div>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">7</div>
+                        <div><span class="font-bold">WHITE SPACE</span> - Ruang kosong yang meningkatkan keterbacaan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Produksi Audio & Video Dasar -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-10 text-center">Teknik Produksi Audio & Video</h2>
+            
+            <div class="grid grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
+                <!-- Audio Column -->
+                <div class="glass-card p-8 rounded-3xl border-t-8 border-blue-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-600">PRODUKSI AUDIO</h3>
+                    </div>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Lingkungan perekaman harus tenang dan minim echo</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Pilih microphone sesuai kebutuhan (condenser vs dynamic)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Perhatikan level volume saat recording (tidak clipping)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Gunakan pop filter untuk mengurangi plosive "p" dan "b"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Video Column -->
+                <div class="glass-card p-8 rounded-3xl border-t-8 border-red-500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-red-600">PRODUKSI VIDEO</h3>
+                    </div>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Buat storyboard atau script sederhana sebelum shooting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Pencahayaan yang baik = 70% kualitas video</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Gunakan tripod atau gimbal untuk stabilisasi</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Komposisi frame ikuti rule of thirds</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
+                            <span class="text-slate-700 dark:text-slate-300">Audio dalam video sama pentingnya - gunakan mic eksternal</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Peralatan & Software -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <h2 class="text-4xl font-bold mb-2">Tools Produksi Audio & Video</h2>
+            <p class="text-xl text-brand-600 dark:text-brand-400 mb-6">Mulai dengan apa yang kalian punya. Skill > Peralatan mahal!</p>
+
+            <div class="grid grid-cols-2 gap-8 h-full">
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg h-full">
+                    <table class="w-full text-left">
+                        <thead class="bg-brand-500 text-white">
+                            <tr>
+                                <th class="p-4">Kategori</th>
+                                <th class="p-4">Pemula</th>
+                                <th class="p-4">Menengah</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Kamera</td>
+                                <td class="p-4">Smartphone</td>
+                                <td class="p-4">Mirrorless entry</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Microphone</td>
+                                <td class="p-4">Smartphone/headset</td>
+                                <td class="p-4">USB mic</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Lighting</td>
+                                <td class="p-4">Natural/lampu rumah</td>
+                                <td class="p-4">Ring light/LED panel</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Stabilizer</td>
+                                <td class="p-4">Tripod smartphone</td>
+                                <td class="p-4">Tripod DSLR/Gimbal</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Soft. Audio</td>
+                                <td class="p-4">Audacity (gratis)</td>
+                                <td class="p-4">Adobe Audition</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold bg-slate-50 dark:bg-slate-800/50">Soft. Video</td>
+                                <td class="p-4">CapCut/iMovie</td>
+                                <td class="p-4">DaVinci Resolve</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="relative h-full">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_7.webp" 
+                        alt="Production Equipment" 
+                        class="w-full h-full object-cover rounded-2xl border-4 border-white dark:border-slate-800 shadow-xl"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Workflow Produksi -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-10 text-center">3 Tahap Produksi Audio-Video</h2>
+            
+            <div class="grid grid-cols-3 gap-8 max-w-6xl mx-auto w-full">
+                <!-- Pre-Production -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-yellow-400"></div>
+                    <h3 class="text-2xl font-bold mb-4 mt-2 text-yellow-600 dark:text-yellow-400">PRE-PRODUCTION</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-yellow-500 font-bold">•</span>
+                            Perencanaan konsep dan tujuan konten
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-yellow-500 font-bold">•</span>
+                            Penulisan script dan pembuatan storyboard
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-yellow-500 font-bold">•</span>
+                            Persiapan peralatan dan location scouting
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-yellow-500 font-bold">•</span>
+                            Buat jadwal shooting yang realistis
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Production -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-red-500"></div>
+                    <h3 class="text-2xl font-bold mb-4 mt-2 text-red-600 dark:text-red-400">PRODUCTION</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 font-bold">•</span>
+                            Setting up dan test recording
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 font-bold">•</span>
+                            Recording dengan multiple takes jika perlu
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 font-bold">•</span>
+                            Monitoring kualitas audio-video
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-red-500 font-bold">•</span>
+                            Backup file mentah setelah recording
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Post-Production -->
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-blue-500"></div>
+                    <h3 class="text-2xl font-bold mb-4 mt-2 text-blue-600 dark:text-blue-400">POST-PRODUCTION</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            Import dan organisasi file
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            Editing: cutting, color grading, audio mixing
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            Tambahkan musik, graphics, effects
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            Export dengan settings sesuai platform
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Editing Konten Multimedia -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-4xl font-bold mb-8 text-center">Fundamental Editing Multimedia</h2>
+                
+                <div class="glass-card p-8 rounded-3xl shadow-xl mb-8">
+                    <p class="text-lg leading-relaxed text-center mb-0">
+                        Editing adalah proses mentransformasi raw material menjadi produk final yang siap dikonsumsi audiens. Dalam editing, kalian akan menyatukan berbagai elemen - video, audio, graphics, text, dan effects - secara harmonis.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-t-4 border-purple-500">
+                        <h3 class="text-xl font-bold mb-3 text-purple-600">VIDEO</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Cutting yang smooth, pacing sesuai mood konten, transitions yang purposeful, dan color grading untuk memberikan mood konsisten.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-t-4 border-cyan-500">
+                        <h3 class="text-xl font-bold mb-3 text-cyan-600">AUDIO</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Clarity dan balance suara, noise reduction, compression untuk meratakan volume, EQ untuk membersihkan frekuensi, dan ducking musik.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-t-4 border-pink-500">
+                        <h3 class="text-xl font-bold mb-3 text-pink-600">VISUAL EFFECTS</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Motion graphics dengan keyframing, text animation, transitions kreatif, dan compositing multi-layer untuk hasil kompleks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Teknik Editing Lanjutan -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <h2 class="text-4xl font-bold mb-8">Advanced Editing Techniques</h2>
+            
+            <div class="grid grid-cols-2 gap-10 h-full">
+                <div class="grid gap-4 content-center">
+                    <div class="glass-card p-4 rounded-xl">
+                        <h3 class="font-bold text-lg text-brand-600 dark:text-brand-400">1. J-CUT & L-CUT</h3>
+                        <p class="text-sm">Audio mulai sebelum atau berlanjut setelah visual cut untuk transisi lebih natural.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h3 class="font-bold text-lg text-brand-600 dark:text-brand-400">2. MATCH CUT</h3>
+                        <p class="text-sm">Cutting berdasarkan kesamaan visual atau gerakan antar shot berbeda.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h3 class="font-bold text-lg text-brand-600 dark:text-brand-400">3. MONTAGE</h3>
+                        <p class="text-sm">Series of shots untuk kompres waktu atau tunjukkan progression.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h3 class="font-bold text-lg text-brand-600 dark:text-brand-400">4. KEYFRAMING</h3>
+                        <p class="text-sm">Animasi parameter (position, scale, rotation) dari waktu ke waktu.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h3 class="font-bold text-lg text-brand-600 dark:text-brand-400">5. MASKING</h3>
+                        <p class="text-sm">Isolasi bagian footage untuk effects atau compositing presisi.</p>
+                    </div>
+                </div>
+
+                <div class="relative h-full flex items-center">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_10.webp" 
+                        alt="Advanced Video Editing Interface" 
+                        class="w-full object-cover rounded-2xl shadow-2xl border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Hak Cipta & Lisensi -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-6 text-center">Memahami Legalitas Konten Digital</h2>
+            
+            <div class="max-w-5xl mx-auto w-full glass-card p-8 rounded-3xl shadow-xl">
+                <p class="text-lg mb-8 text-center">
+                    Hak Cipta adalah perlindungan hukum untuk pencipta karya original (UU No. 28 Tahun 2014). Menggunakan karya orang lain tanpa izin adalah pelanggaran hukum.
+                </p>
+
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl text-center border border-red-200 dark:border-red-800">
+                        <div class="text-3xl mb-2">⛔</div>
+                        <h3 class="font-bold text-red-700 dark:text-red-400 mb-2">All Rights Reserved</h3>
+                        <p class="text-sm">Hak cipta penuh, penggunaan tanpa izin ilegal.</p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl text-center border border-blue-200 dark:border-blue-800">
+                        <div class="text-3xl mb-2">📝</div>
+                        <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2">Creative Commons</h3>
+                        <ul class="text-xs text-left list-disc list-inside space-y-1">
+                            <li>CC BY: Wajib kredit</li>
+                            <li>CC BY-SA: Lisensi sama</li>
+                            <li>CC BY-NC: Non-komersial</li>
+                            <li>CC0: Public domain</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl text-center border border-green-200 dark:border-green-800">
+                        <div class="text-3xl mb-2">💰</div>
+                        <h3 class="font-bold text-green-700 dark:text-green-400 mb-2">Royalty-Free</h3>
+                        <p class="text-sm">Bayar sekali, unlimited use tanpa royalti berkelanjutan.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <span class="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-200 px-4 py-2 rounded-full font-bold text-sm border border-yellow-300 dark:border-yellow-700">
+                        ⚠️ WARNING: Selalu baca dan patuhi ketentuan lisensi!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Sumber Konten Legal -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-2 text-center">Platform Konten Legal & Etika Penggunaan</h2>
+            <p class="text-center mb-8 text-slate-500">Resource Aman untuk Kreator</p>
+
+            <div class="max-w-6xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card mb-8">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-4">Jenis</th>
+                            <th class="p-4">Platform Gratis</th>
+                            <th class="p-4">Platform Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                        <tr>
+                            <td class="p-4 font-bold">Stock Photo</td>
+                            <td class="p-4">Unsplash, Pexels, Pixabay</td>
+                            <td class="p-4 text-slate-500">Shutterstock, Adobe Stock</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Stock Video</td>
+                            <td class="p-4">Pexels Videos, Coverr</td>
+                            <td class="p-4 text-slate-500">Artgrid, Storyblocks</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Music/Audio</td>
+                            <td class="p-4">YouTube Audio Library</td>
+                            <td class="p-4 text-slate-500">Epidemic Sound, Artlist</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Sound Effects</td>
+                            <td class="p-4">Freesound.org, Zapsplat</td>
+                            <td class="p-4 text-slate-500">Soundly, Boom Library</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Fonts</td>
+                            <td class="p-4">Google Fonts, Font Squirrel</td>
+                            <td class="p-4 text-slate-500">Adobe Fonts, MyFonts</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Icons</td>
+                            <td class="p-4">Flaticon, Iconmonstr</td>
+                            <td class="p-4 text-slate-500">Iconfinder Premium</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid grid-cols-4 gap-4 text-center text-sm font-medium text-slate-600 dark:text-slate-400">
+                <div class="bg-white/50 dark:bg-slate-800/50 p-3 rounded-lg">Simpan dokumentasi lisensi</div>
+                <div class="bg-white/50 dark:bg-slate-800/50 p-3 rounded-lg">Berikan credit sesuai ketentuan</div>
+                <div class="bg-white/50 dark:bg-slate-800/50 p-3 rounded-lg">Jangan asumsi "gratis = bebas"</div>
+                <div class="bg-white/50 dark:bg-slate-800/50 p-3 rounded-lg">Komersial? Gunakan premium</div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Platform Diseminasi Konten -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <h2 class="text-4xl font-bold mb-8">Memilih Platform Distribusi yang Tepat</h2>
+            
+            <div class="grid grid-cols-2 gap-10 h-full">
+                <div class="glass-card rounded-2xl overflow-hidden shadow-lg">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-brand-600 text-white">
+                            <tr>
+                                <th class="p-3">Platform</th>
+                                <th class="p-3">Konten Optimal</th>
+                                <th class="p-3">Audience</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                            <tr>
+                                <td class="p-3 font-bold">YouTube</td>
+                                <td class="p-3">Video 5-30 menit</td>
+                                <td class="p-3">Semua umur</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Instagram</td>
+                                <td class="p-3">Foto, Reels, Stories</td>
+                                <td class="p-3">18-34 tahun</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">TikTok</td>
+                                <td class="p-3">Video 15-180 detik</td>
+                                <td class="p-3">Gen Z (13-24)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Facebook</td>
+                                <td class="p-3">Video, artikel, foto</td>
+                                <td class="p-3">25-55 tahun</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">LinkedIn</td>
+                                <td class="p-3">Artikel profesional</td>
+                                <td class="p-3">Profesional 25-50</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">Blog/Web</td>
+                                <td class="p-3">Semua format</td>
+                                <td class="p-3">Tergantung niche</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="p-4 bg-brand-50 dark:bg-brand-900/30 text-center text-sm font-bold text-brand-700 dark:text-brand-300">
+                        Strategi: Repurpose konten untuk berbagai platform!
+                    </div>
+                </div>
+
+                <div class="relative h-full flex items-center">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_13.webp" 
+                        alt="Social Media Platforms" 
+                        class="w-full object-contain"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Strategi Diseminasi Efektif -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-10 text-center">Praktik Diseminasi Konten</h2>
+            
+            <div class="grid grid-cols-3 gap-8 max-w-7xl mx-auto w-full">
+                <!-- Sebelum -->
+                <div class="glass-card p-6 rounded-2xl relative border-t-8 border-gray-400">
+                    <h3 class="text-xl font-bold mb-4 text-gray-600 dark:text-gray-300">SEBELUM PUBLIKASI</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">□</span>
+                            Kenali target audience
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">□</span>
+                            Optimasi SEO (Title, Desc, Tags)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">□</span>
+                            Thumbnail eye-catching
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gray-500">□</span>
+                            Pilih waktu publikasi prime time
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Saat -->
+                <div class="glass-card p-6 rounded-2xl relative border-t-8 border-brand-500 transform scale-105 shadow-2xl z-10 bg-white dark:bg-slate-800">
+                    <h3 class="text-xl font-bold mb-4 text-brand-600 dark:text-brand-400">SAAT PUBLIKASI</h3>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500">⚡</span>
+                            Respond comment di 1-2 jam pertama
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500">⚡</span>
+                            Cross-promotion ke platform lain
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500">⚡</span>
+                            Gunakan Stories untuk drive traffic
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pasca -->
+                <div class="glass-card p-6 rounded-2xl relative border-t-8 border-blue-500">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">PASCA PUBLIKASI</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500">📈</span>
+                            Monitor analytics (Views, Watch time)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500">📈</span>
+                            Analisis performa konten
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500">📈</span>
+                            Community management
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500">📈</span>
+                            Iterasi strategi berikutnya
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Checklist Publikasi -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <div class="max-w-6xl w-full grid grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-bold mb-2">Checklist Sebelum Publikasi</h2>
+                    <p class="text-xl text-brand-600 dark:text-brand-400 mb-6">Pastikan Semua Siap!</p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-4 rounded-xl">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-300 mb-2">✅ TEKNIS</h4>
+                            <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                                <li>□ Review konten (Quality OK)</li>
+                                <li>□ Format sesuai platform</li>
+                                <li>□ Cek di berbagai device</li>
+                                <li>□ Backup file original</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-300 mb-2">✅ LEGAL & ETIKA</h4>
+                            <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                                <li>□ Konten legal/licensed</li>
+                                <li>□ Attribution aman</li>
+                                <li>□ No copyright issues</li>
+                                <li>□ Fact-check valid</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-300 mb-2">✅ OPTIMASI</h4>
+                            <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                                <li>□ Title, desc, tags optimal</li>
+                                <li>□ SEO optimization</li>
+                                <li>□ Caption/subtitle ready</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-300 mb-2">✅ STRATEGI</h4>
+                            <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-400">
+                                <li>□ Timing optimal</li>
+                                <li>□ Engagement plan</li>
+                                <li>□ Analytics setup</li>
+                                <li>□ Next content plan</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-brand-100 dark:bg-brand-900/30 rounded-xl border border-brand-200 dark:border-brand-800">
+                        <p class="text-center font-bold text-brand-800 dark:text-brand-200 italic">
+                            "Consistency, quality, dan engagement adalah kunci kesuksesan. Keep learning & keep creating!"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-full flex items-center">
+                    <img 
+                        src="assets/images/pertemuan_8_1/slide_15.webp" 
+                        alt="Publishing Checklist" 
+                        class="w-full object-cover rounded-2xl shadow-2xl border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- HighlightJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+        <!-- Canvas Engine -->
+        <script src="public/canvas.js"></script>
+        <!-- Tools/Controls -->
+        <script src="public/tools.js"></script>
+    </body>
+</html>
