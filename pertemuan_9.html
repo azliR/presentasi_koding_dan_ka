@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Konsep & Struktur Basis Data</title>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./public/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./public/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./public/favicon-16x16.png"
+        />
+        <link rel="icon" href="./public/favicon.ico" sizes="any" />
+        <link rel="manifest" href="./site.webmanifest" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Outfit", "ui-sans-serif", "system-ui"],
+                            mono: ["JetBrains Mono", "monospace"],
+                            display: ["Bricolage Grotesque", "ui-sans-serif", "system-ui"],
+                        },
+                        colors: {
+                            brand: {
+                                50: "#eff6ff",
+                                100: "#dbeafe",
+                                200: "#bfdbfe",
+                                300: "#93c5fd",
+                                400: "#60a5fa",
+                                500: "#3b82f6",
+                                600: "#2563eb",
+                                700: "#1d4ed8",
+                                800: "#1e40af",
+                                900: "#1e3a8a",
+                                950: "#172554",
+                            },
+                            accent: {
+                                500: "#f97316", // Orange for contrast
+                            }
+                        },
+                        boxShadow: {
+                            glow: "0 0 50px -12px rgba(59, 130, 246, 0.25)",
+                            "glow-lg": "0 0 70px -12px rgba(59, 130, 246, 0.4)",
+                        },
+                        backgroundImage: {
+                            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        }
+                    },
+                },
+                darkMode: "class",
+            };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
+        <link rel="stylesheet" href="public/canvas.css" />
+        <style>
+            .slide-bg {
+                background-image: 
+                    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.08), transparent 40%),
+                    radial-gradient(circle at 85% 85%, rgba(37, 99, 235, 0.08), transparent 40%);
+            }
+            .dark .slide-bg {
+                background-image: 
+                    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.15), transparent 40%),
+                    radial-gradient(circle at 85% 85%, rgba(30, 64, 175, 0.2), transparent 40%);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+            .dark .glass-card {
+                background: rgba(23, 37, 84, 0.4);
+                border: 1px solid rgba(59, 130, 246, 0.1);
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .dark .text-gradient {
+                background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hover-lift {
+                transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            }
+            .hover-glow:hover {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+                border-color: rgba(59, 130, 246, 0.5);
+            }
+            .img-zoom {
+                overflow: hidden;
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .img-zoom img {
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .img-zoom:hover img {
+                transform: scale(1.08);
+            }
+            /* Interactive quiz styles */
+            .quiz-option {
+                transition: all 0.2s ease;
+                cursor: pointer;
+                border: 2px solid transparent;
+            }
+            .quiz-option:hover {
+                border-color: rgba(59, 130, 246, 0.5);
+                background: rgba(59, 130, 246, 0.08);
+            }
+            .quiz-option.selected {
+                border-color: rgba(59, 130, 246, 0.7);
+                background: rgba(59, 130, 246, 0.15);
+            }
+            .quiz-option.correct {
+                border-color: rgba(16, 185, 129, 0.7);
+                background: rgba(16, 185, 129, 0.15);
+            }
+            .quiz-option.incorrect {
+                border-color: rgba(239, 68, 68, 0.7);
+                background: rgba(239, 68, 68, 0.15);
+            }
+            .quiz-feedback {
+                animation: feedbackSlide 0.4s ease-out;
+            }
+            @keyframes feedbackSlide {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in-up {
+                animation: fadeInUp 0.6s ease-out forwards;
+            }
+            .delay-100 { animation-delay: 0.1s; }
+            .delay-200 { animation-delay: 0.2s; }
+            .delay-300 { animation-delay: 0.3s; }
+            .delay-400 { animation-delay: 0.4s; }
+            .delay-500 { animation-delay: 0.5s; }
+        </style>
+    </head>
+    <body class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        
+        <!-- SLIDE 1: COVER -->
+        <div class="slide active slide-bg flex items-center justify-center p-12">
+            <div class="max-w-7xl w-full grid grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        <span class="text-s font-bold uppercase tracking-wider">Mata Pelajaran Informatika</span>
+                    </div>
+                    
+                    <h1 class="text-6xl font-extrabold leading-tight tracking-tight font-display">
+                        KONSEP & STRUKTUR <br/>
+                        <span class="text-gradient">Basis Data</span>
+                    </h1>
+                    
+                    <div class="space-y-4">
+                        <h2 class="text-2xl font-medium text-slate-600 dark:text-slate-300">
+                            Mengenal Data, Basis Data, dan Strukturnya
+                        </h2>
+                        <p class="text-lg text-slate-500 dark:text-slate-400 font-mono border-l-4 border-brand-500 pl-4">
+                            Mata Pelajaran Informatika
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative group img-zoom hover-lift">
+                    <div class="absolute inset-0 bg-brand-500 rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                    <img 
+                        src="assets/images/pertemuan_9/slide_1.webp" 
+                        alt="a clean modern classroom with a digital whiteboard showing a database diagram, bright and welcoming atmosphere, flat illustration style, aspect ratio 4:3" 
+                        class="relative rounded-[2rem] shadow-2xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800 transition duration-500"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: CAPAIAN PEMBELAJARAN -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Apa yang Akan Kamu Pelajari?</h2>
+                    <p class="text-xl text-brand-600 dark:text-brand-400 mt-2">Capaian Pembelajaran</p>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">02</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-4">
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold shrink-0 text-lg">✅</div>
+                        <div>
+                            <p class="font-medium">Menjelaskan pengertian <span class="font-bold text-brand-600 dark:text-brand-400">data</span> dan <span class="font-bold text-brand-600 dark:text-brand-400">basis data</span></p>
+                        </div>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold shrink-0 text-lg">✅</div>
+                        <div>
+                            <p class="font-medium">Membedakan data mentah dengan informasi</p>
+                        </div>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold shrink-0 text-lg">✅</div>
+                        <div>
+                            <p class="font-medium">Menyebutkan contoh basis data dalam kehidupan sehari-hari</p>
+                        </div>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold shrink-0 text-lg">✅</div>
+                        <div>
+                            <p class="font-medium">Mengidentifikasi struktur basis data: <span class="font-bold text-brand-600 dark:text-brand-400">tabel, field, dan record</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl flex justify-center">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_2.webp" 
+                        alt="Learning objectives illustration" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800 max-h-[500px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: APA ITU DATA? -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Apa Itu Data?</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">03</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 mb-2 uppercase">Definisi:</h3>
+                        <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                            Data adalah kumpulan fakta mentah yang belum diolah dan belum memiliki makna tersendiri.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 mb-3 uppercase">Contoh data mentah:</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-lg text-center font-mono font-bold text-lg">081234567890</div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-lg text-center font-mono font-bold text-lg">17-08-2006</div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-lg text-center font-mono font-bold text-lg">Budi</div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-lg text-center font-mono font-bold text-lg">85</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                        <p class="text-slate-700 dark:text-slate-300">
+                            💡 Data baru menjadi <span class="font-bold">informasi</span> ketika sudah diolah dan punya konteks. Contoh: "Nilai Matematika Budi adalah 85."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_3.webp" 
+                        alt="raw numbers and text floating in the air transforming into organized information charts, conceptual digital art style, aspect ratio 4:3" 
+                        class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: DATA VS INFORMASI -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-2 text-center uppercase tracking-tight font-display">Bedanya Data dan Informasi</h2>
+            <p class="text-xl text-brand-600 dark:text-brand-400 text-center mb-8">Perbandingan yang Perlu Dipahami</p>
+
+            <div class="max-w-6xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card hover-lift">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-5 w-1/6"></th>
+                            <th class="p-5 w-2/5 text-center">Data</th>
+                            <th class="p-5 w-2/5 text-center">Informasi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-bold">Bentuk</td>
+                            <td class="p-4 text-center">Mentah, belum diolah</td>
+                            <td class="p-4 text-center">Sudah diolah</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-bold">Makna</td>
+                            <td class="p-4 text-center">Belum jelas</td>
+                            <td class="p-4 text-center">Memiliki arti</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-bold">Contoh</td>
+                            <td class="p-4 text-center font-mono text-s">85, Budi, X-A</td>
+                            <td class="p-4 text-center">"Budi dari kelas X-A mendapat nilai 85"</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-bold">Kegunaan</td>
+                            <td class="p-4 text-center">Bahan baku</td>
+                            <td class="p-4 text-center">Bahan keputusan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: APA ITU BASIS DATA? -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Apa Itu Basis Data?</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">05</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                    <p>
+                        Basis data (database) adalah <span class="font-bold text-brand-600 dark:text-brand-400">kumpulan data yang terorganisir</span>, disimpan secara sistematis, dan dapat diakses serta dikelola dengan mudah.
+                    </p>
+                    <p>
+                        Bayangkan basis data seperti <span class="font-bold text-brand-600 dark:text-brand-400">lemari arsip digital</span> — semua dokumen tersimpan rapi, berlabel, dan mudah dicari kapan saja.
+                    </p>
+                    <p>
+                        Basis data dikelola oleh perangkat lunak khusus yang disebut <span class="font-bold text-brand-600 dark:text-brand-400">DBMS</span> <span class="text-slate-500 dark:text-slate-400 italic">(Database Management System)</span>.
+                    </p>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_5.webp" 
+                        alt="a well-organized digital filing cabinet with colorful labeled folders glowing on a clean desk, minimal flat design illustration, aspect ratio 3:4" 
+                        class="rounded-2xl shadow-xl w-full object-cover aspect-[3/4] max-h-[550px] border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: MENGAPA BASIS DATA PENTING? -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-8 text-center uppercase tracking-tight font-display">Mengapa Kita Butuh Basis Data?</h2>
+
+            <div class="grid grid-cols-2 gap-10">
+                <div class="glass-card hover-lift p-6 rounded-2xl border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-600 dark:text-red-400 mb-4 uppercase">Tanpa Basis Data, Data Akan:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">🗂️</span>
+                            <span>Tersebar dan tidak terorganisir</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">🔁</span>
+                            <span>Mudah ganda / duplikat</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">🔍</span>
+                            <span>Susah dicari saat dibutuhkan</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">❌</span>
+                            <span>Rentan hilang atau salah</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card hover-lift p-6 rounded-2xl border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-4 uppercase">Dengan Basis Data, Data Menjadi:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">✅</span>
+                            <span>Terstruktur dan rapi</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">✅</span>
+                            <span>Mudah dicari dan diperbarui</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">✅</span>
+                            <span>Aman dan terpusat</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-2xl">✅</span>
+                            <span>Bisa digunakan banyak orang sekaligus</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: BASIS DATA DI SEKITAR KITA -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Basis Data Ada di Mana-Mana!</h2>
+                    <p class="text-xl text-brand-600 dark:text-brand-400 mt-2">Tanpa sadar, kita berinteraksi dengan basis data setiap hari</p>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">07</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="max-w-xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card hover-lift">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-900 text-white">
+                            <tr>
+                                <th class="p-5 w-1/3">Tempat</th>
+                                <th class="p-5 w-2/3">Data yang Disimpan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">🏫 Sekolah</td>
+                                <td class="p-4">Data siswa, nilai, absensi</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">🏥 Rumah Sakit</td>
+                                <td class="p-4">Data pasien, rekam medis</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">🏦 Bank</td>
+                                <td class="p-4">Data nasabah, transaksi</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">🛒 Toko Online</td>
+                                <td class="p-4">Data produk, pesanan, pelanggan</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">📱 Media Sosial</td>
+                                <td class="p-4">Data profil, postingan, pertemanan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_7.webp" 
+                        alt="icons of school, hospital, bank, online store, and social media connected to a central database server, flat icon style illustration, aspect ratio 4:3" 
+                        class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: STRUKTUR BASIS DATA -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Struktur Basis Data</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">08</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 mb-4">Basis data tersusun dari tiga komponen utama:</h3>
+                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-sm"><code>BASIS DATA
+└── TABEL
+    ├── FIELD (Kolom)
+    └── RECORD (Baris)</code></pre>
+                    </div>
+                    <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                        Ketiga komponen ini bekerja bersama untuk menyimpan dan mengorganisir data secara terstruktur. Mari kita pelajari satu per satu!
+                    </p>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_8.webp" 
+                        alt="a clean visual diagram showing database containing tables with rows and columns highlighted, educational infographic style, aspect ratio 4:3" 
+                        class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: KOMPONEN 1: TABEL -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Tabel — Wadah Penyimpan Data</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">09</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                    <p>
+                        <span class="font-bold text-brand-600 dark:text-brand-400">Tabel</span> adalah struktur utama dalam basis data. Bentuknya seperti tabel di Microsoft Excel — memiliki baris dan kolom.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-500 font-bold">•</span>
+                            <span>Satu basis data bisa terdiri dari <span class="font-bold">banyak tabel</span></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-500 font-bold">•</span>
+                            <span>Setiap tabel menyimpan <span class="font-bold">satu jenis data</span> tertentu</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brand-500 font-bold">•</span>
+                            <span>Tabel diberi nama sesuai isinya</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="font-bold text-sm uppercase text-slate-500 dark:text-slate-400 mb-2">Contoh nama tabel:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-full font-mono text-sm">siswa</span>
+                            <span class="bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-full font-mono text-sm">guru</span>
+                            <span class="bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-full font-mono text-sm">nilai</span>
+                            <span class="bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-full font-mono text-sm">mata_pelajaran</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl flex justify-center">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_9.webp" 
+                        alt="Table structure illustration" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800 max-h-[500px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: CONTOH TABEL SISWA -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-2 text-center uppercase tracking-tight font-display">Contoh: Tabel <span class="font-mono text-brand-600 dark:text-brand-400">siswa</span></h2>
+            <p class="text-xl text-brand-600 dark:text-brand-400 text-center mb-8">Contoh Tabel dalam Basis Data</p>
+
+            <div class="max-w-5xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card hover-lift mb-6">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-5">NIS</th>
+                            <th class="p-5">Nama</th>
+                            <th class="p-5">Kelas</th>
+                            <th class="p-5">Alamat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono">001</td>
+                            <td class="p-4 font-bold">Budi Santoso</td>
+                            <td class="p-4">X-A</td>
+                            <td class="p-4">Jakarta</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono">002</td>
+                            <td class="p-4 font-bold">Ani Rahayu</td>
+                            <td class="p-4">X-B</td>
+                            <td class="p-4">Bogor</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono">003</td>
+                            <td class="p-4 font-bold">Dian Pratama</td>
+                            <td class="p-4">X-A</td>
+                            <td class="p-4">Depok</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800 max-w-5xl mx-auto w-full">
+                <p class="text-slate-700 dark:text-slate-300">
+                    👆 Inilah tampilan sebuah <span class="font-bold">tabel</span> dalam basis data. Setiap kolom disebut <span class="font-bold">field</span>, dan setiap baris disebut <span class="font-bold">record</span>.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: KOMPONEN 2: FIELD -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Field — Kategori / Jenis Data</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">11</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6">
+                    <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                        <span class="font-bold text-brand-600 dark:text-brand-400">Field</span> adalah <span class="font-bold">kolom</span> dalam tabel yang menentukan jenis informasi apa yang disimpan.
+                    </p>
+                    
+                    <div class="max-w-xl mx-auto w-full overflow-hidden rounded-2xl shadow-lg glass-card">
+                        <table class="w-full text-left">
+                            <thead class="bg-brand-600 text-white">
+                                <tr>
+                                    <th class="p-3">NIS</th>
+                                    <th class="p-3">Nama</th>
+                                    <th class="p-3">Kelas</th>
+                                    <th class="p-3">Alamat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                                <tr class="text-slate-500 dark:text-slate-400 italic text-sm">
+                                    <td class="p-3">(field)</td>
+                                    <td class="p-3">(field)</td>
+                                    <td class="p-3">(field)</td>
+                                    <td class="p-3">(field)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono">001</td>
+                                    <td class="p-3">Budi Santoso</td>
+                                    <td class="p-3">X-A</td>
+                                    <td class="p-3">Jakarta</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="font-bold text-sm uppercase text-slate-500 dark:text-slate-400 mb-2">Setiap field memiliki:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-xl">📌</span>
+                                <span><span class="font-bold">Nama</span> — label/judul kolom (contoh: <span class="font-mono">Nama</span>, <span class="font-mono">Kelas</span>)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-xl">📋</span>
+                                <span><span class="font-bold">Tipe data</span> — jenis nilai yang boleh diisi (teks, angka, tanggal, dsb.)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl flex justify-center">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_11.webp" 
+                        alt="Field/column illustration" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800 max-h-[500px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: TIPE DATA PADA FIELD -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center">
+            <h2 class="text-4xl font-bold mb-2 text-center uppercase tracking-tight font-display">Tipe Data pada Field</h2>
+            <p class="text-xl text-brand-600 dark:text-brand-400 text-center mb-8">Jenis-jenis Data yang Bisa Disimpan</p>
+
+            <div class="max-w-5xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card hover-lift mb-6">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-900 text-white">
+                        <tr>
+                            <th class="p-5 w-1/3">Tipe Data</th>
+                            <th class="p-5 w-1/3">Keterangan</th>
+                            <th class="p-5 w-1/3">Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono font-bold">TEXT / VARCHAR</td>
+                            <td class="p-4">Teks bebas</td>
+                            <td class="p-4">Nama, Alamat</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono font-bold">INTEGER</td>
+                            <td class="p-4">Bilangan bulat</td>
+                            <td class="p-4">Usia, Jumlah</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono font-bold">DECIMAL</td>
+                            <td class="p-4">Bilangan desimal</td>
+                            <td class="p-4">Nilai, Harga</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono font-bold">DATE</td>
+                            <td class="p-4">Tanggal</td>
+                            <td class="p-4">Tanggal Lahir</td>
+                        </tr>
+                        <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                            <td class="p-4 font-mono font-bold">BOOLEAN</td>
+                            <td class="p-4">Benar/Salah</td>
+                            <td class="p-4">Status Aktif</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800 max-w-5xl mx-auto w-full text-center">
+                <p class="text-slate-700 dark:text-slate-300">
+                    💡 Tipe data penting agar data tersimpan dengan benar dan efisien.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: KOMPONEN 3: RECORD -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Record — Satu Baris Data Lengkap</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">13</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-6">
+                    <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                        <span class="font-bold text-brand-600 dark:text-brand-400">Record</span> adalah <span class="font-bold">satu baris</span> dalam tabel yang berisi data lengkap dari satu entitas/objek.
+                    </p>
+                    
+                    <div class="max-w-xl mx-auto w-full overflow-hidden rounded-2xl shadow-lg glass-card">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-900 text-white">
+                                <tr>
+                                    <th class="p-3">NIS</th>
+                                    <th class="p-3">Nama</th>
+                                    <th class="p-3">Kelas</th>
+                                    <th class="p-3">Alamat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                                <tr class="bg-brand-100 dark:bg-brand-900/30 font-bold">
+                                    <td class="p-3 font-mono">001</td>
+                                    <td class="p-3">Budi Santoso</td>
+                                    <td class="p-3">X-A</td>
+                                    <td class="p-3">Jakarta</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono">002</td>
+                                    <td class="p-3">Ani Rahayu</td>
+                                    <td class="p-3">X-B</td>
+                                    <td class="p-3">Bogor</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                        <p class="text-slate-700 dark:text-slate-300">
+                            👆 Baris yang ditebalkan adalah <span class="font-bold">satu record</span> — yaitu data lengkap milik Budi Santoso.
+                        </p>
+                    </div>
+                    
+                    <p class="text-slate-700 dark:text-slate-300">
+                        Satu record = satu "orang" / "barang" / "kejadian" yang datanya disimpan.
+                    </p>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl flex justify-center">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_13.webp" 
+                        alt="Record/row illustration" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800 max-h-[500px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: RINGKASAN: TABEL, FIELD, RECORD -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Rangkuman Struktur Basis Data</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">14</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-start">
+                <div class="max-w-xl mx-auto w-full overflow-hidden rounded-2xl shadow-xl glass-card hover-lift mb-6">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-900 text-white">
+                            <tr>
+                                <th class="p-5">Komponen</th>
+                                <th class="p-5">Analogi</th>
+                                <th class="p-5">Fungsi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">🗄️ Tabel</td>
+                                <td class="p-4">Lembar kerja Excel</td>
+                                <td class="p-4">Menyimpan satu jenis data</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">📋 Field</td>
+                                <td class="p-4">Judul kolom</td>
+                                <td class="p-4">Menentukan kategori data</td>
+                            </tr>
+                            <tr class="hover:bg-brand-50/50 dark:hover:bg-brand-900/10">
+                                <td class="p-4 font-bold">📄 Record</td>
+                                <td class="p-4">Satu baris isi</td>
+                                <td class="p-4">Menyimpan satu data lengkap</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 mb-3 uppercase">Analogi mudah:</h3>
+                        <p class="text-slate-700 dark:text-slate-300 mb-3">
+                            Bayangkan <span class="font-bold">buku absensi kelas</span>:
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2">
+                                <span class="text-brand-500 font-bold">•</span>
+                                <span>Buku absensi = <span class="font-bold">Tabel</span></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-brand-500 font-bold">•</span>
+                                <span>Kolom (Nama, Hadir, Tanggal) = <span class="font-bold">Field</span></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-brand-500 font-bold">•</span>
+                                <span>Satu baris data seorang siswa = <span class="font-bold">Record</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="relative img-zoom hover-lift rounded-2xl">
+                        <img 
+                            src="assets/images/pertemuan_9/slide_14.webp" 
+                            alt="an open attendance book with clearly labeled columns and rows, one row highlighted to show a single record, realistic flat illustration style, aspect ratio 4:3" 
+                            class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: CONTOH LENGKAP BASIS DATA SEKOLAH -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Contoh: Basis Data Sekolah</h2>
+                    <p class="text-xl text-brand-600 dark:text-brand-400 mt-2">Sebuah basis data sekolah bisa memiliki beberapa tabel</p>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">15</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-10 items-start">
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 uppercase">Tabel <span class="font-mono">siswa</span></h3>
+                    <div class="max-w-md mx-auto w-full overflow-hidden rounded-xl shadow-lg glass-card">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-900 text-white">
+                                <tr>
+                                    <th class="p-3">NIS</th>
+                                    <th class="p-3">Nama</th>
+                                    <th class="p-3">Kelas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                                <tr>
+                                    <td class="p-3 font-mono">001</td>
+                                    <td class="p-3">Budi</td>
+                                    <td class="p-3">X-A</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono">002</td>
+                                    <td class="p-3">Ani</td>
+                                    <td class="p-3">X-B</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-brand-600 dark:text-brand-400 uppercase">Tabel <span class="font-mono">nilai</span></h3>
+                    <div class="max-w-md mx-auto w-full overflow-hidden rounded-xl shadow-lg glass-card">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-900 text-white">
+                                <tr>
+                                    <th class="p-3">NIS</th>
+                                    <th class="p-3">Mata Pelajaran</th>
+                                    <th class="p-3">Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                                <tr>
+                                    <td class="p-3 font-mono">001</td>
+                                    <td class="p-3">Matematika</td>
+                                    <td class="p-3">85</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono">002</td>
+                                    <td class="p-3">Informatika</td>
+                                    <td class="p-3">90</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800 mt-6">
+                <p class="text-slate-700 dark:text-slate-300 text-center">
+                    Kedua tabel terhubung melalui kolom <span class="font-bold">NIS</span> — inilah kekuatan basis data!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: PENUTUP MATERI / KESIMPULAN -->
+        <div class="slide slide-bg flex flex-col p-12">
+            <div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-4xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-tight font-display">Kesimpulan</h2>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">16</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-12 items-center h-full">
+                <div class="space-y-4">
+                    <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-4">
+                        Hari ini kamu telah belajar bahwa:
+                    </p>
+                    
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-3">
+                        <span class="text-xl">📌</span>
+                        <p><span class="font-bold">Data</span> adalah fakta mentah; menjadi <span class="font-bold">informasi</span> setelah diolah</p>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-3">
+                        <span class="text-xl">🗄️</span>
+                        <p><span class="font-bold">Basis data</span> adalah kumpulan data yang tersimpan secara terstruktur dan sistematis</p>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-3">
+                        <span class="text-xl">🏗️</span>
+                        <div>
+                            <p class="font-bold mb-1">Struktur basis data terdiri dari:</p>
+                            <ul class="text-sm space-y-1 ml-4">
+                                <li>• <span class="font-bold">Tabel</span> → wadah utama data</li>
+                                <li>• <span class="font-bold">Field</span> → kolom / kategori data</li>
+                                <li>• <span class="font-bold">Record</span> → satu baris data lengkap</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="glass-card hover-lift p-4 rounded-xl flex items-start gap-3">
+                        <span class="text-xl">🌍</span>
+                        <p>Basis data digunakan di mana-mana: sekolah, rumah sakit, bank, toko online</p>
+                    </div>
+                </div>
+                
+                <div class="relative img-zoom hover-lift rounded-2xl flex justify-center">
+                    <img 
+                        src="assets/images/pertemuan_9/slide_16.webp" 
+                        alt="Conclusion illustration" 
+                        class="rounded-2xl shadow-xl w-full object-cover border-4 border-white dark:border-slate-800 max-h-[500px]"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17: KUIS SINGKAT (1/3) -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center" data-quiz="1" data-correct="B">
+            <div class="flex items-center justify-between mb-8">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                    <span class="text-lg">🧠</span>
+                    <span class="font-bold uppercase tracking-wider">Kuis — Soal 1</span>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">17</div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto w-full">
+                <h3 class="text-2xl font-bold mb-8 text-center">Manakah pernyataan yang BENAR tentang data dan informasi?</h3>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="A" onclick="selectQuizOption(this, 1)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">A</span>
+                            <span>Data dan informasi adalah hal yang sama persis</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="B" onclick="selectQuizOption(this, 1)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">B</span>
+                            <span>Informasi adalah data yang sudah diolah dan memiliki makna</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="C" onclick="selectQuizOption(this, 1)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">C</span>
+                            <span>Data sudah pasti lebih berguna daripada informasi</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="D" onclick="selectQuizOption(this, 1)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">D</span>
+                            <span>Informasi tidak memerlukan data untuk terbentuk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="quiz-feedback-1" class="hidden quiz-feedback p-4 rounded-xl text-center font-bold"></div>
+                
+                <p class="text-center text-slate-500 dark:text-slate-400 italic mt-6">
+                    Pilih jawabanmu di atas!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 18: KUIS SINGKAT (2/3) -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center" data-quiz="2" data-correct="C">
+            <div class="flex items-center justify-between mb-8">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                    <span class="text-lg">🧠</span>
+                    <span class="font-bold uppercase tracking-wider">Kuis — Soal 2</span>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">18</div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto w-full">
+                <p class="text-lg mb-4 text-center">Perhatikan tabel berikut:</p>
+                
+                <div class="max-w-md mx-auto w-full overflow-hidden rounded-xl shadow-lg glass-card mb-6">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-900 text-white">
+                            <tr>
+                                <th class="p-3">NIS</th>
+                                <th class="p-3">Nama</th>
+                                <th class="p-3">Kelas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
+                            <tr>
+                                <td class="p-3 font-mono">001</td>
+                                <td class="p-3">Budi</td>
+                                <td class="p-3">X-A</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-mono">002</td>
+                                <td class="p-3">Ani</td>
+                                <td class="p-3">X-B</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="text-xl font-bold mb-6 text-center">Apa yang dimaksud dengan "Record" pada tabel di atas?</h3>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="A" onclick="selectQuizOption(this, 2)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">A</span>
+                            <span>Seluruh isi tabel beserta judulnya</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="B" onclick="selectQuizOption(this, 2)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">B</span>
+                            <span>Kolom NIS, Nama, dan Kelas</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="C" onclick="selectQuizOption(this, 2)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">C</span>
+                            <span>Satu baris data, misalnya: <span class="font-mono">001 | Budi | X-A</span></span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="D" onclick="selectQuizOption(this, 2)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">D</span>
+                            <span>Nama tabel yang digunakan</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="quiz-feedback-2" class="hidden quiz-feedback p-4 rounded-xl text-center font-bold"></div>
+                
+                <p class="text-center text-slate-500 dark:text-slate-400 italic mt-6">
+                    Pilih jawabanmu di atas!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 19: KUIS SINGKAT (3/3) -->
+        <div class="slide slide-bg flex flex-col p-12 justify-center" data-quiz="3" data-correct="C">
+            <div class="flex items-center justify-between mb-8">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                    <span class="text-lg">🧠</span>
+                    <span class="font-bold uppercase tracking-wider">Kuis — Soal 3</span>
+                </div>
+                <div class="text-6xl opacity-10 font-black font-display">19</div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto w-full">
+                <h3 class="text-2xl font-bold mb-8 text-center">Di bawah ini yang BUKAN merupakan contoh penggunaan basis data dalam kehidupan sehari-hari adalah...</h3>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="A" onclick="selectQuizOption(this, 3)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">A</span>
+                            <span>Penyimpanan data pasien di rumah sakit</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="B" onclick="selectQuizOption(this, 3)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">B</span>
+                            <span>Daftar kontak di ponselmu</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="C" onclick="selectQuizOption(this, 3)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">C</span>
+                            <span>Mencetak dokumen menggunakan printer</span>
+                        </div>
+                    </div>
+                    <div class="quiz-option glass-card p-5 rounded-xl" data-answer="D" onclick="selectQuizOption(this, 3)">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold shrink-0">D</span>
+                            <span>Transaksi belanja di toko online</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="quiz-feedback-3" class="hidden quiz-feedback p-4 rounded-xl text-center font-bold"></div>
+                
+                <p class="text-center text-slate-500 dark:text-slate-400 italic mt-6">
+                    Pilih jawabanmu di atas!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 20: PENUTUP -->
+        <div class="slide slide-bg flex items-center justify-center p-12">
+            <div class="max-w-7xl w-full grid grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800">
+                        <span class="text-lg">🎉</span>
+                        <span class="text-s font-bold uppercase tracking-wider">Terima Kasih!</span>
+                    </div>
+                    
+                    <h1 class="text-5xl font-extrabold leading-tight tracking-tight font-display">
+                        Sampai Jumpa di <br/>
+                        <span class="text-gradient">Materi Berikutnya!</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-600 dark:text-slate-400 italic border-l-4 border-brand-500 pl-4">
+                        "Data adalah bahan bakar dunia digital — dan kamu baru saja belajar cara menyimpannya dengan benar."
+                    </p>
+                </div>
+                
+                <div class="relative group img-zoom hover-lift">
+                    <div class="absolute inset-0 bg-brand-500 rounded-[2rem] blur-2xl opacity-20 group-hover:opacity-30 transition duration-500"></div>
+                    <img 
+                        src="assets/images/pertemuan_9/slide_20.webp" 
+                        alt="cheerful students giving thumbs up in front of a digital classroom screen, bright and motivating illustration style, aspect ratio 4:3" 
+                        class="relative rounded-[2rem] shadow-2xl w-full object-cover aspect-[4/3] border-4 border-white dark:border-slate-800 transition duration-500"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="public/canvas.js"></script>
+        <script src="public/tools.js"></script>
+        <script>
+            function selectQuizOption(element, quizNum) {
+                const slide = element.closest('[data-quiz]');
+                const correctAnswer = slide.dataset.correct;
+                const selectedAnswer = element.dataset.answer;
+                const feedbackEl = document.getElementById('quiz-feedback-' + quizNum);
+                const allOptions = slide.querySelectorAll('.quiz-option');
+                
+                allOptions.forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (selectedAnswer === correctAnswer) {
+                    element.classList.add('correct');
+                    feedbackEl.classList.remove('hidden');
+                    feedbackEl.className = 'quiz-feedback p-4 rounded-xl text-center font-bold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800';
+                    feedbackEl.textContent = '✅ Benar! Jawaban kamu tepat!';
+                } else {
+                    element.classList.add('incorrect');
+                    const correctOption = slide.querySelector(`[data-answer="${correctAnswer}"]`);
+                    if (correctOption) {
+                        correctOption.classList.add('correct');
+                    }
+                    feedbackEl.classList.remove('hidden');
+                    feedbackEl.className = 'quiz-feedback p-4 rounded-xl text-center font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800';
+                    feedbackEl.textContent = `❌ Kurang tepat. Jawaban yang benar adalah ${correctAnswer}.`;
+                }
+            }
+        </script>
+    </body>
+</html>
