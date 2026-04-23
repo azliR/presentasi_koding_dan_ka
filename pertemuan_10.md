@@ -283,7 +283,7 @@ Sebuah sekolah ingin menyimpan data siswa, nilai, dan absensi dalam satu sistem 
 
 ---
 
-### SLIDE 20 — KUIS SINGKAT (3/3) & PENUTUP
+### SLIDE 20 — KUIS SINGKAT (3/3)
 **Judul:** 🧠 Kuis — Soal 3 & Penutup
 
 **Di bawah ini yang BUKAN merupakan fungsi dari DBMS adalah...**
@@ -297,7 +297,7 @@ Sebuah sekolah ingin menyimpan data siswa, nilai, dan absensi dalam satu sistem 
 
 ---
 
-**Jawaban Kuis:**
+**Jawaban Kuis (Tidak perlu ditampilkan di slide):**
 | Soal | Jawaban | Alasan Singkat |
 |---|---|---|
 | Soal 1 | **B** | DBMS = Database Management System, fungsi utamanya mengelola basis data |
@@ -305,6 +305,11 @@ Sebuah sekolah ingin menyimpan data siswa, nilai, dan absensi dalam satu sistem 
 | Soal 3 | **C** | Mengubah tampilan grafis adalah tugas framework/desain UI, bukan DBMS |
 
 *Sampai jumpa di materi berikutnya!* 🎉
+
+### SLIDE 21 — PENUTUP
+**Judul:** Terima Kasih
+
+**Ada yang ingin ditanyakan?**
 
 <<img: create an image of happy students celebrating learning achievement with digital database icons floating around them, colorful motivating flat illustration style, aspect ratio 4:3>>
 
